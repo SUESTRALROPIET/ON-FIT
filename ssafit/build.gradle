@@ -27,7 +27,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 //	/*Spring Data JPA : JPA를 통해 데이터베이스에 접근 가능*/
-//	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 //
 //	/*OAuth2 Client : OAuth 인증 연동*/
 //	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
@@ -37,14 +37,14 @@ dependencies {
 //	testImplementation 'org.springframework.security:spring-security-test'
 //
 //	/*Lombok : getter,setter, 생성자를 어노테이션을 통해 자동으로 생성해주는 라이브러리*/
-//	compileOnly 'org.projectlombok:lombok'
-//	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 //
 //	/*Spring boot devtools : 프로젝트에서 파일이 변경되었을 때 서버 자동 재시작*/
 //	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 //
 //	/*MySQL Driver : MySQL 연동*/
-//	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'mysql:mysql-connector-java'
 }
 
 tasks.named('test') {
