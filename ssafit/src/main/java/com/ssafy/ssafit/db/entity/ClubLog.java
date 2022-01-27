@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 public class ClubLog extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Exercise_ID")
-    private User ex_id;
+    private Exercise ex_id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Club_ID")
