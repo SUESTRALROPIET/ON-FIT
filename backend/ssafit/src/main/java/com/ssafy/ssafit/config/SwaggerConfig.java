@@ -2,6 +2,7 @@ package com.ssafy.ssafit.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -12,6 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
+//@EnableWebMvc
 public class SwaggerConfig {
 
     @Bean
@@ -39,5 +41,5 @@ public class SwaggerConfig {
                 .build();
     }
 
-    // 완료가 되었으면 오른쪽 URL 로 접속 => http://localhost:8080/swagger-ui.html
+    // 완료가 되었으면 오른쪽 URL 로 접속 => http://localhost:8081/swagger-ui.html
 }

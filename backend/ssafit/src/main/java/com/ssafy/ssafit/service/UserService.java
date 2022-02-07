@@ -1,4 +1,4 @@
 package com.ssafy.ssafit.service;
 
-public class UserService {
+public interface UserService {
 }

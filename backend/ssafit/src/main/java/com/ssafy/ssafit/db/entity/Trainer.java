@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 @Setter
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Trainer extends BaseEntity{
+public class Trainer extends BaseEntity {
     private String trainer_name;
 
     private String trainer_img;
 
     @CreatedDate
     private LocalDateTime created_at;
-}
+
     //private String trainer_img;
 
     /*@CreatedDate
