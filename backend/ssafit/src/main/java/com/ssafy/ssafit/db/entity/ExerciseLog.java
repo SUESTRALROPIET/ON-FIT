@@ -16,13 +16,13 @@ import javax.persistence.*;
 public class ExerciseLog extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "User_ID")
-    private User user_id;
+    private User userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Exercise_ID")
-    private Exercise ex_id;
+    private Exercise exId;
 
-    private int ex_count;   // 해당 운동 총 갯수
+    private int exCount;   // 해당 운동 총 갯수
 
-    private int ex_time; // 해당 운동 총 시간
+    private int exTime; // 해당 운동 총 시간
 }

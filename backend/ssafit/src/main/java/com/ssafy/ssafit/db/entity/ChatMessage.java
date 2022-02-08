@@ -20,13 +20,15 @@ import java.time.LocalDateTime;
 public class ChatMessage extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "User_ID")
-    private User user_id;
+    private User userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Club_ID")
-    private Club club_id;
+    private Club clubId;
 
     private String message;
 
     private LocalDateTime time;
 }
+
+// QueryDsl(JPA처럼 함수형태) vs JPQL(sql문 명시)

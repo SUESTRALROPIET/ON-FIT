@@ -14,9 +14,9 @@ import javax.persistence.ManyToOne;
 public class ClubMate extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "User_ID")
-    private User user_id;
+    private User userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Club_ID")
-    private Club club_id;
+    private Club clubId;
 }

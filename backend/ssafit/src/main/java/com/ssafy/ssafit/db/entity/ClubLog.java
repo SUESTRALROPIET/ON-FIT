@@ -14,13 +14,13 @@ import javax.persistence.ManyToOne;
 public class ClubLog extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Exercise_ID")
-    private Exercise ex_id;
+    private Exercise exId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Club_ID")
-    private Club club_id;
+    private Club clubId;
 
-    private int ex_count;
+    private int exCount;
 
-    private int ex_time;
+    private int exTime;
 }
