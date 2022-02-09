@@ -22,7 +22,7 @@
               >
                 <template v-slot:item="data">
                   <v-list-item-avatar>
-                    <img :src="require(`@/assets/exercise/exercise_${data.item.exImg}.png`)">
+                    <img :src="`${data.item.exImg}`">
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-title v-html="data.item.name"></v-list-item-title>
@@ -59,7 +59,7 @@
         <!-- #2. listBox -->
         <v-col cols="5" class="listBox">
           <div class="title"><h3>운동 리스트</h3></div>
-          <exTodoItem
+          <ExTodoItem
             v-for="exTodo in exTodos"
             :key="exTodo.id"
             :exTodo="exTodo"
@@ -81,13 +81,13 @@
 </template>
 
 <script>
-import exTodoItem from './components/exTodoItem.vue';
+import ExTodoItem from './components/ExTodoItem.vue';
 
 export default {
   name: 'Personal',
 
   components: {
-    exTodoItem,
+    ExTodoItem,
   },
 
   data() {
@@ -95,18 +95,19 @@ export default {
       items: {
         exercises: [
           { header: '전신' },
-          { name: '버핏테스트', nums: '10회', exImg: 2 },
-          { name: '엎드려팔다리들기', nums: '10회', exImg: 8 },
-          { name: '슈퍼맨자세', nums: '10회', exImg: 4 },
+          { name: '트리 자세', nums: '10회', exImg: require('@/assets/exercise/tree.png') },
+          { name: '슈퍼맨 자세', nums: '10회', exImg: require('@/assets/exercise/superman.png') },
+          { name: '플랭크', nums: '30초', exImg: require('@/assets/exercise/flank.png') },
           { divider: true },
           { header: '상체' },
-          { name: '윗몸일으키기', nums: '10회', exImg: 6 },
-          { name: '플랭크', nums: '30초', exImg: 7 },
+          { name: '활 자세', nums: '10회', exImg: require('@/assets/exercise/bow.png') },
+          { name: '보트 자세', nums: '10회', exImg: require('@/assets/exercise/boat.png') },
           { divider: true },
           { header: '하체' },
-          { name: '런지', nums: '10회', exImg: 1 },
-          { name: '브릿지', nums: '10회', exImg: 3 },
-          { name: '스쿼트', nums: '10회', exImg: 5 },
+          { name: '스쿼트', nums: '10회', exImg: require('@/assets/exercise/squat.png') },
+          { name: '런지', nums: '10회', exImg: require('@/assets/exercise/lunge.png') },
+          { name: '브릿지', nums: '10회', exImg: require('@/assets/exercise/bridge.png') },
+          { name: '레그 레이즈', nums: '10회', exImg: require('@/assets/exercise/leg.png') },
         ],
         sets: [
           1, 2, 3, 4, 5,
@@ -127,28 +128,67 @@ export default {
     addToList() {
       const ex = [
         {
-          exName: '런지', exNum: '10회', imgNum: 1, des: '운동 설명',
+          id: 0,
+          exName: '트리 자세',
+          exEng: 'tree',
+          exNum: '10회',
+          description: '운동 설명',
         },
         {
-          exName: '버핏테스트', exNum: '10회', imgNum: 2, des: '운동 설명',
+          id: 1,
+          exName: '슈퍼맨 자세',
+          exEng: 'superman',
+          exNum: '10회',
+          description: '운동 설명',
         },
         {
-          exName: '브릿지', exNum: '10회', imgNum: 3, des: '운동 설명',
+          id: 2,
+          exName: '플랭크',
+          exEng: 'flank',
+          exNum: '30초',
+          description: '운동 설명',
         },
         {
-          exName: '슈퍼맨자세', exNum: '10회', imgNum: 4, des: '운동 설명',
+          id: 3,
+          exName: '활 자세',
+          exEng: 'bow',
+          exNum: '10회',
+          description: '운동 설명',
         },
         {
-          exName: '스쿼트', exNum: '10회', imgNum: 5, des: '운동 설명',
+          id: 4,
+          exName: '보트 자세',
+          exEng: 'boat',
+          exNum: '10회',
+          description: '운동 설명',
         },
         {
-          exName: '윗몸일으키기', exNum: '10회', imgNum: 6, des: '운동 설명',
+          id: 5,
+          exName: '스쿼트',
+          exEng: 'squat',
+          exNum: '10회',
+          description: '운동 설명',
         },
         {
-          exName: '플랭크', exNum: '30초', imgNum: 7, des: '운동 설명',
+          id: 6,
+          exName: '런지',
+          exEng: 'lunge',
+          exNum: '10회',
+          description: '운동 설명',
         },
         {
-          exName: '엎드려팔다리들기', exNum: '10회', imgNum: 8, des: '운동 설명',
+          id: 7,
+          exName: '브릿지',
+          exEng: 'bridge',
+          exNum: '10회',
+          description: '운동 설명',
+        },
+        {
+          id: 8,
+          exName: '레그 레이즈',
+          exEng: 'leg',
+          exNum: '10회',
+          description: '운동 설명',
         },
       ];
       if (this.selectedItem.selectedEx !== '') {
@@ -158,9 +198,10 @@ export default {
             id: new Date().getTime(),
             todoName: selectedResult[0].exName,
             todoNum: selectedResult[0].exNum,
-            todoImgNum: selectedResult[0].imgNum,
+            todoEng: selectedResult[0].exEng,
+            // todoImg: `@/assets/exercise/${selectedResult[0].exEng}.png`
             todoSet: this.selectedItem.selectedSet,
-            todoDes: selectedResult[0].des,
+            todoDes: selectedResult[0].description,
           };
           this.exTodos.push(exTodo);
         }
@@ -170,10 +211,14 @@ export default {
       this.exTodos.splice(this.exTodos.indexOf(exTodo), 1);
     },
     ready() {
-      this.$router.push({
-        name: 'TodayEx',
-        query: { exTodos: this.exTodos },
-      });
+      if (this.exTodos.length > 0) {
+        this.$store.dispatch('exTodos', this.exTodos);
+        this.$router.push({
+          name: 'TodayEx',
+        });
+      } else {
+        alert('선택된 운동이 없습니다.');
+      }
     },
   },
 };

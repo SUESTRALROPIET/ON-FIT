@@ -25,7 +25,7 @@
 
 <script>
 export default {
-  name: 'stopDialog',
+  name: 'StopDialog',
 
   data() {
     return {

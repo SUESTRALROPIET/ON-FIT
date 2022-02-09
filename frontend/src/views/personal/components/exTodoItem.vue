@@ -3,7 +3,7 @@
     <v-row>
       <!-- TODO: 정렬하기 -->
       <v-col class="exBox d-flex" cols="7">
-        <img :src="require(`@/assets/exercise/exercise_${exTodo.todoImgNum}.png`)" height="55px">
+        <img :src="require(`@/assets/exercise/${exTodo.todoEng}.png`)" height="55px">
         <h4 class="pl-4">{{ exTodo.todoName }} ({{ exTodo.todoNum }})</h4>
       </v-col>
       <v-col class="setBox" cols="3">
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'exTodoItem',
+  name: 'ExTodoItem',
   props: {
     exTodo: {
       type: Object,

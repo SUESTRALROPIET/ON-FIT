@@ -1,0 +1,66 @@
+// eslint-disable-next-line no-unused-vars
+const ex = [
+  {
+    id: 0,
+    exName: '트리 자세',
+    exEng: 'tree',
+    exNum: '10회',
+    description: '운동 설명',
+  },
+  {
+    id: 1,
+    exName: '슈퍼맨 자세',
+    exEng: 'superman',
+    exNum: '10회',
+    description: '운동 설명',
+  },
+  {
+    id: 2,
+    exName: '플랭크',
+    exEng: 'flank',
+    exNum: '30초',
+    description: '운동 설명',
+  },
+  {
+    id: 3,
+    exName: '활 자세',
+    exEng: 'bow',
+    exNum: '10회',
+    description: '운동 설명',
+  },
+  {
+    id: 4,
+    exName: '보트 자세',
+    exEng: 'boat',
+    exNum: '10회',
+    description: '운동 설명',
+  },
+  {
+    id: 5,
+    exName: '스쿼트',
+    exEng: 'squat',
+    exNum: '10회',
+    description: '운동 설명',
+  },
+  {
+    id: 6,
+    exName: '런지',
+    exEng: 'lunge',
+    exNum: '10회',
+    description: '운동 설명',
+  },
+  {
+    id: 7,
+    exName: '브릿지',
+    exEng: 'bridge',
+    exNum: '10회',
+    description: '운동 설명',
+  },
+  {
+    id: 8,
+    exName: '레그 레이즈',
+    exEng: 'leg',
+    exNum: '10회',
+    description: '운동 설명',
+  },
+];
