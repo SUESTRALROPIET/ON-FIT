@@ -1,6 +1,6 @@
 <template>
   <v-dialog
-    v-model="show"
+    v-model="showDialog"
     width="30rem"
   >
     <v-card id="alert-fail-join-club">
@@ -22,17 +22,7 @@
 export default {
   name: 'AlertFailJoinClub',
   props: {
-    value: Boolean,
-  },
-  computed: {
-    show: {
-      get() {
-        return this.value;
-      },
-      set(value) {
-        this.$emit('input', value);
-      },
-    },
+    showDialog: Boolean,
   },
 };
 </script>

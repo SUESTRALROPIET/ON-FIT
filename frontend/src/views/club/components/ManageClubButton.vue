@@ -14,18 +14,18 @@
         <span>클럽관리</span>
       </v-btn>
     </template>
-    <DialogManageClub
+    <FormManageClub
       :ClubInfo="ClubInfo"
     />
   </v-dialog>
 </template>
 <script>
-import DialogManageClub from '@/views/club/components/DialogManageClub.vue';
+import FormManageClub from '@/views/club/components/FormManageClub.vue';
 
 export default {
   name: 'ManageClubButton',
   components: {
-    DialogManageClub,
+    FormManageClub,
   },
   props: {
     ClubInfo: Object,

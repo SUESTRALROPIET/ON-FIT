@@ -14,16 +14,16 @@
         <span>클럽 만들기</span>
       </v-btn>
     </template>
-    <DialogCreateClub/>
+    <FormCreateClub/>
   </v-dialog>
 </template>
 <script>
-import DialogCreateClub from '@/views/club/components/DialogCreateClub.vue';
+import FormCreateClub from '@/views/club/components/FormCreateClub.vue';
 
 export default {
-  name: 'CreateClubButton',
+  name: 'ButtonCreateClub',
   components: {
-    DialogCreateClub,
+    FormCreateClub,
   },
 };
 </script>

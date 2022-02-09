@@ -1,30 +1,23 @@
 <template>
-  <div class="d-flex">
-    <v-col class="exBox d-flex align-center" cols="7">
-      <img :src="require(`@/assets/exercise/exercise_${exTodo.todoImgNum}.png`)" height="55px">
-      <h4 class="pl-4">{{ exTodo.todoName }} ({{ exTodo.todoNum }})</h4>
-    </v-col>
-    <v-col class="setBox d-flex align-center" cols="3">
-      <h4>{{ exTodo.todoSet }} set</h4>
-    </v-col>
-    <v-col cols="1">
+  <div class="d-flex justify-space-between">
+    <div>
+      <p>{{exTodo.todoName}}</p>
+    </div>
+    <div>
       <v-btn
-        fab
         dark
         x-small
-        color="red"
         @click="deleteTodo"
-        class="mt-2"
       >
-        <v-icon>mdi-minus</v-icon>
+        내보내기
       </v-btn>
-    </v-col>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'ExTodoItem',
+  name: 'FormClubMember',
   props: {
     exTodo: {
       type: Object,
