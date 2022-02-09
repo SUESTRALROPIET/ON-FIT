@@ -21,3 +21,9 @@ public class Trainer extends BaseEntity{
     @CreatedDate
     private LocalDateTime created_at;
 }
+    //private String trainer_img;
+
+    /*@CreatedDate
+    private LocalDateTime created_at;
+    */
+}

@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 public class Club extends BaseEntity{
+    private int club_id;
+
     private String club_name;
 
     private String club_img;
