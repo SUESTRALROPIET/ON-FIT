@@ -5,8 +5,9 @@
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="index in 2"
-          :key="index"
+          v-for="UserClub in UserClubs"
+          :key="UserClub.club_name"
+          :ClubInfo="UserClub"
         />
       </div>
     </div>
@@ -15,8 +16,9 @@
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="index in 10"
-          :key="index"
+          v-for="ReadyClub in ReadyClubs"
+          :key="ReadyClub.club_name"
+          :ClubInfo="ReadyClub"
         />
       </div>
     </div>
@@ -25,8 +27,9 @@
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="index in 5"
-          :key="index"
+          v-for="NewClub in NewClubs"
+          :key="NewClub.club_name"
+          :ClubInfo="NewClub"
         />
       </div>
     </div>
@@ -43,16 +46,17 @@ export default {
   },
   data() {
     return {
-      UserClub: {
-        club_name: '클럽1',
+      UserClubs: [{
+        club_id: 1,
+        club_name: '클럽21',
         club_img: require('@/assets/club/club_default.png'),
         Participation_day: {
-          mon: true,
-          tues: true,
-          wedn: true,
-          thur: true,
-          fri: true,
-          sau: true,
+          mon: false,
+          tues: false,
+          wedn: false,
+          thur: false,
+          fri: false,
+          sau: false,
           sun: true,
         },
         manager: '클럽장이름',
@@ -61,7 +65,62 @@ export default {
         fix_time: '15:00',
         count: 6,
         finish: false,
-      },
+        club_mate: {
+          user_id: '클럽원1',
+        },
+        club_log: [
+          {
+            id: 1,
+            exercise_id: 1,
+            exercise_count: 1,
+            exercise_time: '운동시간',
+          },
+          {
+            id: 2,
+            exercise_id: 1,
+            exercise_count: 2,
+            exercise_time: '운동시간',
+          },
+        ],
+      }],
+      ReadyClubs: [{
+        club_name: '클럽2',
+        club_img: require('@/assets/club/club_default.png'),
+        Participation_day: {
+          mon: true,
+          tues: false,
+          wedn: false,
+          thur: false,
+          fri: false,
+          sau: false,
+          sun: false,
+        },
+        manager: '클럽장이름',
+        start_date: '2019-09-10',
+        end_date: '2019-09-20',
+        fix_time: '15:00',
+        count: 6,
+        finish: false,
+      }],
+      NewClubs: [{
+        club_name: '클럽3',
+        club_img: require('@/assets/club/club_default.png'),
+        Participation_day: {
+          mon: false,
+          tues: false,
+          wedn: true,
+          thur: false,
+          fri: false,
+          sau: false,
+          sun: false,
+        },
+        manager: '클럽장이름',
+        start_date: '2019-09-10',
+        end_date: '2019-09-20',
+        fix_time: '15:00',
+        count: 6,
+        finish: false,
+      }],
     };
   },
 };

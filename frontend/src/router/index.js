@@ -9,6 +9,8 @@ import TodayEx from '@/views/personal/TodayEx.vue';
 import PersonalTraining from '@/views/personal/PersonalTraining.vue';
 
 import Club from '@/views/club/Club.vue';
+import ClubTraining from '@/views/club/ClubTraining.vue';
+
 import MyPage from '@/views/mypage/MyPage.vue';
 
 Vue.use(VueRouter);
@@ -43,6 +45,11 @@ const routes = [
     path: '/club',
     name: 'Club',
     component: Club,
+  },
+  {
+    path: '/club/ClubTraining',
+    name: 'ClubTraining',
+    component: ClubTraining,
   },
   {
     path: '/mypage',
