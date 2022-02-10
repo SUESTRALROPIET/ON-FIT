@@ -86,7 +86,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RunManager" selected="Spring Boot.SsafitApplication">
     <configuration name="SsafitApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -131,26 +131,21 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="ssafit [bootRun]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="bootRun" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
+    <configuration name="SsafitApplicationTests.club_Select" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ssafit.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ssafy.ssafit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ssafy.ssafit" />
+      <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplicationTests" />
+      <option name="METHOD_NAME" value="club_Select" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="SsafitApplicationTests.queryDsl_Select" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ssafit.test" />
@@ -168,6 +163,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SsafitApplicationTests.test_club" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ssafit.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.ssafy.ssafit.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.ssafy.ssafit" />
+      <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplicationTests" />
+      <option name="METHOD_NAME" value="test_club" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SsafitApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ssafit.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.ssafy.ssafit.SsafitApplication" />
@@ -177,10 +188,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.SsafitApplicationTests.test_club" />
         <item itemvalue="JUnit.SsafitApplicationTests.queryDsl_Select" />
+        <item itemvalue="JUnit.SsafitApplicationTests.club_Select" />
         <item itemvalue="Gradle.SsafitApplicationTests" />
         <item itemvalue="Gradle.SsafitApplicationTests.contextLoads" />
-        <item itemvalue="Gradle.ssafit [bootRun]" />
       </list>
     </recent_temporary>
   </component>
@@ -194,7 +206,10 @@
       <updated>1643076251430</updated>
       <workItem from="1644210555713" duration="12998000" />
       <workItem from="1644282621447" duration="13057000" />
-      <workItem from="1644310082626" duration="881000" />
+      <workItem from="1644310082626" duration="1577000" />
+      <workItem from="1644370724451" duration="14312000" />
+      <workItem from="1644418029570" duration="11240000" />
+      <workItem from="1644454703470" duration="9326000" />
     </task>
     <servers />
   </component>

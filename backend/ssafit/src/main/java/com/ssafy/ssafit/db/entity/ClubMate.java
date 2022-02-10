@@ -19,4 +19,5 @@ public class ClubMate extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Club_ID")
     private Club clubId;
+
 }

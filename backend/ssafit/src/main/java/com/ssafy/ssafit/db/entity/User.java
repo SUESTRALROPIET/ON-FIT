@@ -19,7 +19,7 @@ public class User extends BaseEntity{
 
     private String fullName;
 
-    private int foodLog;
+//    private int foodLog;
 
     // mysql : timestamp? date
     @CreatedDate

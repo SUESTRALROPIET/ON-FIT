@@ -28,8 +28,6 @@ public class QUser extends EntityPathBase<User> {
 
     public final ListPath<ExerciseLog, QExerciseLog> exLogList = this.<ExerciseLog, QExerciseLog>createList("exLogList", ExerciseLog.class, QExerciseLog.class, PathInits.DIRECT2);
 
-    public final NumberPath<Integer> foodLog = createNumber("foodLog", Integer.class);
-
     public final StringPath fullName = createString("fullName");
 
     public final QHealthLog healthLogId;

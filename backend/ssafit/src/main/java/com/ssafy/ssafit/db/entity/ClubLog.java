@@ -1,20 +1,21 @@
 package com.ssafy.ssafit.db.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.time.LocalDateTime;
 
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Setter
+//@Setter
 @Entity
 public class ClubLog extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Exercise_ID")
-    private Exercise exId;
+    private Exercise exerciseId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Club_ID")
@@ -22,5 +23,14 @@ public class ClubLog extends BaseEntity{
 
     private int exCount;
 
-    private int exTime;
+    // 실수형으로 하는게 맞겠지?
+    private double exTime;
+
+    @Builder
+    public ClubLog(Exercise exerciseId, Club clubId, int exCount, double exTime) {
+        this.exerciseId = exerciseId;
+        this.clubId = clubId;
+        this.exCount = exCount;
+        this.exTime = exTime;
+    }
 }

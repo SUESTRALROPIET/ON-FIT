@@ -28,12 +28,12 @@ public class QClubLog extends EntityPathBase<ClubLog> {
 
     public final NumberPath<Integer> exCount = createNumber("exCount", Integer.class);
 
-    public final QExercise exId;
+    public final QExercise exerciseId;
 
-    public final NumberPath<Integer> exTime = createNumber("exTime", Integer.class);
+    public final NumberPath<Double> exTime = createNumber("exTime", Double.class);
 
     //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Integer> id = _super.id;
 
     public QClubLog(String variable) {
         this(ClubLog.class, forVariable(variable), INITS);
@@ -54,7 +54,7 @@ public class QClubLog extends EntityPathBase<ClubLog> {
     public QClubLog(Class<? extends ClubLog> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.clubId = inits.isInitialized("clubId") ? new QClub(forProperty("clubId")) : null;
-        this.exId = inits.isInitialized("exId") ? new QExercise(forProperty("exId")) : null;
+        this.exerciseId = inits.isInitialized("exerciseId") ? new QExercise(forProperty("exerciseId")) : null;
     }
 
 }

@@ -25,4 +25,6 @@ public class ExerciseLog extends BaseEntity{
     private int exCount;   // 해당 운동 총 갯수
 
     private int exTime; // 해당 운동 총 시간
+
+    private boolean exStatus;
 }

@@ -27,6 +27,8 @@ public class QClub extends EntityPathBase<Club> {
 
     public final NumberPath<Integer> count = createNumber("count", Integer.class);
 
+    public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
+
     public final DateTimePath<java.time.LocalDateTime> endDate = createDateTime("endDate", java.time.LocalDateTime.class);
 
     public final BooleanPath finish = createBoolean("finish");
@@ -36,7 +38,7 @@ public class QClub extends EntityPathBase<Club> {
     public final BooleanPath fri = createBoolean("fri");
 
     //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Integer> id = _super.id;
 
     public final NumberPath<Integer> manager = createNumber("manager", Integer.class);
 
