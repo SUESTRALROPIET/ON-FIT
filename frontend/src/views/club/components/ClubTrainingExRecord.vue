@@ -4,7 +4,7 @@
       <v-row class="align-center mx-3">
         <v-col cols="3"><h2>현재 운동</h2></v-col>
         <v-col cols="2">
-          <img :src="require(`@/assets/exercise/exercise_1.png`)" alt="" width="100%">
+          <img :src="require(`@/assets/exercise/boat.png`)" alt="" width="100%">
         </v-col>
         <v-col cols="4" style="text-align:left;"><h2>런지{{nowExname}}</h2></v-col>
         <v-col cols="3"><h2>1회</h2></v-col>
