@@ -47,21 +47,21 @@
       </div>
     </v-col>
     <AlertBreakTime :showDialog="showBreakTimeDialog"/>
-    <AlertFinsishDialog :showDialog="showFinsishDialog"/>
+    <AlertFinishDialog :showDialog="showFinishDialog"/>
   </v-row>
 </template>
 
 <script>
 import ManageClubButton from '@/views/club/components/ManageClubButton.vue';
 import AlertBreakTime from '@/views/club/components/AlertBreakTime.vue';
-import AlertFinsishDialog from '@/views/club/components/AlertFinsishDialog.vue';
+import AlertFinishDialog from '@/views/club/components/AlertFinishDialog.vue';
 
 export default {
   name: 'ClubTrainingExRecord',
   components: {
     ManageClubButton,
     AlertBreakTime,
-    AlertFinsishDialog,
+    AlertFinishDialog,
   },
   props: {
     ClubInfo: Object,
@@ -72,7 +72,7 @@ export default {
       timer: undefined,
 
       showBreakTimeDialog: false,
-      showFinsishDialog: false,
+      showFinishDialog: false,
       nowExname: '',
 
       exList: [
@@ -114,9 +114,9 @@ export default {
         this.showBreakTimeDialog = false;
         i += 1;
       }
-      this.showFinsishDialog = true;
+      this.showFinishDialog = true;
       await new Promise((resolve) => setTimeout(resolve, 5 * 1000));
-      this.showFinsishDialog = false;
+      this.showFinishDialog = false;
     },
     timeStart() {
       this.timer = setInterval(() => {
