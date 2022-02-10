@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="title"><h1>오늘의 계획</h1></div>
+    <img :src="exTodos[0].todoImg" alt="">
     <v-container>
       <v-row justify="center">
         <v-col class="subTitleBox" cols="8">
@@ -43,13 +44,13 @@ export default {
     return {
       headers: [
         // TODO: value에 img 넣기
-        { text: 'Image', sortable: false, value: 'todoImgNum' },
+        // { text: 'Image', sortable: false, value: require(`@/assets/exercise/${todoImg}.png`), },
+        { text: 'Image', sortable: false, value: 'todoImg' },
         { text: '운동', sortable: false, value: 'todoName' },
-        { text: '횟수', sortable: false, value: 'todoNum' },
+        { text: '횟수', sortable: false, value: 'numShow' },
         { text: '세트', sortable: false, value: 'todoSet' },
         { text: '설명', sortable: false, value: 'todoDes' },
       ],
-      exTodos: [],
     };
   },
 
@@ -57,14 +58,16 @@ export default {
     start() {
       this.$router.push({
         name: 'PersonalTraining',
-        query: { exTodos: this.exTodos },
       });
     },
   },
 
-  created() {
-    this.exTodos = this.$route.query.exTodos;
+  computed: {
+    exTodos() {
+      return this.$store.state.personalStore.exTodos;
+    },
   },
+
 };
 </script>
 
