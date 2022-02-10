@@ -81,8 +81,8 @@
 </template>
 
 <script>
+import ex from '@/assets/ex';
 import ExTodoItem from './components/ExTodoItem.vue';
-import ex from '../../../public/ex';
 
 export default {
   name: 'Personal',
@@ -135,6 +135,7 @@ export default {
           const todoTime = selectedResult[0].exName === '플랭크' ? 30 : 5;
           const exTodo = {
             id: new Date().getTime(),
+            ex_id: selectedResult[0].id,
             isDouble: selectedResult[0].isDouble,
             todoName: selectedResult[0].exName,
             numShow: selectedResult[0].exNum,

@@ -1,3 +1,4 @@
+// TODO: 'must be changed' 변경하기
 <template>
   <div>
     <div class="title mx-auto">
@@ -27,24 +28,21 @@
 
         <!-- 3. 버튼 -->
         <v-col class="btnBox d-flex justify-center pt-0" cols="12">
-          <v-btn
-            class="mr-6"
-            fab
-            dark
-            small
-            @click="start"
-          >
-            <v-icon v-if="isStart">mdi-stop</v-icon>
-            <v-icon v-else>mdi-play</v-icon>
+          <v-btn class="mr-6" fab dark small v-if="!isPlay" @click="start">
+            <v-icon>mdi-play</v-icon>
           </v-btn>
-          <v-btn
-            fab
-            dark
-            small
-          >
+          <v-btn class="mr-6" fab dark small v-else @click="stop">
+            <v-icon>mdi-stop</v-icon>
+          </v-btn>
+          <v-btn fab dark small>
             <v-icon>mdi-logout</v-icon>
           </v-btn>
         </v-col>
+        <AlertBreakTime :showDialog="showBreakTimeDialog"/>
+        <AlertFinishDialog @exit2="exit2" @exit3="exit3" :showDialog="showFinsishDialog"/>
+        <AlertStopDialog @restart="start" :showDialog="showStopDialog"/>
+        <AlertExitDialog @restart="start" @exit="exit" :showDialog="showExitDialog"/>
+        <AlertLoadingDialog :showDialog="showLoadingDialog"/>
       </v-row>
     </v-container>
   </div>
@@ -53,28 +51,50 @@
 <script>
 import '@tensorflow/tfjs';
 import * as tmPose from '@teachablemachine/pose';
+import axios from 'axios';
+
+import AlertBreakTime from '@/views/personal/components/AlertBreakTime.vue';
+import AlertFinishDialog from '@/views/personal/components/AlertFinishDialog.vue';
+import AlertStopDialog from '@/views/personal/components/AlertStopDialog.vue';
+import AlertExitDialog from '@/views/personal/components/AlertExitDialog.vue';
+import AlertLoadingDialog from '@/views/personal/components/AlertLoadingDialog.vue';
 
 let model; let webcam; let ctx;
 
 export default {
   name: 'PersonalTraining',
   components: {
+    AlertBreakTime,
+    AlertFinishDialog,
+    AlertStopDialog,
+    AlertExitDialog,
+    AlertLoadingDialog,
   },
   data() {
     return {
-      isStart: false,
-      isEnd: false,
-      dir: '왼쪽',
+      SERVER: 'must be changed',
+      isPlay: false,
+      isLoading: false,
+      dir: '오른쪽',
       status: 'stand', // 현재 운동 상태
       cur: 0, // 현재 운동 순서
       count: 0, // 운동 횟수
       fail: 0, // 동작을 틀린 횟수 (정확도용_예비)
       set: 0, // 세트 횟수
-      elapsedTime: 0,
+      elapsedTime: 0, // timer
       timer: undefined,
-      progress: 0,
+      progress: 0, // progress bar
       exTimer: undefined,
+      showBreakTimeDialog: false, // dialog
+      showFinsishDialog: false,
+      showStopDialog: false,
+      showExitDialog: false,
+      showLoadingDialog: false,
     };
+  },
+  mounted() {
+    this.init();
+    this.isLoading = true;
   },
   computed: {
     exTodos() {
@@ -82,6 +102,7 @@ export default {
     },
     curEx() {
       return {
+        ex_id: this.exTodos[this.cur].ex_id,
         name: this.exTodos[this.cur].todoName,
         eng: this.exTodos[this.cur].todoEng,
         totalNum: this.exTodos[this.cur].todoNum,
@@ -96,34 +117,67 @@ export default {
       const utc = date.toUTCString();
       return utc.substr(utc.indexOf(':') - 2, 8);
     },
+    trainer() {
+      return 'Naomi';
+    },
   },
   methods: {
     start() {
-      if (!this.isStart) {
-        this.isStart = true;
-        this.timerStart();
-        this.init();
-        this.exTimerStart();
-      } else {
-        this.isStart = false;
-        this.timerStop();
-      }
+      this.isPlay = true;
+      this.timeStart();
     },
-    end() {
-      // 운동 결과 보여주기 or 운동 종료 팝업
+    stop() {
+      this.timeStop();
+      this.isPlay = false;
     },
     exit() {
-      // 나가시겠습니까 팝업
+      // 운동 중 나갈때
+      this.save();
+      this.$router.push({
+        name: 'Main',
+      });
     },
-    rest() {
-
+    exit2() {
+      // MyPage로
+      this.$router.push({
+        name: 'MyPage',
+      });
     },
-    timerStart() {
+    exit3() {
+      // Home으로
+      this.$router.push({
+        name: 'Main',
+      });
+    },
+    save() {
+      // eslint-disable-next-line camelcase
+      const ex_logCount = this.curEx.totalNum * this.set + this.count;
+      const info = {
+        user_id: 'must be changed',
+        trainer_id: 'must be changed',
+        ex_id: this.curEx.ex_id,
+        ex_logCount,
+        // eslint-disable-next-line camelcase
+        ex_logTime: ex_logCount * this.curEx.time,
+        status: this.fail,
+      };
+      axios.post(`${this.SERVER}/personal`, info, {
+        headers: {
+          Authorization: 'must be changed',
+        },
+      });
+      this.fail = 0;
+    },
+    sound(v) {
+      const audio = new Audio(`@/assets/trainervoice/${this.trainer}/${v}.mp3`);
+      audio.play();
+    },
+    timeStart() {
       this.timer = setInterval(() => {
         this.elapsedTime += 1000;
       }, 1000);
     },
-    timerStop() {
+    timeStop() {
       clearInterval(this.timer);
     },
 
@@ -142,7 +196,7 @@ export default {
     },
     // teachable machine snippet
     async init() {
-      const URL = `./components/teachable_machine/${this.curEx.eng}/`;
+      const URL = `@/assets/teachable_machine/${this.curEx.eng}/`;
       // const modelURL = URL + "model.json";
       // const metadataURL = URL + "metadata.json";
       const modelURL = `${URL}model.json`;
@@ -168,6 +222,16 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     async loop(timestamp) {
+      if (this.isLoading) {
+        this.isLoading = false;
+        await this.sound('start');
+        // TODO: start 음성 길이 확인 후 시간 변경
+        // TODO: 재생 버튼 눌렸는지 확인 후 사운드 보내기..? 고민해보기
+        setTimeout(() => {
+          this.sound(this.curEx.eng);
+        }, 5000);
+      }
+
       webcam.update(); // update the webcam frame
       await this.predict();
       window.requestAnimationFrame(this.loop);
@@ -184,26 +248,30 @@ export default {
       if (!this.curEx.isDouble) {
         if (prediction[0].probability.toFixed(2) >= 0.7) {
           // 운동 카운트
-          if (this.status === this.curEx.name && this.progress >= 99) {
+          if (this.status === this.curEx.eng && this.progress >= 99) {
             this.count += 1;
-            // 음성 호출하기
-            // const audio = new Audio('음성파일명');
-            // audio.play();
-
+            this.sound(this.count);
             // 세트 카운트 및 운동 횟수 리셋
             if (this.count === this.curEx.totalNum) {
               this.count = 0;
               this.set += 1;
-              // 휴식....?
               if (this.set === this.curEx.totalSet) {
-                // 휴식 주기
-                // fail 횟수 저장하기 (local)
-                // 세트 리셋
-                // 다음 운동으로 넘어가기 or 종료
+                // 휴식 & 운동 기록 저장
+                this.timeStop();
+                this.showBreakTimeDialog = true;
+                const ran1to4 = Math.floor(Math.random() * 4) + 1;
+                this.sound(`rest_${ran1to4}`); // 음성 (휴식)
+                await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
+                this.showBreakTimeDialog = false;
+                this.save();
+                // 다음 운동으로 및 세트 리셋 or 종료
                 if (this.cur !== this.exTodos.length) {
                   this.cur += 1;
+                  // TODO: 음성 안씹히는지 체크
+                  this.sound(this.curEx.eng);
+                  this.set = 0;
                 } else {
-                  this.end();
+                  this.showFinsishDialog = true;
                 }
               }
             }
@@ -212,62 +280,62 @@ export default {
           this.status = 'stand';
         } else if (prediction[1].probability.toFixed(2) >= 0.85) {
           this.exTimerStart();
-          this.status = this.curEx.name;
+          this.status = this.curEx.eng;
         } else if (prediction[2].probability.toFixed(2) >= 0.5) {
-          if (this.status === 'stand' || this.status === this.curEx.name) {
+          if (this.status === 'stand' || this.status === this.curEx.eng) {
             this.fail += 1;
-            // 음성 호출하기
-            // const audio = new Audio('음성파일명');
-            // audio.play();
+            const ran1to4 = Math.floor(Math.random() * 4) + 1;
+            this.sound(`fail_${ran1to4}`);
           }
           this.progress = 0;
           this.status = 'fail';
         }
-      }
-      // 좌, 우 구분
-      if (this.curEx.isDouble) {
+        // 좌, 우 구분
+      } else if (this.curEx.isDouble) {
         if (prediction[0].probability.toFixed(2) >= 0.7) {
           // 운동 카운트
-          if (this.status === this.curEx.name && this.progress >= 99) {
+          if (this.status === this.curEx.eng && this.progress >= 99) {
             this.count += 1;
-            // 음성 호출하기
-            // const audio = new Audio('음성파일명');
-            // audio.play();
+            this.sound(this.count);
 
             // 세트 카운트 및 운동 횟수 리셋
-            if (this.count === this.curEx.totalNum && this.dir === '왼쪽') {
-              this.count = 0;
-              this.dir = '오른쪽';
-            } else if (this.count === this.curEx.totalNum && this.dir === '오른쪽') {
+            if (this.count === this.curEx.totalNum && this.dir === '오른쪽') {
               this.count = 0;
               this.dir = '왼쪽';
+            } else if (this.count === this.curEx.totalNum && this.dir === '왼쪽') {
+              this.count = 0;
+              this.dir = '오른쪽';
               this.set += 1;
               if (this.set === this.curEx.totalSet) {
-                // 휴식 주기
-                // fail 횟수 저장하기 (local)
-                // 세트 리셋
-                // 다음 운동으로 넘어가기 or 종료
+                // 휴식 및 운동 저장
+                this.timeStop();
+                this.showBreakTimeDialog = true;
+                const ran1to4 = Math.floor(Math.random() * 4) + 1;
+                this.sound(`rest_${ran1to4}`); // 음성 (휴식)
+                await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
+                this.showBreakTimeDialog = false;
+                this.save();
+                // 다음 운동으로 및 세트 리셋 or 종료
                 if (this.cur !== this.exTodos.length) {
                   this.cur += 1;
+                  this.set = 0;
                 } else {
-                  this.end();
+                  this.showFinsishDialog = true;
                 }
               }
             }
-            // 휴식....?
           }
           this.progress = 0;
           this.status = 'stand';
         // eslint-disable-next-line max-len
         } else if (prediction[1].probability.toFixed(2) >= 0.85 || prediction[2].probability.toFixed(2) >= 0.85) {
           this.exTimerStart();
-          this.status = this.curEx.name;
+          this.status = this.curEx.eng;
         } else if (prediction[3].probability.toFixed(2) >= 0.5) {
-          if (this.status === 'stand' || this.status === this.curEx.name) {
+          if (this.status === 'stand' || this.status === this.curEx.eng) {
             this.fail += 1;
-            // 음성 호출하기
-            // const audio = new Audio('음성파일명');
-            // audio.play();
+            const ran1to4 = Math.floor(Math.random() * 4) + 1;
+            this.sound(`fail_${ran1to4}`);
           }
           this.progress = 0;
           this.status = 'fail';
