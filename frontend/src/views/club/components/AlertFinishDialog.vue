@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'AlertFailJoinClub',
+  name: 'AlertFinishDialog',
   props: {
     showDialog: Boolean,
   },
