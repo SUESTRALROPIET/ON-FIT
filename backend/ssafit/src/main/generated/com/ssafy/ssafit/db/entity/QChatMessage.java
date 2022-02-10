@@ -27,7 +27,7 @@ public class QChatMessage extends EntityPathBase<ChatMessage> {
     public final QClub clubId;
 
     //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Integer> id = _super.id;
 
     public final StringPath message = createString("message");
 

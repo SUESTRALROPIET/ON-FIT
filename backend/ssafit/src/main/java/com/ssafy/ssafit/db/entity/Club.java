@@ -26,7 +26,7 @@ public class Club extends BaseEntity{
     private boolean sat;
     private boolean sun;
 
-    private int manager;
+    private String manager;
 
     /* 이거 설정 어캐해줘야하지?*/
     @CreatedDate

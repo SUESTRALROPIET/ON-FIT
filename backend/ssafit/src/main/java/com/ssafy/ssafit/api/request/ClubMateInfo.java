@@ -10,9 +10,9 @@ public class ClubMateInfo {
     @ApiModelProperty(name = "방금 생성한 클럽 id")
     Long clubId;
     @ApiModelProperty(name = "유저 PK")
-    int userId;
+    String userId;
 
-    public ClubMateInfo(Long clubId, int userId) {
+    public ClubMateInfo(Long clubId, String userId) {
         this.clubId = clubId;
         this.userId = userId;
     }

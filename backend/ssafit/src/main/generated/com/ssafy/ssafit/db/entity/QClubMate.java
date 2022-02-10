@@ -27,9 +27,9 @@ public class QClubMate extends EntityPathBase<ClubMate> {
     public final QClub clubId;
 
     //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Integer> id = _super.id;
 
-    public final QUser userId;
+    public final QUser user;
 
     public QClubMate(String variable) {
         this(ClubMate.class, forVariable(variable), INITS);
@@ -50,7 +50,7 @@ public class QClubMate extends EntityPathBase<ClubMate> {
     public QClubMate(Class<? extends ClubMate> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.clubId = inits.isInitialized("clubId") ? new QClub(forProperty("clubId")) : null;
-        this.userId = inits.isInitialized("userId") ? new QUser(forProperty("userId"), inits.get("userId")) : null;
+        this.user = inits.isInitialized("user") ? new QUser(forProperty("user"), inits.get("user")) : null;
     }
 
 }

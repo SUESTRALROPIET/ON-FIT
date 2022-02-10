@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class ClubJoinInfoReq {
     private int clubId;
-    private int userId;
+    private String userId;
 }

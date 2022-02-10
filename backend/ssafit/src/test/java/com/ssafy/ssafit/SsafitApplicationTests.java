@@ -1,6 +1,7 @@
 package com.ssafy.ssafit;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.ssafit.api.response.ClubLogRes;
 import com.ssafy.ssafit.api.service.ClubService;
 import com.ssafy.ssafit.db.entity.Club;
 import com.ssafy.ssafit.db.entity.ClubMate;
@@ -47,11 +48,12 @@ class SsafitApplicationTests {
 
 	@Test
 	void test_club(){
-		List<Integer> userList = clubService.getUserId(3);
+//		List<String> userList = clubService.getUserId(3);
+		List<ClubLogRes> clubLogList = clubService.getClubLog(1);
 //		List<ClubMate> cl = clubService.getAll(3);
 //		System.out.println(userList.get(0));
 //		Assert.assertEquals(cl.size(),1);
-		Assert.assertEquals(userList.size(),1);
+		Assert.assertEquals(clubLogList.size(),5);
 	}
 
 }

@@ -8,6 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ClubMateRepository extends JpaRepository<ClubMate,Integer> {
-    @Query("SELECT cm.userId.id FROM ClubMate cm where cm.clubId.id = :clubId")
-    List<Integer> findUser(@Param("clubId") int clubId);
+    @Query("SELECT cm.user.userId FROM ClubMate cm where cm.clubId.id = :clubId")
+    List<String> findUser(@Param("clubId") int clubId);
 }

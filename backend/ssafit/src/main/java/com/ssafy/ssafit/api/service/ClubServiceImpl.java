@@ -13,6 +13,8 @@ import com.ssafy.ssafit.db.repository.ExerciseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -51,13 +53,24 @@ public class ClubServiceImpl implements ClubService{
     }
 
     @Override
-    public List<Integer> getUserId(int clubId) {
+    public List<String> getUserId(int clubId) {
         return clubMateRepository.findUser(clubId);
     }
 
     @Override
     public List<ClubLogRes> getClubLog(int clubId) {
-        return clubLogRepository.findClubLog(clubId);
+
+        List<ClubLog> clubLogs = clubLogRepository.findClubLog(clubId);
+        List<ClubLogRes> result = new ArrayList<>();
+        for (ClubLog cl : clubLogs){
+            ClubLogRes newClubLogRes = new ClubLogRes();
+            newClubLogRes.setExId(cl.getExerciseId().getId());
+            newClubLogRes.setExCount(cl.getExCount());
+            newClubLogRes.setExTime(cl.getExTime());
+            result.add(newClubLogRes);
+        }
+        System.out.println("룰루루라라라");
+        return result;
     }
 
     @Override

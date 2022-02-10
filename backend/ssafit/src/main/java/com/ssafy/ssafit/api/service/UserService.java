@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface UserService {
 
-    User findById(int user_id);
+    User findById(String user_id);
 }

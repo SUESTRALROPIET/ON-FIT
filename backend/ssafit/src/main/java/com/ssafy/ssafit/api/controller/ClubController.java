@@ -36,7 +36,7 @@ public class ClubController {
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공")
     })
-    public ResponseEntity createClub(@RequestBody ClubInfoReq clubInfo, @PathVariable int user_id) {
+    public ResponseEntity createClub(@RequestBody ClubInfoReq clubInfo, @PathVariable String user_id) {
         // club table insert
         clubService.createClub(clubInfo.getClubId());   // 여기부터 시작
         /* clubMate table insert */
@@ -46,17 +46,23 @@ public class ClubController {
 
         ClubMate clubMate = new ClubMate();
         clubMate.setClubId(club);
-        clubMate.setUserId(user);
+        clubMate.setUser(user);
         clubService.createCLubMate(clubMate);
 
         for(ClubLogReq cl : clubInfo.getClubLogs()) {
             Exercise ex = clubService.getExerciseById(cl.getExId());
-            ClubLog newClubLog = ClubLog.builder()
-                    .clubId(club)
-                    .exerciseId(ex)
-                    .exCount(cl.getExCount())
-                    .exTime(cl.getExTime())
-                    .build();
+
+//            ClubLog newClubLog = ClubLog.builder()
+//                    .clubId(club)
+//                    .exerciseId(ex)
+//                    .exCount(cl.getExCount())
+//                    .exTime(cl.getExTime())
+//                    .build();
+            ClubLog newClubLog = new ClubLog();
+            newClubLog.setClubId(club);
+            newClubLog.setExerciseId(ex);
+            newClubLog.setExCount(cl.getExCount());
+            newClubLog.setExTime(cl.getExTime());
             clubService.createClubLog(newClubLog);
         }
 
@@ -83,7 +89,7 @@ public class ClubController {
             club.setClubInfo(c);
 
             int clubId = c.getId();
-            List<Integer> userList = clubService.getUserId(clubId);
+            List<String> userList = clubService.getUserId(clubId);
             club.setClubMate(userList);
             List<ClubLogRes> clubLogList = clubService.getClubLog(clubId);
             club.setClubLog(clubLogList);
@@ -108,7 +114,7 @@ public class ClubController {
 
         ClubMate clubMate = new ClubMate();
         clubMate.setClubId(joinClub);
-        clubMate.setUserId(joinUser);
+        clubMate.setUser(joinUser);
 
         clubService.joinUser(clubMate);
         clubService.plusClubCount(clubJoinInfo.getClubId());

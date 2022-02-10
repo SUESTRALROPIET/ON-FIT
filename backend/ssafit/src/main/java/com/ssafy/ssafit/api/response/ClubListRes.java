@@ -10,6 +10,6 @@ import java.util.List;
 @Setter
 public class ClubListRes {
     private Club clubInfo;
-    private List<Integer> clubMate;
+    private List<String> clubMate;
     private List<ClubLogRes> clubLog;
 }

@@ -55,8 +55,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -189,8 +189,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.SsafitApplicationTests.test_club" />
-        <item itemvalue="JUnit.SsafitApplicationTests.queryDsl_Select" />
         <item itemvalue="JUnit.SsafitApplicationTests.club_Select" />
+        <item itemvalue="JUnit.SsafitApplicationTests.queryDsl_Select" />
         <item itemvalue="Gradle.SsafitApplicationTests" />
         <item itemvalue="Gradle.SsafitApplicationTests.contextLoads" />
       </list>
@@ -209,7 +209,8 @@
       <workItem from="1644310082626" duration="1577000" />
       <workItem from="1644370724451" duration="14312000" />
       <workItem from="1644418029570" duration="11240000" />
-      <workItem from="1644454703470" duration="9326000" />
+      <workItem from="1644454703470" duration="17123000" />
+      <workItem from="1644496774332" duration="8858000" />
     </task>
     <servers />
   </component>

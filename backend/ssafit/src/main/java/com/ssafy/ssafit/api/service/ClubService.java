@@ -16,7 +16,7 @@ public interface ClubService{
     void createCLubMate(ClubMate clubMate);
 
     List<Club> getClub();
-    List<Integer> getUserId(int clubId);
+    List<String> getUserId(int clubId);
     List<ClubLogRes> getClubLog(int clubId);
 
     void joinUser(ClubMate clubJoinInfo);

@@ -40,7 +40,7 @@ public class QClub extends EntityPathBase<Club> {
     //inherited
     public final NumberPath<Integer> id = _super.id;
 
-    public final NumberPath<Integer> manager = createNumber("manager", Integer.class);
+    public final StringPath manager = createString("manager");
 
     public final BooleanPath mon = createBoolean("mon");
 
