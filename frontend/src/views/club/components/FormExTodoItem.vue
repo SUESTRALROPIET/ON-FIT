@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex">
     <v-col class="exBox d-flex align-center" cols="7">
-      <img :src="require(`@/assets/exercise/exercise_${exTodo.todoImgNum}.png`)" height="55px">
+      <img :src="require(`@/assets/exercise/${exTodo.todoEng}.png`)" height="55px">
       <h4 class="pl-4">{{ exTodo.todoName }} ({{ exTodo.todoNum }})</h4>
     </v-col>
     <v-col class="setBox d-flex align-center" cols="3">
