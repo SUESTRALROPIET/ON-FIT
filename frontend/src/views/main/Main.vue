@@ -1,45 +1,43 @@
 <template>
-  <div class="d-flex flex-column align-center">
-    <div style="width:50%;">
+  <div id="main-box" class="d-flex flex-column align-center">
+    <div id="trainer-lst" class="mb-5">
       <v-row>
         <v-col
           v-for="n in 3"
           :key="n"
           class="d-flex child-flex"
           cols="4"
+          @click="selectTrainer(n)"
         >
-          <v-img
+          <img
+            :class="(n === trainerNum)? 'show-selected-trainer' : ''"
             :src="require(`@/assets/trainer/trainer_${n}.png`)"
-            aspect-ratio="1"
-          >
-          </v-img>
+            alt="trainer-image"
+          />
         </v-col>
       </v-row>
     </div>
     <div class="d-flex">
-      <div>
-
-      </div>
-      <!-- <v-row>
-        <v-col
-          class="d-flex"
-          cols="6"
+      <v-row class="justify-center">
+        <v-col cols="4" class="d-flex child-flex"
+          @click="enterPersonalTraining"
         >
           <img
+            id="show-selected-course"
             src="@/assets/main/main_personal.jpg"
-            aspect-ratio="1"
+            alt="personal-training-image"
           />
         </v-col>
-        <v-col
-          class="d-flex"
-          cols="6"
+        <v-col cols="4" class="d-flex child-flex"
+          @click="enterClubTraining"
         >
           <img
+            id="show-selected-course"
             src="@/assets/main/main_club.jpg"
-            aspect-ratio="1"
+            alt="club-training-image"
           />
         </v-col>
-      </v-row> -->
+      </v-row>
     </div>
   </div>
 </template>
@@ -47,12 +45,41 @@
 <script>
 export default {
   name: 'Main',
-
-  components: {
+  data() {
+    return {
+      trainerNum: 1,
+    };
+  },
+  methods: {
+    selectTrainer(num) {
+      this.trainerNum = num;
+    },
+    enterPersonalTraining() {
+      this.$router.push({
+        name: 'Personal',
+      });
+    },
+    enterClubTraining() {
+      this.$router.push({
+        name: 'Club',
+      });
+    },
   },
 };
 </script>
 
-<style>
-
+<style scoped>
+#main-box img {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
+  cursor: pointer;
+}
+#trainer-lst {
+  width: 50%;
+}
+.show-selected-trainer {
+  border: 3px solid;
+}
+#show-selected-course:hover {
+  transform: translateY(0) scale(1.2);
+}
 </style>
