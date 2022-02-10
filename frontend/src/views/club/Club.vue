@@ -16,7 +16,7 @@
           <v-icon>mdi-magnify</v-icon>
           <span>클럽찾기</span>
         </v-btn>
-        <CreateClubButton />
+        <ButtonCreateClub />
       </div>
       <v-checkbox
         label="모집중인 클럽만 보기"
@@ -44,14 +44,14 @@
 <script>
 import ClubList from '@/views/club/components/ClubList.vue';
 import SearchBar from '@/views/club/components/SearchBar.vue';
-import CreateClubButton from '@/views/club/components/CreateClubButton.vue';
+import ButtonCreateClub from '@/views/club/components/ButtonCreateClub.vue';
 
 export default {
   name: 'Club',
   components: {
     ClubList,
     SearchBar,
-    CreateClubButton,
+    ButtonCreateClub,
   },
   data: () => ({
     OpenSearchClubDrawer: false,

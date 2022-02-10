@@ -151,7 +151,7 @@
 </template>
 <script>
 export default {
-  name: 'DialogCreateClub',
+  name: 'FormCreateClub',
   data() {
     return {
       timePicker: false,
