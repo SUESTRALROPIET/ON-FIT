@@ -136,6 +136,21 @@
               </v-menu>
             </v-col>
           </v-row>
+          <v-row>
+            <v-col cols="3"  class="text-center align-self-center">
+              <h3>클럽원</h3>
+            </v-col>
+            <v-col cols="8" class="pl-0">
+              <div class="club-members-container">
+                <FormClubMember
+                  v-for="exTodo in exTodos"
+                  :key="exTodo.id"
+                  :exTodo="exTodo"
+                  @delete-todo="deleteTodo"
+                />
+              </div>
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-col>
       <v-divider vertical></v-divider>
@@ -187,7 +202,7 @@
         <v-card-text>
           <h2 class="my-2">운동 리스트</h2>
           <div class="exTodoItems-container">
-            <ExTodoItem
+            <FormExTodoItem
               v-for="exTodo in exTodos"
               :key="exTodo.id"
               :exTodo="exTodo"
@@ -212,12 +227,14 @@
   </v-card>
 </template>
 <script>
-import ExTodoItem from '@/views/club/components/ExTodoItem.vue';
+import FormClubMember from '@/views/club/components/FormClubMember.vue';
+import FormExTodoItem from '@/views/club/components/FormExTodoItem.vue';
 
 export default {
-  name: 'DialogManageClub',
+  name: 'FormManageClub',
   components: {
-    ExTodoItem,
+    FormClubMember,
+    FormExTodoItem,
   },
   props: {
     value: Boolean,
@@ -338,8 +355,14 @@ export default {
 #select-box .v-select {
   margin: 0px 5px 0px 5px;
 }
+.club-members-container {
+  max-height: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
 .exTodoItems-container {
-  max-height: 18rem;
+  max-height: 23rem;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
