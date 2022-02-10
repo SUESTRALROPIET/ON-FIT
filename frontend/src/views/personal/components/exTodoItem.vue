@@ -4,7 +4,7 @@
       <!-- TODO: 정렬하기 -->
       <v-col class="exBox d-flex" cols="7">
         <img :src="require(`@/assets/exercise/${exTodo.todoEng}.png`)" height="55px">
-        <h4 class="pl-4">{{ exTodo.todoName }} ({{ exTodo.todoNum }})</h4>
+        <h4 class="pl-4">{{ exTodo.todoName }} ({{ exTodo.numShow }})</h4>
       </v-col>
       <v-col class="setBox" cols="3">
         <h4>{{ exTodo.todoSet }} set</h4>

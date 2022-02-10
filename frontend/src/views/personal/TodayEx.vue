@@ -45,9 +45,9 @@ export default {
       headers: [
         // TODO: value에 img 넣기
         // { text: 'Image', sortable: false, value: require(`@/assets/exercise/${todoImg}.png`), },
-        { text: 'Image', sortable: false, value: 'todoEng' },
+        { text: 'Image', sortable: false, value: 'todoImg' },
         { text: '운동', sortable: false, value: 'todoName' },
-        { text: '횟수', sortable: false, value: 'todoNum' },
+        { text: '횟수', sortable: false, value: 'numShow' },
         { text: '세트', sortable: false, value: 'todoSet' },
         { text: '설명', sortable: false, value: 'todoDes' },
       ],

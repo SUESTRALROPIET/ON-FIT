@@ -82,6 +82,7 @@
 
 <script>
 import ExTodoItem from './components/ExTodoItem.vue';
+import ex from '../../../public/ex';
 
 export default {
   name: 'Personal',
@@ -93,21 +94,22 @@ export default {
   data() {
     return {
       items: {
+        // exlist,
         exercises: [
           { header: '전신' },
-          { name: '트리 자세', nums: '10회', exImg: require('@/assets/exercise/tree.png') },
-          { name: '슈퍼맨 자세', nums: '10회', exImg: require('@/assets/exercise/superman.png') },
+          { name: '트리 자세', nums: '12회', exImg: require('@/assets/exercise/tree.png') },
+          { name: '슈퍼맨 자세', nums: '12회', exImg: require('@/assets/exercise/superman.png') },
           { name: '플랭크', nums: '30초', exImg: require('@/assets/exercise/flank.png') },
           { divider: true },
           { header: '상체' },
-          { name: '활 자세', nums: '10회', exImg: require('@/assets/exercise/bow.png') },
-          { name: '보트 자세', nums: '10회', exImg: require('@/assets/exercise/boat.png') },
+          { name: '활 자세', nums: '12회', exImg: require('@/assets/exercise/bow.png') },
+          { name: '보트 자세', nums: '12회', exImg: require('@/assets/exercise/boat.png') },
           { divider: true },
           { header: '하체' },
-          { name: '스쿼트', nums: '10회', exImg: require('@/assets/exercise/squat.png') },
-          { name: '런지', nums: '10회', exImg: require('@/assets/exercise/lunge.png') },
-          { name: '브릿지', nums: '10회', exImg: require('@/assets/exercise/bridge.png') },
-          { name: '레그 레이즈', nums: '10회', exImg: require('@/assets/exercise/leg.png') },
+          { name: '스쿼트', nums: '12회', exImg: require('@/assets/exercise/squat.png') },
+          { name: '런지', nums: '12회', exImg: require('@/assets/exercise/lunge.png') },
+          { name: '브릿지', nums: '12회', exImg: require('@/assets/exercise/bridge.png') },
+          { name: '레그 레이즈', nums: '12회', exImg: require('@/assets/exercise/leg.png') },
         ],
         sets: [
           1, 2, 3, 4, 5,
@@ -126,80 +128,20 @@ export default {
 
   methods: {
     addToList() {
-      const ex = [
-        {
-          id: 0,
-          exName: '트리 자세',
-          exEng: 'tree',
-          exNum: '10회',
-          description: '운동 설명',
-        },
-        {
-          id: 1,
-          exName: '슈퍼맨 자세',
-          exEng: 'superman',
-          exNum: '10회',
-          description: '운동 설명',
-        },
-        {
-          id: 2,
-          exName: '플랭크',
-          exEng: 'flank',
-          exNum: '30초',
-          description: '운동 설명',
-        },
-        {
-          id: 3,
-          exName: '활 자세',
-          exEng: 'bow',
-          exNum: '10회',
-          description: '운동 설명',
-        },
-        {
-          id: 4,
-          exName: '보트 자세',
-          exEng: 'boat',
-          exNum: '10회',
-          description: '운동 설명',
-        },
-        {
-          id: 5,
-          exName: '스쿼트',
-          exEng: 'squat',
-          exNum: '10회',
-          description: '운동 설명',
-        },
-        {
-          id: 6,
-          exName: '런지',
-          exEng: 'lunge',
-          exNum: '10회',
-          description: '운동 설명',
-        },
-        {
-          id: 7,
-          exName: '브릿지',
-          exEng: 'bridge',
-          exNum: '10회',
-          description: '운동 설명',
-        },
-        {
-          id: 8,
-          exName: '레그 레이즈',
-          exEng: 'leg',
-          exNum: '10회',
-          description: '운동 설명',
-        },
-      ];
       if (this.selectedItem.selectedEx !== '') {
         if (this.selectedItem.selectedSet > 0) {
           const selectedResult = ex.filter((v) => v.exName === this.selectedItem.selectedEx);
+          const todoNum = selectedResult[0].exName === '플랭크' ? 1 : 12;
+          const todoTime = selectedResult[0].exName === '플랭크' ? 30 : 5;
           const exTodo = {
             id: new Date().getTime(),
+            isDouble: selectedResult[0].isDouble,
             todoName: selectedResult[0].exName,
-            todoNum: selectedResult[0].exNum,
+            numShow: selectedResult[0].exNum,
+            todoNum,
+            todoTime,
             todoEng: selectedResult[0].exEng,
-            // todoImg: `@/assets/exercise/${selectedResult[0].exEng}.png`
+            todoImg: selectedResult[0].exImg,
             todoSet: this.selectedItem.selectedSet,
             todoDes: selectedResult[0].description,
           };
