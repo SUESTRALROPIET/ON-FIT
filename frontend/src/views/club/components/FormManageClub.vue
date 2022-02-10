@@ -171,7 +171,7 @@
               >
                 <template v-slot:item="data">
                   <v-list-item-avatar>
-                    <img :src="require(`@/assets/exercise/exercise_${data.item.exImg}.png`)">
+                    <img :src="`${data.item.exImg}`">
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-title v-html="data.item.name"></v-list-item-title>
@@ -230,6 +230,8 @@
 import FormClubMember from '@/views/club/components/FormClubMember.vue';
 import FormExTodoItem from '@/views/club/components/FormExTodoItem.vue';
 
+import ex from '@/assets/ex';
+
 export default {
   name: 'FormManageClub',
   components: {
@@ -251,18 +253,19 @@ export default {
       items: {
         exercises: [
           { header: '전신' },
-          { name: '버핏테스트', nums: '10회', exImg: 2 },
-          { name: '엎드려팔다리들기', nums: '10회', exImg: 8 },
-          { name: '슈퍼맨자세', nums: '10회', exImg: 4 },
+          { name: '트리 자세', nums: '12회', exImg: require('@/assets/exercise/tree.png') },
+          { name: '슈퍼맨 자세', nums: '12회', exImg: require('@/assets/exercise/superman.png') },
+          { name: '플랭크', nums: '30초', exImg: require('@/assets/exercise/flank.png') },
           { divider: true },
           { header: '상체' },
-          { name: '윗몸일으키기', nums: '10회', exImg: 6 },
-          { name: '플랭크', nums: '30초', exImg: 7 },
+          { name: '활 자세', nums: '12회', exImg: require('@/assets/exercise/bow.png') },
+          { name: '보트 자세', nums: '12회', exImg: require('@/assets/exercise/boat.png') },
           { divider: true },
           { header: '하체' },
-          { name: '런지', nums: '10회', exImg: 1 },
-          { name: '브릿지', nums: '10회', exImg: 3 },
-          { name: '스쿼트', nums: '10회', exImg: 5 },
+          { name: '스쿼트', nums: '12회', exImg: require('@/assets/exercise/squat.png') },
+          { name: '런지', nums: '12회', exImg: require('@/assets/exercise/lunge.png') },
+          { name: '브릿지', nums: '12회', exImg: require('@/assets/exercise/bridge.png') },
+          { name: '레그 레이즈', nums: '12회', exImg: require('@/assets/exercise/leg.png') },
         ],
         sets: [
           1, 2, 3, 4, 5,
@@ -297,40 +300,15 @@ export default {
       }
     },
     addToList() {
-      const ex = [
-        {
-          exName: '런지', exNum: '10회', imgNum: 1,
-        },
-        {
-          exName: '버핏테스트', exNum: '10회', imgNum: 2,
-        },
-        {
-          exName: '브릿지', exNum: '10회', imgNum: 3,
-        },
-        {
-          exName: '슈퍼맨자세', exNum: '10회', imgNum: 4,
-        },
-        {
-          exName: '스쿼트', exNum: '10회', imgNum: 5,
-        },
-        {
-          exName: '윗몸일으키기', exNum: '10회', imgNum: 6,
-        },
-        {
-          exName: '플랭크', exNum: '30초', imgNum: 7,
-        },
-        {
-          exName: '엎드려팔다리들기', exNum: '10회', imgNum: 8,
-        },
-      ];
       if (this.selectedItem.selectedEx !== '') {
         if (this.selectedItem.selectedSet > 0) {
           const selectedResult = ex.filter((v) => v.exName === this.selectedItem.selectedEx);
           const exTodo = {
             id: new Date().getTime(),
             todoName: selectedResult[0].exName,
+            todoEng: selectedResult[0].exEng,
             todoNum: selectedResult[0].exNum,
-            todoImgNum: selectedResult[0].imgNum,
+            todoImg: selectedResult[0].exImg,
             todoSet: this.selectedItem.selectedSet,
           };
           this.exTodos.push(exTodo);
