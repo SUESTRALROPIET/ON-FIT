@@ -26,7 +26,7 @@ public class QExercise extends EntityPathBase<Exercise> {
     public final NumberPath<Integer> count = createNumber("count", Integer.class);
 
     //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Integer> id = _super.id;
 
     public final StringPath kind = createString("kind");
 

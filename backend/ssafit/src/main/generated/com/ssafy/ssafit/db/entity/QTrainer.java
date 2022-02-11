@@ -24,7 +24,7 @@ public class QTrainer extends EntityPathBase<Trainer> {
     public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
 
     //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Integer> id = _super.id;
 
     public final StringPath trainerImg = createString("trainerImg");
 

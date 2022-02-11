@@ -22,7 +22,7 @@ public class QHealthLog extends EntityPathBase<HealthLog> {
     public final QBaseEntity _super = new QBaseEntity(this);
 
     //inherited
-    public final NumberPath<Long> id = _super.id;
+    public final NumberPath<Integer> id = _super.id;
 
     public final NumberPath<Integer> monthlyCal = createNumber("monthlyCal", Integer.class);
 
