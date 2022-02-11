@@ -11,7 +11,7 @@
         <v-btn
           icon
         >
-          <v-icon>mdi-checkbox-marked-circle</v-icon>
+          <v-icon>mdi-checkbox-marked-circle-outline</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
