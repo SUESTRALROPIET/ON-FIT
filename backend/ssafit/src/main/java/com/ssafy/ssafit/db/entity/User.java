@@ -14,12 +14,14 @@ import java.util.List;
 @Setter
 @EntityListeners(AuditingEntityListener.class)
 @Entity(name="user")
-public class User extends BaseEntity{
-    private String userEmail;
+public class User{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String userId;
+
+    private String email;
 
     private String fullName;
-
-    private int foodLog;
 
     // mysql : timestamp? date
     @CreatedDate
