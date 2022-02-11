@@ -14,27 +14,29 @@ import java.util.List;
 @Setter
 @EntityListeners(AuditingEntityListener.class)
 @Entity(name="user")
-public class User extends BaseEntity{
-    private String user_email;
+public class User{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String userId;
 
-    private String full_name;
+    private String email;
 
-    private int food_log;
+    private String fullName;
 
     // mysql : timestamp? date
     @CreatedDate
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Trainer_id")
-    private Trainer trainer_id;
+    private Trainer trainerId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "HealthLog_id")
-    private HealthLog healthLog_id;
+    private HealthLog healthLogId;
 
-    @OneToMany(mappedBy = "user_id")
-    private List<ExerciseLog> ex_logList = new ArrayList<>();
+    @OneToMany(mappedBy = "userId")
+    private List<ExerciseLog> exLogList = new ArrayList<>();
 }
 
 
