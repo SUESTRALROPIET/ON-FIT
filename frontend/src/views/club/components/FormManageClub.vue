@@ -230,7 +230,7 @@
 import FormClubMember from '@/views/club/components/FormClubMember.vue';
 import FormExTodoItem from '@/views/club/components/FormExTodoItem.vue';
 
-import ex from '@/assets/ex';
+import ex from '../../../../public/ex';
 
 export default {
   name: 'FormManageClub',
