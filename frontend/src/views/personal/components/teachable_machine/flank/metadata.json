@@ -1,1 +1,0 @@
-{"tfjsVersion":"1.3.1","tmVersion":"0.8.6","packageVersion":"0.8.6","packageName":"@teachablemachine/pose","timeStamp":"2022-02-05T08:38:49.713Z","userMetadata":{},"modelName":"my-pose-model","labels":["stand","plank","fail"],"modelSettings":{"posenet":{"architecture":"MobileNetV1","outputStride":16,"inputResolution":257,"multiplier":0.75}}}
