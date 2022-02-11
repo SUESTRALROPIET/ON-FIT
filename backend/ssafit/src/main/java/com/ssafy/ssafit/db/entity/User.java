@@ -23,8 +23,6 @@ public class User{
 
     private String fullName;
 
-//    private int foodLog;
-
     // mysql : timestamp? date
     @CreatedDate
     private LocalDateTime createdAt;

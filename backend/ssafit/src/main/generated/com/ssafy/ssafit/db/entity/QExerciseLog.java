@@ -24,6 +24,8 @@ public class QExerciseLog extends EntityPathBase<ExerciseLog> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
+    public final NumberPath<Integer> exCal = createNumber("exCal", Integer.class);
+
     public final NumberPath<Integer> exCount = createNumber("exCount", Integer.class);
 
     public final QExercise exId;

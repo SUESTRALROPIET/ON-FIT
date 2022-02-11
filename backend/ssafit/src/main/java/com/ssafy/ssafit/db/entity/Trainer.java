@@ -16,10 +16,10 @@ import java.time.LocalDateTime;
 public class Trainer extends BaseEntity {
     private String trainerName;
 
-    private String trainerImg;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
+//    private String trainerImg;
+//
+//    @CreatedDate
+//    private LocalDateTime createdAt;
 
     //private String trainer_img;
 
