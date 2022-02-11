@@ -169,7 +169,7 @@ export default {
       this.fail = 0;
     },
     sound(v) {
-      const audio = new Audio(`@/assets/trainervoice/${this.trainer}/${v}.mp3`);
+      const audio = new Audio(`../../../public/trainervoice/${this.trainer}/${v}.mp3`);
       audio.play();
     },
     timeStart() {
@@ -196,7 +196,7 @@ export default {
     },
     // teachable machine snippet
     async init() {
-      const URL = `@/assets/teachable_machine/${this.curEx.eng}/`;
+      const URL = `../../../public/teachable_machine/${this.curEx.eng}/`;
       // const modelURL = URL + "model.json";
       // const metadataURL = URL + "metadata.json";
       const modelURL = `${URL}model.json`;
