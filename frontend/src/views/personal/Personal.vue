@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import ex from '@/assets/ex';
+import ex from '../../../public/ex';
 import ExTodoItem from './components/ExTodoItem.vue';
 
 export default {
