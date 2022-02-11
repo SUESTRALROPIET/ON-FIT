@@ -12,7 +12,8 @@
           <div class="shell mx-auto">
             <div class="bar" :style="{ width: progress + '%' }"></div>
           </div>
-          <canvas class="canvas"></canvas>
+          <!-- eslint-disable-next-line max-len -->
+          <div id="canvasbox"><canvas id="canvas" style="border : 7px solid rgba(242, 157, 143,0.3)"></canvas></div>
         </v-col>
         <!-- spacer -->
         <v-col cols="1"></v-col>
@@ -74,7 +75,6 @@ export default {
     return {
       SERVER: 'must be changed',
       isPlay: false,
-      isLoading: false,
       dir: '오른쪽',
       status: 'stand', // 현재 운동 상태
       cur: 0, // 현재 운동 순서
@@ -94,7 +94,7 @@ export default {
   },
   mounted() {
     this.init();
-    this.isLoading = true;
+    this.showLoadingDialog = true;
   },
   computed: {
     exTodos() {
@@ -125,10 +125,12 @@ export default {
     start() {
       this.isPlay = true;
       this.timeStart();
+      this.showStopDialog = false;
     },
     stop() {
       this.timeStop();
       this.isPlay = false;
+      this.showStopDialog = true;
     },
     exit() {
       // 운동 중 나갈때
@@ -159,7 +161,7 @@ export default {
         ex_logCount,
         // eslint-disable-next-line camelcase
         ex_logTime: ex_logCount * this.curEx.time,
-        status: this.fail,
+        ex_status: this.fail,
       };
       axios.post(`${this.SERVER}/personal`, info, {
         headers: {
@@ -209,35 +211,45 @@ export default {
       model = await tmPose.load(modelURL, metadataURL);
 
       // Convenience function to setup a webcam
-      const size = 450;
       const flip = true; // whether to flip the webcam
-      webcam = new tmPose.Webcam(size, size, flip); // width, height, flip
+      webcam = new tmPose.Webcam(450, 450, flip); // width, height, flip
       await webcam.setup(); // request access to the webcam
+      console.error();
+      console.log('캠 왜 안켜지지');
       await webcam.play();
+      console.error();
+      console.log(0);
       window.requestAnimationFrame(this.loop);
 
       const canvas = document.getElementById('canvas');
-      canvas.width = size; canvas.height = size;
+      canvas.width = 450; canvas.height = 450;
       ctx = canvas.getContext('2d');
+      console.log(1);
     },
     // eslint-disable-next-line no-unused-vars
     async loop(timestamp) {
-      if (this.isLoading) {
-        this.isLoading = false;
+      document.getElementById('canvasbox').style.visibility = 'visible';
+      if (this.showLoadingDialog) {
+        this.showLoadingDialog = false;
         await this.sound('start');
         // TODO: start 음성 길이 확인 후 시간 변경
         // TODO: 재생 버튼 눌렸는지 확인 후 사운드 보내기..? 고민해보기
+        // if (this.isPlay) {
+        //   this.sound(this.curEx.eng);
+        // }
         setTimeout(() => {
           this.sound(this.curEx.eng);
-        }, 5000);
+        }, 13000);
       }
-
       webcam.update(); // update the webcam frame
+      console.log(2);
       await this.predict();
+
       window.requestAnimationFrame(this.loop);
     },
 
     async predict() {
+      console.log(3);
       // Prediction #1: run input through posenet
       // estimatePose can take in an image, video or canvas html element
       const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
@@ -381,12 +393,7 @@ export default {
   border-radius: 30px;
   margin-bottom: 30px;
 }
-.canvas {
-  width: 450px;
-  height: 450px;
-  border: 1px solid;
-  background: rgb(0, 0, 0, 0.5);
-}
+
 .statusBox {
   height: 500px;
   border: 1px solid;
@@ -420,5 +427,9 @@ export default {
     color: #fff;
     font-size: 0.7em
   }
+}
+
+#tm-shadow-box {
+    visibility: hidden;
 }
 </style>
