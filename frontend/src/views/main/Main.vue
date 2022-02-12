@@ -9,11 +9,13 @@
           cols="4"
           @click="selectTrainer(n)"
         >
-          <img
+          <v-img
             :class="(n === trainerNum)? 'show-selected-trainer' : ''"
+            id="trainer-img"
             :src="require(`@/assets/trainer/trainer_${n}.png`)"
             alt="trainer-image"
-          />
+          >
+          </v-img>
         </v-col>
       </v-row>
     </div>
@@ -73,11 +75,15 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
   cursor: pointer;
 }
+#trainer-img {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
+  cursor: pointer;
+}
 #trainer-lst {
   width: 50%;
 }
 .show-selected-trainer {
-  border: 3px solid;
+  border: 3px black solid;
 }
 #show-selected-course:hover {
   transform: translateY(0) scale(1.2);
