@@ -6,10 +6,10 @@
         <!-- #1. addBox -->
         <v-col cols="5" class="addBox">
           <div class="title"><h3>운동 추가하기</h3></div>
-          <v-row align="center">
-            <v-col
-              class="d-flex"
-              cols="8"
+          <v-row class="d-flex" align="center">
+            <div
+              id="select-box"
+              class="d-flex mt-3"
             >
               <v-select
                 v-model="selectedItem.selectedEx"
@@ -30,11 +30,6 @@
                   </v-list-item-content>
                 </template>
               </v-select>
-            </v-col>
-            <v-col
-              class="d-flex"
-              cols="3"
-            >
               <v-select
                 v-model="selectedItem.selectedSet"
                 :items="items.sets"
@@ -42,16 +37,17 @@
                 dense
                 outlined
               ></v-select>
-            </v-col>
-            <v-btn
-              fab
-              dark
-              x-small
-              color="green"
-              @click="addToList"
-            >
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
+              <v-btn
+                class="mr-1 mt-1"
+                fab
+                dark
+                x-small
+                color="green"
+                @click="addToList"
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </div>
           </v-row>
         </v-col>
         <!-- spacer -->
@@ -187,6 +183,10 @@ export default {
   border: 1px solid;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 30px;
+}
+
+#select-box .v-select {
+  margin: 0px 5px 0px 5px;
 }
 
 </style>
