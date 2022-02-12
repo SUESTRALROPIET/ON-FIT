@@ -13,7 +13,7 @@
             <div class="bar" :style="{ width: progress + '%' }"></div>
           </div>
           <!-- eslint-disable-next-line max-len -->
-          <div id="canvasbox"><canvas id="canvas" style="border : 7px solid rgba(242, 157, 143,0.3)"></canvas></div>
+          <div><canvas id="canvas"></canvas></div>
         </v-col>
         <!-- spacer -->
         <v-col cols="1"></v-col>
@@ -214,21 +214,15 @@ export default {
       const flip = true; // whether to flip the webcam
       webcam = new tmPose.Webcam(450, 450, flip); // width, height, flip
       await webcam.setup(); // request access to the webcam
-      console.error();
-      console.log('캠 왜 안켜지지');
       await webcam.play();
-      console.error();
-      console.log(0);
       window.requestAnimationFrame(this.loop);
 
       const canvas = document.getElementById('canvas');
       canvas.width = 450; canvas.height = 450;
       ctx = canvas.getContext('2d');
-      console.log(1);
     },
     // eslint-disable-next-line no-unused-vars
     async loop(timestamp) {
-      document.getElementById('canvasbox').style.visibility = 'visible';
       if (this.showLoadingDialog) {
         this.showLoadingDialog = false;
         await this.sound('start');
@@ -242,14 +236,12 @@ export default {
         }, 13000);
       }
       webcam.update(); // update the webcam frame
-      console.log(2);
       await this.predict();
 
       window.requestAnimationFrame(this.loop);
     },
 
     async predict() {
-      console.log(3);
       // Prediction #1: run input through posenet
       // estimatePose can take in an image, video or canvas html element
       const { pose, posenetOutput } = await model.estimatePose(webcam.canvas);
@@ -427,9 +419,5 @@ export default {
     color: #fff;
     font-size: 0.7em
   }
-}
-
-#tm-shadow-box {
-    visibility: hidden;
 }
 </style>
