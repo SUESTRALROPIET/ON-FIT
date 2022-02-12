@@ -1,4 +1,13 @@
 # 공통-Sub PJT 2
+### 로컬에서 테스트하는 과정
+1. backend 폴더가 아닌 ssafit 폴더를 IntelliJ에서 Open
+2. 자동으로 gradle build 해줌. -> 기다리기 (우측 밑에 표시됨)
+3. src/main/resources/application.properties에서 DB 설정 정보(username,password) 변경
+4. MySQL에서 'create database onfit' 실행해서 onfit DB 스키마 생성
+5. src/main/java/SsafitApplication 실행
+6. onfit DB 스키마에 테이블 생성되고 http://localhost:8081/swagger-ui.html 접속되면 백엔드 서버 구동 성공!
+
+
 ### 초기 개발환경
 
 - **JAVA**
@@ -32,8 +41,3 @@
     - MySQL (8.0.x) *aws 문제로 아직 미정
     - application.properties 파일에서 DB 설정 정보 세팅
 
-### 진행상황
-1. 현재 model은 단방향으로만 설정되어있음.
-    - 개발하면서 상황에 맞춰 양방향으로 설정하기.
-    - 참고 : https://bumpy-trick-740.notion.site/ManyToOne-OneToMany-92a503270c384866922774ab7be2d2ea   
-2. 데이터베이스에 테이블 생성까지는 완료했지만 CRUD 테스트 해보지 않음.
