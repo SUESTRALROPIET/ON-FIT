@@ -3,7 +3,10 @@
     <v-card-text>
       <v-row class="my-3">
         <v-col cols="4">
-          <img :src="imagePreviewURL" alt="club image" width="100%">
+          <img
+            :src="imagePreviewURL" alt="club image"
+            width="100%"
+          >
         </v-col>
         <v-col cols="7" class="align-self-end">
           <v-file-input
@@ -12,6 +15,7 @@
             @change="onImageFileChange"
           ></v-file-input>
           <v-text-field
+            v-model="clubName"
             label="클럽명*"
             required
           ></v-text-field>
@@ -24,42 +28,49 @@
         <v-col cols="9" class="pl-0">
           <div class="d-flex flex-wrap">
             <v-checkbox
+              v-model="checkboxMon"
               dense
               label="월"
               color="success"
               class="ma-0 pa-0 mr-3"
             ></v-checkbox>
             <v-checkbox
+              v-model="checkboxTues"
               dense
               label="화"
               color="success"
               class="ma-0 pa-0 mr-3"
             ></v-checkbox>
             <v-checkbox
+              v-model="checkboxWedn"
               dense
               label="수"
               color="success"
               class="ma-0 pa-0 mr-3"
             ></v-checkbox>
             <v-checkbox
+              v-model="checkboxThur"
               dense
               label="목"
               color="success"
               class="ma-0 pa-0 mr-3"
             ></v-checkbox>
             <v-checkbox
+              v-model="checkboxFri"
               dense
               label="금"
               color="success"
               class="ma-0 pa-0 mr-3"
             ></v-checkbox>
             <v-checkbox
+              v-model="checkboxSat"
               dense
               label="토"
               color="success"
               class="ma-0 pa-0 mr-3"
             ></v-checkbox>
             <v-checkbox
+              v-model="checkboxSun"
               dense
               label="일"
               color="success"
@@ -143,6 +154,7 @@
         outlined
         elevation="0"
         class="ma-auto mt-5"
+        @click="createClub"
       >
         <span>클럽 만들기</span>
       </v-btn>
@@ -150,6 +162,8 @@
   </v-card>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
   name: 'FormCreateClub',
   data() {
@@ -157,8 +171,18 @@ export default {
       timePicker: false,
       datePicker: false,
       imagePreviewURL: require('@/assets/club/club_default.png'),
+      clubName: '',
+      checkboxMon: false,
+      checkboxTues: false,
+      checkboxWedn: false,
+      checkboxThur: false,
+      checkboxFri: false,
+      checkboxSat: false,
+      checkboxSun: false,
       time: null,
       dates: [],
+
+      LogginedUser: '현재로그인한사용자',
     };
   },
   props: {
@@ -184,6 +208,52 @@ export default {
       } else {
         this.imagePreviewURL = defaultImage;
       }
+    },
+    createClub() {
+      const newClubInfo = {
+        clubId: {
+          clubImg: this.imagePreviewURL,
+          clubName: this.clubName,
+          manager: this.LogginedUser,
+          mon: this.checkboxMon,
+          tues: this.checkboxTues,
+          wedn: this.checkboxWedn,
+          thur: this.checkboxThur,
+          fri: this.checkboxFri,
+          sat: this.checkboxSat,
+          sun: this.checkboxSun,
+          startDate: this.dates[0],
+          endDate: this.dates[1],
+          fixTime: this.time,
+          finish: false,
+        },
+        clubLogs: [],
+      };
+      axios.post('http://localhost:8081/club/', newClubInfo, {
+        headers: {
+          Authorization: 'must be change',
+        },
+      })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      this.clearAll();
+    },
+    clearAll() {
+      this.imagePreviewURL = require('@/assets/club/club_default.png');
+      this.clubName = '';
+      this.checkboxMon = false;
+      this.checkboxTues = false;
+      this.checkboxWedn = false;
+      this.checkboxThur = false;
+      this.checkboxFri = false;
+      this.checkboxSat = false;
+      this.checkboxSun = false;
+      this.time = null;
+      this.dates = [];
     },
   },
 };
