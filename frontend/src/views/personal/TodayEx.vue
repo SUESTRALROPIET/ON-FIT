@@ -1,23 +1,35 @@
 <template>
   <div>
     <div class="title"><h1>오늘의 계획</h1></div>
-    <img :src="exTodos[0].todoImg" alt="">
     <v-container>
       <v-row justify="center">
-        <v-col class="subTitleBox" cols="8">
-          <h2>운동 소개 페이지</h2>
+        <v-col class="subTitleBox" cols="10">
+          <!-- TODO: 더 적절한 멘트 찾기 -->
+          <h2>오늘의 운동 : {{exTodos.length}}개</h2>
         </v-col>
       </v-row>
       <v-row justify="center">
-        <v-col class="exListBox" cols="8">
+        <v-col class="exListBox" cols="10">
           <div class="exListBoxScroll">
             <v-data-table
+              text-center
+              :align="center"
               :headers="headers"
               :items="exTodos"
-              hide-default-header
               hide-default-footer
               class="elevation-1"
-            ></v-data-table>
+            >
+              <template v-slot:item.todoEng="{ item }">
+                <div class="p-2">
+                  <v-img
+                    :src="require(`@/assets/exercise/${item.todoEng}.png`)"
+                    :alt="item.todoName"
+                    width="60px"
+                    height="60px">
+                  </v-img>
+                </div>
+              </template>
+            </v-data-table>
           </div>
         </v-col>
       </v-row>
@@ -45,10 +57,18 @@ export default {
       headers: [
         // TODO: value에 img 넣기
         // { text: 'Image', sortable: false, value: require(`@/assets/exercise/${todoImg}.png`), },
-        { text: 'Image', sortable: false, value: 'todoImg' },
-        { text: '운동', sortable: false, value: 'todoName' },
-        { text: '횟수', sortable: false, value: 'numShow' },
-        { text: '세트', sortable: false, value: 'todoSet' },
+        {
+          text: '', sortable: false, value: 'todoEng', align: 'end', width: '70px',
+        },
+        {
+          text: '운동', sortable: false, value: 'todoName', align: 'start', width: '120px',
+        },
+        {
+          text: '횟수', sortable: false, value: 'numShow', align: 'center', width: '70px',
+        },
+        {
+          text: '세트', sortable: false, value: 'todoSet', align: 'center', width: '70px',
+        },
         { text: '설명', sortable: false, value: 'todoDes' },
       ],
     };
