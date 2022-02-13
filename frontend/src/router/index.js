@@ -3,8 +3,14 @@ import VueRouter from 'vue-router';
 
 import Intro from '@/views/intro/Intro.vue';
 import Main from '@/views/main/Main.vue';
+
 import Personal from '@/views/personal/Personal.vue';
+import TodayEx from '@/views/personal/TodayEx.vue';
+import PersonalTraining from '@/views/personal/PersonalTraining.vue';
+
 import Club from '@/views/club/Club.vue';
+import ClubTraining from '@/views/club/ClubTraining.vue';
+
 import MyPage from '@/views/mypage/MyPage.vue';
 
 Vue.use(VueRouter);
@@ -26,9 +32,24 @@ const routes = [
     component: Personal,
   },
   {
+    path: '/personal/PersonalTraining',
+    name: 'PersonalTraining',
+    component: PersonalTraining,
+  },
+  {
+    path: '/personal/TodayEx',
+    name: 'TodayEx',
+    component: TodayEx,
+  },
+  {
     path: '/club',
     name: 'Club',
     component: Club,
+  },
+  {
+    path: '/club/ClubTraining',
+    name: 'ClubTraining',
+    component: ClubTraining,
   },
   {
     path: '/mypage',
