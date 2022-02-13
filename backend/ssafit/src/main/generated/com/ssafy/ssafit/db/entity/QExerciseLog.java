@@ -28,11 +28,13 @@ public class QExerciseLog extends EntityPathBase<ExerciseLog> {
 
     public final NumberPath<Integer> exCount = createNumber("exCount", Integer.class);
 
+    public final NumberPath<Integer> exDuration = createNumber("exDuration", Integer.class);
+
     public final QExercise exId;
 
-    public final BooleanPath exStatus = createBoolean("exStatus");
+    public final NumberPath<Integer> exStatus = createNumber("exStatus", Integer.class);
 
-    public final NumberPath<Integer> exTime = createNumber("exTime", Integer.class);
+    public final DateTimePath<java.sql.Timestamp> exTime = createDateTime("exTime", java.sql.Timestamp.class);
 
     //inherited
     public final NumberPath<Integer> id = _super.id;

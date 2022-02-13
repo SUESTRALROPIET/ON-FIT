@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../.idea/S06P12B110.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Exercise_Insert.sql" afterDir="false" />
-    </list>
+    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +46,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -71,7 +73,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/ssafy/ssafit/db/entity" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -85,10 +87,10 @@
       <recent name="D:\SSAFY\2학기\공통프로젝트\S06P12B110\backend\ssafit\src\main\java\com\ssafy\ssafit\db\entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SsafitApplication">
-    <configuration name="SsafitApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.SsafitApplication (1)">
+    <configuration name="SsafitApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplication" />
-      <module name="ssafit.main" />
+      <module name="com.ssafy.ssafit.main" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.ssafy.ssafit.*" />
@@ -105,27 +107,6 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
         <option name="scriptParameters" value="--tests &quot;com.ssafy.ssafit.SsafitApplicationTests&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="SsafitApplicationTests.contextLoads" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;com.ssafy.ssafit.SsafitApplicationTests.contextLoads&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -198,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SsafitApplication (1)" />
         <item itemvalue="JUnit.SsafitApplicationTests.test_club" />
         <item itemvalue="JUnit.SsafitApplicationTests.club_Select" />
         <item itemvalue="JUnit.SsafitApplicationTests.queryDsl_Select" />
         <item itemvalue="Gradle.SsafitApplicationTests" />
-        <item itemvalue="Gradle.SsafitApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
   </component>
