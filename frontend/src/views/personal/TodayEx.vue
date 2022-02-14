@@ -19,7 +19,7 @@
               hide-default-footer
               class="elevation-1"
             >
-              <template v-slot:item.todoEng="{ item }">
+              <template v-slot:[`item.todoEng`]="{ item }">
                 <div class="p-2">
                   <v-img
                     :src="require(`@/assets/exercise/${item.todoEng}.png`)"

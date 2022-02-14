@@ -10,13 +10,17 @@
         <span>on:FIT하러 가기</span>
       </div>
     </div> -->
+    <ButtonLogin />
   </div>
 </template>
 
 <script>
+import ButtonLogin from './components/ButtonLogin.vue';
+
 export default {
   name: 'Intro',
   components: {
+    ButtonLogin,
   },
   methods: {
   },
