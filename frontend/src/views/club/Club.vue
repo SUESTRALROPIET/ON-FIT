@@ -86,7 +86,7 @@ export default {
             count: 0,
             finish: false,
           },
-          clubMate: ['현재로그인한사용자'],
+          clubMate: ['유저1', '유저2', '현재로그인한사용자'],
           clubLog: [],
         },
         {
@@ -109,7 +109,7 @@ export default {
             count: 0,
             finish: true,
           },
-          clubMate: ['현재로그인한사용자'],
+          clubMate: ['유저3'],
           clubLog: [],
         },
       ],

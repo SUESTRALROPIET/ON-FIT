@@ -39,11 +39,6 @@
         >
           시작
         </v-btn>
-        <div class="mx-2">
-        </div>
-        <ManageClubButton
-          :ClubInfo="ClubInfo"
-        />
       </div>
     </v-col>
     <AlertBreakTime :showDialog="showBreakTimeDialog"/>
@@ -52,14 +47,12 @@
 </template>
 
 <script>
-import ManageClubButton from '@/views/club/components/ManageClubButton.vue';
 import AlertBreakTime from '@/views/club/components/AlertBreakTime.vue';
 import AlertFinishDialog from '@/views/club/components/AlertFinishDialog.vue';
 
 export default {
   name: 'ClubTrainingExRecord',
   components: {
-    ManageClubButton,
     AlertBreakTime,
     AlertFinishDialog,
   },
