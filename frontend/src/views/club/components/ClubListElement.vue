@@ -28,11 +28,11 @@
           <img
             src='@/assets/club/club_default.png' alt="club-image"
             class="align-self-center"
-            :class="(ClubInfo.clubInfo.finish)? 'finish-club' : ''"
+            :class="(ClubInfo.clubMate.length >= 6)? 'finish-club' : ''"
           >
           <!-- <img :src='`${ ClubInfo.clubInfo.clubImg }`' alt="club-image"-->
           <h2
-            v-if="ClubInfo.clubInfo.finish"
+            v-if="ClubInfo.clubMate.length >= 6"
             class="flex-child"
           >
             모집 완료
@@ -51,9 +51,7 @@
             <span v-if="ClubInfo.clubInfo.fri">금</span>
             <span v-if="ClubInfo.clubInfo.sat">토</span>
             <span v-if="ClubInfo.clubInfo.sun">일</span>
-            <span>{{new Date(ClubInfo.clubInfo.fixTime).getHours()}}</span>
-            <span>:</span>
-            <span>{{new Date(ClubInfo.clubInfo.fixTime).getMinutes()}}</span>
+            <span>{{ClubInfo.clubInfo.fixTime}}</span>
           </p>
         </div>
         <div class="d-flex">
@@ -80,7 +78,7 @@ export default {
   },
   data() {
     return {
-      LogginedUser: '현재로그인한사용자',
+      LogginedUser: 'ssafy2',
       showFormJoinClub: false,
       showFailJoinClub: false,
     };

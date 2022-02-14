@@ -4,28 +4,22 @@
       <v-row class="align-center mx-3">
         <v-col cols="3"><h2>현재 운동</h2></v-col>
         <v-col cols="2">
-          <img :src="require(`@/assets/exercise/boat.png`)" alt="" width="100%">
+          <img
+            :src="require(`@/assets/exercise/${nowExEngName}.png`)" alt="now-ex-image"
+            width="100%"
+          >
         </v-col>
-        <v-col cols="4" style="text-align:left;"><h2>런지{{nowExname}}</h2></v-col>
-        <v-col cols="3"><h2>1회</h2></v-col>
+        <v-col cols="4" style="text-align:left;"><h2>{{nowExname}}</h2></v-col>
+        <v-col cols="3"><h2>{{nowSetNum}} 세트</h2></v-col>
       </v-row>
     </v-col>
     <v-col cols="4" id="record-body"
       class="d-flex flex-column justify-center pa-3 px-8"
     >
       <h3 class="mb-3">현재 기록</h3>
-      <div
-        class="d-flex"
-      >
-        <div class="text-center" style="width: 50%">
-          <h4>운동 시간</h4>
-          <p>{{formattedElapsedTime}}</p>
-        </div>
-        <v-divider vertical></v-divider>
-        <div class="text-center" style="width: 50%">
-          <h4>소비 칼로리</h4>
-          <p><span>0</span> 칼로리</p>
-        </div>
+      <div class="text-center align-self-center" style="width: 50%">
+        <h4>운동 시간</h4>
+        <p>{{formattedElapsedTime}}</p>
       </div>
       <div
         class="d-flex justify-center"
@@ -50,6 +44,8 @@
 import AlertBreakTime from '@/views/club/components/AlertBreakTime.vue';
 import AlertFinishDialog from '@/views/club/components/AlertFinishDialog.vue';
 
+import ex from '../../../../public/ex';
+
 export default {
   name: 'ClubTrainingExRecord',
   components: {
@@ -66,22 +62,10 @@ export default {
 
       showBreakTimeDialog: false,
       showFinishDialog: false,
-      nowExname: '',
 
-      exList: [
-        {
-          ex_id: 1,
-          count: 5,
-        },
-        {
-          ex_id: 2,
-          count: 5,
-        },
-        {
-          ex_id: 3,
-          count: 5,
-        },
-      ],
+      nowExEngName: 'boat',
+      nowExname: '',
+      nowSetNum: 0,
     };
   },
   computed: {
@@ -95,15 +79,26 @@ export default {
   methods: {
     /* eslint-disable no-await-in-loop */
     async exerciseStart() {
-      const todayExList = this.exList;
+      const todayExList = this.ClubInfo.clubLog;
       for (let i = 0; i < todayExList.length;) {
-        this.timeStart();
-        const exTime = todayExList[i].count;
-        this.nowExname = todayExList[i].ex_id;
-        await new Promise((resolve) => setTimeout(resolve, exTime * 1000));
-        this.timeStop();
+        this.timeStart(); // 타이머 시작
+        const nowExId = todayExList[i].exId;
+        const nowEx = ex.filter((v) => v.id === nowExId); // 현재 운동 id로 ex.js 파일에서 정보 가져오기
+        this.nowExEngName = nowEx[0].exEng;
+        this.nowExname = nowEx[0].exName; // 현재 운동명
+
+        this.sound(`${this.nowExEngName}`);
+
+        const nowCount = todayExList[i].exCount; // 지정한 세트만큼 반복
+        for (let j = 0; j < nowCount;) {
+          this.nowSetNum += 1;
+          await new Promise((resolve) => setTimeout(resolve, 30 * 1000)); // 세트는 각 30초씩 진행
+          j += 1;
+        }
+        this.nowSetNum = 0;
+        this.timeStop(); // 1세트 끝난 후 휴식 30초
         this.showBreakTimeDialog = true;
-        await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
+        await new Promise((resolve) => setTimeout(resolve, 30 * 1000));
         this.showBreakTimeDialog = false;
         i += 1;
       }
@@ -116,12 +111,14 @@ export default {
         this.elapsedTime += 1000;
       }, 1000);
     },
-    timeStop() {
-      clearInterval(this.timer);
+    sound(exEngName) {
+      const audio = new Audio(`../../../../public/trainervoice/Naomi/${exEngName}.mp3`);
+      audio.play();
     },
-    reset() {
-      this.elapsedTime = 0;
-    },
+  },
+  created() {
+    const audio = new Audio('../../../../public/trainervoice/Naomi/boat.mp3');
+    audio.play();
   },
 };
 </script>

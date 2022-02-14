@@ -51,13 +51,13 @@
           </v-row>
           <v-row class="d-flex align-center">
             <v-col cols="3"><h3>시간</h3></v-col>
-            <v-col><p>{{ClubInfo.clubInfo.fixTime | hhmm}}</p></v-col>
+            <v-col><p>{{ClubInfo.clubInfo.fixTime}}</p></v-col>
           </v-row>
           <v-row class="d-flex align-center">
             <v-col cols="3"><h3>운동기간</h3></v-col>
             <v-col>
               <p>{{ClubInfo.clubInfo.startDate | yyyyMMdd}}
-                ~{{ClubInfo.clubInfo.endDate | yyyyMMdd}}</p>
+                ~ {{ClubInfo.clubInfo.endDate | yyyyMMdd}}</p>
             </v-col>
           </v-row>
         </v-col>
@@ -94,12 +94,13 @@ export default {
   methods: {
     joinClub() {
       const newClubMate = {
-        clubId: 'ssafy',
-        userId: this.ClubInfo.clubInfo.id,
+        userId: 'ssafy2',
+        clubId: this.ClubInfo.clubInfo.id,
       };
       axios.post('http://localhost:8081/club/join', newClubMate, {
         headers: {
-          Authorization: 'must be change',
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
         },
       })
         .then((response) => {

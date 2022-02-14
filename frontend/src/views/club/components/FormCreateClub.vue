@@ -98,6 +98,7 @@
                   ></v-text-field>
                 </template>
                 <v-time-picker
+                  format="24hr"
                   v-if="timePicker"
                   v-model="time"
                   full-width
@@ -264,7 +265,7 @@ export default {
         selectedSet: 0,
       },
       exTodos: [],
-      exTodosfotPost: [],
+      exTodosforPost: [],
     };
   },
   computed: {
@@ -300,25 +301,25 @@ export default {
             todoSet: this.selectedItem.selectedSet,
           };
           const exTodo2 = {
-            exId: selectedResult[0].id,
+            exerciseId: selectedResult[0].id,
             exCount: this.selectedItem.selectedSet,
           };
           this.exTodos.push(exTodo1);
-          this.exTodosfotPost.push(exTodo2);
+          this.exTodosforPost.push(exTodo2);
         }
       }
     },
     deleteTodo(exTodo) {
       this.exTodos.splice(this.exTodos.indexOf(exTodo), 1);
-      this.exTodosfotPost.splice(this.exTodosfotPost.indexOf(exTodo), 1);
+      this.exTodosforPost.splice(this.exTodosforPost.indexOf(exTodo), 1);
     },
     createClub() {
-      const userId = 'ssafy';
+      const userId = 'ssafy2';
       const newClubInfo = {
         clubId: {
           clubImg: this.imagePreviewURL,
           clubName: this.clubName,
-          manager: this.LogginedUser,
+          manager: userId,
           mon: this.checkboxMon,
           tues: this.checkboxTues,
           wedn: this.checkboxWedn,
@@ -326,18 +327,16 @@ export default {
           fri: this.checkboxFri,
           sat: this.checkboxSat,
           sun: this.checkboxSun,
-          startDate: this.dates[0],
-          endDate: this.dates[1],
+          startDate: new Date(this.dates[0]),
+          endDate: new Date(this.dates[1]),
           fixTime: this.time,
-          count: 0,
-          finish: false,
         },
-        clubLogs: this.exTodosfotPost,
+        clubLogs: this.exTodosforPost,
       };
-      console.log(newClubInfo);
       axios.post(`http://localhost:8081/club/${userId}`, newClubInfo, {
         headers: {
-          Authorization: 'must be change',
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
         },
       })
         .then((response) => {
@@ -360,6 +359,10 @@ export default {
       this.checkboxSun = false;
       this.time = null;
       this.dates = [];
+      this.selectedItem.selectedEx = '';
+      this.selectedItem.selectedSet = 0;
+      this.exTodos = [];
+      this.exTodosforPost = [];
     },
   },
 };
