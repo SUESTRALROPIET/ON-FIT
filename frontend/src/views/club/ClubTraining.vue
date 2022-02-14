@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ClubInfo}}
     <div>
       <ClubTrainingExRecord
         :ClubInfo="ClubInfo"
