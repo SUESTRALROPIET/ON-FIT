@@ -22,6 +22,7 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Api(value = "Personal API",tags = {"Personal"})
+@CrossOrigin(origins = {"*"})
 @RestController
 @RequestMapping("/personal")
 public class PersonalController {
