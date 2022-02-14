@@ -6,8 +6,11 @@
         <!-- #1. addBox -->
         <v-col cols="5" class="addBox">
           <div class="title"><h3>운동 추가하기</h3></div>
-          <v-row align="center">
-            <v-col class="d-flex" cols="8">
+          <v-row class="d-flex" align="center">
+            <div
+              id="select-box"
+              class="d-flex mt-3"
+            >
               <v-select
                 v-model="selectedItem.selectedEx"
                 :items="items.exercises"
@@ -19,7 +22,7 @@
               >
                 <template v-slot:item="data">
                   <v-list-item-avatar>
-                    <img :src="`${data.item.exImg}`" />
+                    <img :src="`${data.item.exImg}`">
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-title v-html="data.item.name"></v-list-item-title>
@@ -27,8 +30,6 @@
                   </v-list-item-content>
                 </template>
               </v-select>
-            </v-col>
-            <v-col class="d-flex" cols="3">
               <v-select
                 v-model="selectedItem.selectedSet"
                 :items="items.sets"
@@ -36,10 +37,17 @@
                 dense
                 outlined
               ></v-select>
-            </v-col>
-            <v-btn fab dark x-small color="green" @click="addToList">
-              <v-icon>mdi-plus</v-icon>
-            </v-btn>
+              <v-btn
+                class="mr-1 mt-1"
+                fab
+                dark
+                x-small
+                color="green"
+                @click="addToList"
+              >
+                <v-icon>mdi-plus</v-icon>
+              </v-btn>
+            </div>
           </v-row>
         </v-col>
         <!-- spacer -->
@@ -56,28 +64,40 @@
         </v-col>
       </v-row>
       <div class="d-flex justify-center">
-        <v-btn rounded color="white" text-center width="350px" @click="ready">준비</v-btn>
+        <v-btn
+          rounded
+          color="white"
+          text-center
+          width="350px"
+          @click="ready"
+        >준비</v-btn>
       </div>
+    <AlertNotSelect :showDialog="showNotSelect"/>
     </v-container>
   </div>
 </template>
 
 <script>
-import ExTodoItem from './components/ExTodoItem.vue';
 import ex from '../../../public/ex';
+import ExTodoItem from './components/ExTodoItem.vue';
+import AlertNotSelect from './components/AlertNotSelect.vue';
 
 export default {
   name: 'Personal',
 
   components: {
     ExTodoItem,
+    AlertNotSelect,
   },
 
   data() {
     return {
+      showNotSelect: false,
       items: {
-        // exlist,
         exercises: [
+          { header: '테스트' },
+          { name: '테스트', nums: '2회', exImg: require('@/assets/exercise/test.png') },
+          { name: '테스트(좌우)', nums: '2회', exImg: require('@/assets/exercise/test2.png') },
           { header: '전신' },
           { name: '트리 자세', nums: '12회', exImg: require('@/assets/exercise/tree.png') },
           { name: '슈퍼맨 자세', nums: '12회', exImg: require('@/assets/exercise/superman.png') },
@@ -93,7 +113,9 @@ export default {
           { name: '브릿지', nums: '12회', exImg: require('@/assets/exercise/bridge.png') },
           { name: '레그 레이즈', nums: '12회', exImg: require('@/assets/exercise/leg.png') },
         ],
-        sets: [1, 2, 3, 4, 5],
+        sets: [
+          1, 2, 3, 4, 5,
+        ],
       },
 
       selectedItem: {
@@ -101,7 +123,8 @@ export default {
         selectedSet: 0,
       },
 
-      exTodos: [],
+      exTodos: [
+      ],
     };
   },
 
@@ -114,6 +137,7 @@ export default {
           const todoTime = selectedResult[0].exName === '플랭크' ? 30 : 5;
           const exTodo = {
             id: new Date().getTime(),
+            ex_id: selectedResult[0].id,
             isDouble: selectedResult[0].isDouble,
             todoName: selectedResult[0].exName,
             numShow: selectedResult[0].exNum,
@@ -138,7 +162,10 @@ export default {
           name: 'TodayEx',
         });
       } else {
-        alert('선택된 운동이 없습니다.');
+        this.showNotSelect = true;
+        setTimeout(() => {
+          this.showNotSelect = false;
+        }, 500);
       }
     },
   },
@@ -166,4 +193,9 @@ export default {
   background: rgba(255, 255, 255, 0.5);
   border-radius: 30px;
 }
+
+#select-box .v-select {
+  margin: 0px 5px 0px 5px;
+}
+
 </style>

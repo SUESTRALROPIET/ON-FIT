@@ -4,20 +4,22 @@
       <v-row class="align-center mx-3">
         <v-col cols="3"><h2>현재 운동</h2></v-col>
         <v-col cols="2">
-          <img :src="require(`@/assets/exercise/boat.png`)" alt="" width="100%" />
+          <img :src="require(`@/assets/exercise/boat.png`)" alt="" width="100%">
         </v-col>
-        <v-col cols="4" style="text-align: left"
-          ><h2>런지{{ nowExname }}</h2></v-col
-        >
+        <v-col cols="4" style="text-align:left;"><h2>런지{{nowExname}}</h2></v-col>
         <v-col cols="3"><h2>1회</h2></v-col>
       </v-row>
     </v-col>
-    <v-col cols="4" id="record-body" class="d-flex flex-column justify-center pa-3 px-8">
+    <v-col cols="4" id="record-body"
+      class="d-flex flex-column justify-center pa-3 px-8"
+    >
       <h3 class="mb-3">현재 기록</h3>
-      <div class="d-flex">
+      <div
+        class="d-flex"
+      >
         <div class="text-center" style="width: 50%">
           <h4>운동 시간</h4>
-          <p>{{ formattedElapsedTime }}</p>
+          <p>{{formattedElapsedTime}}</p>
         </div>
         <v-divider vertical></v-divider>
         <div class="text-center" style="width: 50%">
@@ -25,16 +27,27 @@
           <p><span>0</span> 칼로리</p>
         </div>
       </div>
-      <div class="d-flex justify-center">
-        <v-btn width="40%" rounded outlined elevation="0" @click="exerciseStart"> 시작 </v-btn>
-        <div class="mx-2"></div>
-        <ManageClubButton :ClubInfo="ClubInfo" />
+      <div
+        class="d-flex justify-center"
+      >
+        <v-btn
+          width="40%"
+          rounded
+          outlined
+          elevation="0"
+          @click="exerciseStart"
+        >
+          시작
+        </v-btn>
+        <div class="mx-2">
+        </div>
+        <ManageClubButton
+          :ClubInfo="ClubInfo"
+        />
       </div>
     </v-col>
-    <AlertBreakTime :showDialog="showBreakTimeDialog" />
-    <AlertFinishDialog :showDialog="showFinishDialog" />
-    <!-- <Openvidu /> -->
-    <!-- 추가됨 -->
+    <AlertBreakTime :showDialog="showBreakTimeDialog"/>
+    <AlertFinishDialog :showDialog="showFinishDialog"/>
   </v-row>
 </template>
 
@@ -42,7 +55,6 @@
 import ManageClubButton from '@/views/club/components/ManageClubButton.vue';
 import AlertBreakTime from '@/views/club/components/AlertBreakTime.vue';
 import AlertFinishDialog from '@/views/club/components/AlertFinishDialog.vue';
-// import Openvidu from '@/views/openvidu/Openvidu.vue';
 
 export default {
   name: 'ClubTrainingExRecord',
@@ -50,7 +62,6 @@ export default {
     ManageClubButton,
     AlertBreakTime,
     AlertFinishDialog,
-    // Openvidu,
   },
   props: {
     ClubInfo: Object,
@@ -125,7 +136,7 @@ export default {
 <style scoped>
 #nowExbox {
   background-color: rgba(255, 210, 182, 1);
-  border: 3px solid #ffd2b6;
+  border: 3px solid #FFD2B6;
   border-radius: 70px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
   text-align: center;

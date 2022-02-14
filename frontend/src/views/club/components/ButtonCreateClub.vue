@@ -10,6 +10,7 @@
         elevation="1"
         v-bind="attrs"
         v-on="on"
+        @click="dialog = false"
       >
         <span>클럽 만들기</span>
       </v-btn>
@@ -24,6 +25,10 @@ export default {
   name: 'ButtonCreateClub',
   components: {
     FormCreateClub,
+  },
+  data() {
+    return {
+    };
   },
 };
 </script>

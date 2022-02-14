@@ -21,12 +21,8 @@ public class QTrainer extends EntityPathBase<Trainer> {
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
-    public final DateTimePath<java.time.LocalDateTime> createdAt = createDateTime("createdAt", java.time.LocalDateTime.class);
-
     //inherited
     public final NumberPath<Integer> id = _super.id;
-
-    public final StringPath trainerImg = createString("trainerImg");
 
     public final StringPath trainerName = createString("trainerName");
 

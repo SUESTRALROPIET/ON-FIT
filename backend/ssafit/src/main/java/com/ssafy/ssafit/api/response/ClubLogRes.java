@@ -1,6 +1,5 @@
 package com.ssafy.ssafit.api.response;
 
-import com.ssafy.ssafit.db.entity.Exercise;
 import lombok.Getter;
 import lombok.Setter;
 

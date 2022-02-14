@@ -1,8 +1,6 @@
 # 공통-Sub PJT 2
 ### 로컬에서 테스트하는 과정
-1. backend 폴더가 아닌 ssafit/build.gradle 파일을 IntelliJ에서 Open    
-    1-1. JDK 관련 오류 발생시   
-    - Settings -> build -> build tools -> Gradle에서 Gradle JVM 자신의 JDK(1.8)로 변경
+1. backend 폴더가 아닌 ssafit 폴더를 IntelliJ에서 Open
 2. 자동으로 gradle build 해줌. -> 기다리기 (우측 밑에 표시됨)
 3. src/main/resources/application.properties에서 DB 설정 정보(username,password) 변경
 4. MySQL에서 'create database onfit' 실행해서 onfit DB 스키마 생성
