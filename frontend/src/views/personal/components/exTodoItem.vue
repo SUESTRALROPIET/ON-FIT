@@ -13,7 +13,7 @@
       dark
       x-small
       color="red"
-      @click="deleteTodo"
+      @click="deleteTodo" 
     >
       <v-icon>mdi-minus</v-icon>
     </v-btn>
