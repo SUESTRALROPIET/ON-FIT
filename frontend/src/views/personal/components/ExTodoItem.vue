@@ -1,24 +1,22 @@
 <template>
-  <div>
-    <v-row>
-      <!-- TODO: 정렬하기 -->
-      <v-col class="exBox d-flex" cols="7">
-        <img :src="require(`@/assets/exercise/${exTodo.todoEng}.png`)" height="55px">
-        <h4 class="pl-4">{{ exTodo.todoName }} ({{ exTodo.numShow }})</h4>
-      </v-col>
-      <v-col class="setBox" cols="3">
-        <h4>{{ exTodo.todoSet }} set</h4>
-      </v-col>
-      <v-btn
-        fab
-        dark
-        x-small
-        color="red"
-        @click="deleteTodo"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-    </v-row>
+  <div class="d-flex">
+    <v-col class="exBox d-flex align-center" cols="7">
+      <img :src="require(`@/assets/exercise/${exTodo.todoEng}.png`)" height="55px">
+      <h4 class="pl-4">{{ exTodo.todoName }} ({{ exTodo.numShow }})</h4>
+    </v-col>
+    <v-col class="setBox d-flex align-center justify-center" cols="3">
+      <h4>{{ exTodo.todoSet }} set</h4>
+    </v-col>
+    <v-btn
+      class="mt-5 ml-4"
+      fab
+      dark
+      x-small
+      color="red"
+      @click="deleteTodo"
+    >
+      <v-icon>mdi-minus</v-icon>
+    </v-btn>
   </div>
 </template>
 
