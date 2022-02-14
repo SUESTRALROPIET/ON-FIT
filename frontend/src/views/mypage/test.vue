@@ -17,6 +17,15 @@ export default {
     // Calendar,
     rangeCal,
   },
+  data() {
+    return {
+      chartData: {
+        Books: 24,
+        Magazine: 30,
+        Newspapers: 10,
+      },
+    };
+  },
 };
 </script>
 

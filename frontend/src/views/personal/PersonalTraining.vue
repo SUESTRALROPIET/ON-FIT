@@ -1,4 +1,5 @@
 // TODO: 'must be changed' 변경하기
+// TODO: 카메라 꺼지는지 테스트...!
 <template>
   <div>
     <div class="title mx-auto">
@@ -35,7 +36,7 @@
           <v-btn class="mr-6" fab dark small v-else @click="stop">
             <v-icon>mdi-stop</v-icon>
           </v-btn>
-          <v-btn fab dark small>
+          <v-btn fab dark small @click="clickExit">
             <v-icon>mdi-logout</v-icon>
           </v-btn>
         </v-col>
@@ -79,11 +80,12 @@ export default {
       status: 'stand', // 현재 운동 상태
       cur: 0, // 현재 운동 순서
       count: 0, // 운동 횟수
-      fail: 0, // 동작을 틀린 횟수 (정확도용_예비)
+      fail: 0, // 동작을 틀린 횟수
       set: 0, // 세트 횟수
       elapsedTime: 0, // timer
       timer: undefined,
       progress: 0, // progress bar
+      isProgress: false,
       exTimer: undefined,
       showBreakTimeDialog: false, // dialog
       showFinsishDialog: false,
@@ -95,6 +97,9 @@ export default {
   mounted() {
     this.init();
     this.showLoadingDialog = true;
+  },
+  beforeDestroy() {
+    window.location.reload();
   },
   computed: {
     exTodos() {
@@ -126,42 +131,40 @@ export default {
       this.isPlay = true;
       this.timeStart();
       this.showStopDialog = false;
+      this.showExitDialog = false;
     },
     stop() {
       this.timeStop();
       this.isPlay = false;
       this.showStopDialog = true;
     },
-    exit() {
-      // 운동 중 나갈때
-      this.save();
+    clickExit() {
+      this.showExitDialog = true;
+    },
+    exit() { // 운동 중 나가기
+      // TODO: 운동 저장하기
+      // this.save();
       this.$router.push({
         name: 'Main',
       });
     },
-    exit2() {
-      // MyPage로
+    exit2() { // 운동 후 나가기: MyPage로
       this.$router.push({
         name: 'MyPage',
       });
     },
-    exit3() {
-      // Home으로
+    exit3() { // 운동 후 나가기: Home으로
       this.$router.push({
         name: 'Main',
       });
     },
     save() {
-      // eslint-disable-next-line camelcase
-      const ex_logCount = this.curEx.totalNum * this.set + this.count;
       const info = {
-        user_id: 'must be changed',
-        trainer_id: 'must be changed',
-        ex_id: this.curEx.ex_id,
-        ex_logCount,
-        // eslint-disable-next-line camelcase
-        ex_logTime: ex_logCount * this.curEx.time,
-        ex_status: this.fail,
+        userId: 'must be changed',
+        exId: this.curEx.ex_id,
+        exSet: this.set,
+        exDuration: this.set * this.curEx.time * this.curEx.totalNum, // 단위: sec
+        exStatus: this.fail,
       };
       axios.post(`${this.SERVER}/personal`, info, {
         headers: {
@@ -184,8 +187,9 @@ export default {
     },
 
     exTimerStart() {
+      this.isProgress = true;
       const sec = this.curEx.eng === 'flank' ? 3.33 : 20;
-      this.timer = setInterval(() => {
+      this.exTimer = setInterval(() => {
         if (this.progress >= 99) {
           this.exTimerEnd();
         } else {
@@ -195,12 +199,12 @@ export default {
     },
     exTimerEnd() {
       clearInterval(this.exTimer);
+      this.isProgress = false;
     },
     // teachable machine snippet
     async init() {
+      this.showLoadingDialog = true;
       const URL = `../../../public/teachable_machine/${this.curEx.eng}/`;
-      // const modelURL = URL + "model.json";
-      // const metadataURL = URL + "metadata.json";
       const modelURL = `${URL}model.json`;
       const metadataURL = `${URL}metadata.json`;
 
@@ -226,14 +230,7 @@ export default {
       if (this.showLoadingDialog) {
         this.showLoadingDialog = false;
         await this.sound('start');
-        // TODO: start 음성 길이 확인 후 시간 변경
-        // TODO: 재생 버튼 눌렸는지 확인 후 사운드 보내기..? 고민해보기
-        // if (this.isPlay) {
-        //   this.sound(this.curEx.eng);
-        // }
-        setTimeout(() => {
-          this.sound(this.curEx.eng);
-        }, 13000);
+        setTimeout(() => { this.sound(this.curEx.eng); }, 13500);
       }
       webcam.update(); // update the webcam frame
       await this.predict();
@@ -249,9 +246,12 @@ export default {
       const prediction = await model.predict(posenetOutput);
 
       // 좌, 우 구분 X
-      if (!this.curEx.isDouble) {
-        if (prediction[0].probability.toFixed(2) >= 0.7) {
+      if (!this.curEx.isDouble && this.isPlay === true) {
+        if (prediction[0].probability.toFixed(2) >= 0.6) {
           // 운동 카운트
+          if (this.isProgress) {
+            this.exTimerEnd();
+          }
           if (this.status === this.curEx.eng && this.progress >= 99) {
             this.count += 1;
             this.sound(this.count);
@@ -260,18 +260,17 @@ export default {
               this.count = 0;
               this.set += 1;
               if (this.set === this.curEx.totalSet) {
-                // 휴식 & 운동 기록 저장
+                // 휴식 & 운동 기록 저장 & 다음 운동으로 & 세트 리셋 or 종료
                 this.timeStop();
-                this.showBreakTimeDialog = true;
-                const ran1to4 = Math.floor(Math.random() * 4) + 1;
-                this.sound(`rest_${ran1to4}`); // 음성 (휴식)
-                await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
-                this.showBreakTimeDialog = false;
-                this.save();
-                // 다음 운동으로 및 세트 리셋 or 종료
-                if (this.cur !== this.exTodos.length) {
+                if (this.cur !== this.exTodos.length - 1) {
+                  const ran1to4 = Math.floor(Math.random() * 4) + 1;
+                  setTimeout(() => { this.sound(`rest_${ran1to4}`); }, 2000); // 음성 (휴식)
+                  this.showBreakTimeDialog = true;
+                  await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
+                  this.showBreakTimeDialog = false;
+                  // TODO: 운동 저장하기
+                  // this.save();
                   this.cur += 1;
-                  // TODO: 음성 안씹히는지 체크
                   this.sound(this.curEx.eng);
                   this.set = 0;
                 } else {
@@ -283,20 +282,23 @@ export default {
           this.progress = 0;
           this.status = 'stand';
         } else if (prediction[1].probability.toFixed(2) >= 0.85) {
-          this.exTimerStart();
           this.status = this.curEx.eng;
+          if (!this.isProgress) {
+            this.exTimerStart();
+          }
         } else if (prediction[2].probability.toFixed(2) >= 0.5) {
           if (this.status === 'stand' || this.status === this.curEx.eng) {
+            this.status = 'fail';
+            this.exTimerEnd();
+            this.progress = 0;
             this.fail += 1;
             const ran1to4 = Math.floor(Math.random() * 4) + 1;
             this.sound(`fail_${ran1to4}`);
           }
-          this.progress = 0;
-          this.status = 'fail';
         }
         // 좌, 우 구분
-      } else if (this.curEx.isDouble) {
-        if (prediction[0].probability.toFixed(2) >= 0.7) {
+      } else if (this.curEx.isDouble && this.isPlay === true) {
+        if (prediction[0].probability.toFixed(2) >= 0.6) {
           // 운동 카운트
           if (this.status === this.curEx.eng && this.progress >= 99) {
             this.count += 1;
@@ -311,20 +313,20 @@ export default {
               this.dir = '오른쪽';
               this.set += 1;
               if (this.set === this.curEx.totalSet) {
-                // 휴식 및 운동 저장
                 this.timeStop();
-                this.showBreakTimeDialog = true;
-                const ran1to4 = Math.floor(Math.random() * 4) + 1;
-                this.sound(`rest_${ran1to4}`); // 음성 (휴식)
-                await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
-                this.showBreakTimeDialog = false;
-                this.save();
-                // 다음 운동으로 및 세트 리셋 or 종료
-                if (this.cur !== this.exTodos.length) {
+                if (this.cur !== this.exTodos.length - 1) {
+                  const ran1to4 = Math.floor(Math.random() * 4) + 1;
+                  setTimeout(() => { this.sound(`rest_${ran1to4}`); }, 2000); // 음성 (휴식)
+                  this.showBreakTimeDialog = true;
+                  await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
+                  this.showBreakTimeDialog = false;
+                  // TODO: 운동 저장하기
+                  // this.save();
                   this.cur += 1;
+                  this.sound(this.curEx.eng);
                   this.set = 0;
                 } else {
-                  this.showFinsishDialog = true;
+                  setTimeout(() => { this.showFinsishDialog = true; }, 2000);
                 }
               }
             }
@@ -333,16 +335,19 @@ export default {
           this.status = 'stand';
         // eslint-disable-next-line max-len
         } else if (prediction[1].probability.toFixed(2) >= 0.85 || prediction[2].probability.toFixed(2) >= 0.85) {
-          this.exTimerStart();
           this.status = this.curEx.eng;
+          if (!this.isProgress) {
+            this.exTimerStart();
+          }
         } else if (prediction[3].probability.toFixed(2) >= 0.5) {
           if (this.status === 'stand' || this.status === this.curEx.eng) {
+            this.status = 'fail';
+            this.exTimerEnd();
+            this.progress = 0;
             this.fail += 1;
             const ran1to4 = Math.floor(Math.random() * 4) + 1;
             this.sound(`fail_${ran1to4}`);
           }
-          this.progress = 0;
-          this.status = 'fail';
         }
       }
       // finally draw the poses
@@ -413,11 +418,5 @@ export default {
   height: 20px;
   width: 15px;
   border-radius: 9px;
-  span {
-    float: right;
-    padding: 4px 5px;
-    color: #fff;
-    font-size: 0.7em
-  }
 }
 </style>

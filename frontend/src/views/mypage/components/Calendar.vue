@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>캘린더 test</h1>
     <FunctionalCalendar
       class="calendar"
       v-model="calendar"
@@ -11,6 +10,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { FunctionalCalendar } from 'vue-functional-calendar';
 
 export default {
@@ -31,6 +31,9 @@ export default {
       ],
     };
   },
+  created() {
+    this.getExDate();
+  },
   computed: {
     // 클릭된 날짜
     date() {
@@ -43,6 +46,17 @@ export default {
     },
     getCurrentYear() {
       return new Date().getFullYear();
+    },
+    getExDate() {
+      const userId = 'ssafy';
+      axios.get(`${this.SERVER}/mypage/${userId}`, userId)
+        .then((res) => {
+          // 데이터 중 날짜만 필터링
+          // TODO: 날짜 양식 바꾸기
+          const result = res.data.MyExerciseLog;
+          const exDate = result.map((v) => v.exTime);
+          return exDate;
+        });
     },
   },
 };

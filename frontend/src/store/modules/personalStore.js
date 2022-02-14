@@ -1,4 +1,5 @@
 const personalStore = {
+  namespace: true,
   state: {
     exTodos: [],
   },

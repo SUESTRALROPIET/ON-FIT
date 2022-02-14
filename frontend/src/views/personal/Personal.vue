@@ -72,6 +72,7 @@
           @click="ready"
         >준비</v-btn>
       </div>
+    <AlertNotSelect :showDialog="showNotSelect"/>
     </v-container>
   </div>
 </template>
@@ -79,19 +80,24 @@
 <script>
 import ex from '../../../public/ex';
 import ExTodoItem from './components/ExTodoItem.vue';
+import AlertNotSelect from './components/AlertNotSelect.vue';
 
 export default {
   name: 'Personal',
 
   components: {
     ExTodoItem,
+    AlertNotSelect,
   },
 
   data() {
     return {
+      showNotSelect: false,
       items: {
-        // exlist,
         exercises: [
+          { header: '테스트' },
+          { name: '테스트', nums: '2회', exImg: require('@/assets/exercise/test.png') },
+          { name: '테스트(좌우)', nums: '2회', exImg: require('@/assets/exercise/test2.png') },
           { header: '전신' },
           { name: '트리 자세', nums: '12회', exImg: require('@/assets/exercise/tree.png') },
           { name: '슈퍼맨 자세', nums: '12회', exImg: require('@/assets/exercise/superman.png') },
@@ -156,7 +162,10 @@ export default {
           name: 'TodayEx',
         });
       } else {
-        alert('선택된 운동이 없습니다.');
+        this.showNotSelect = true;
+        setTimeout(() => {
+          this.showNotSelect = false;
+        }, 500);
       }
     },
   },

@@ -80,6 +80,24 @@ const ex = [
     isDouble: false,
     description: '등을 대고 누운 다음 양 다리를 바닥과 직각이 되도록 올려줍니다. 천천히 다리를 내리고 운동을 반복합니다. 복부, 허리, 엉덩이, 코어근육 강화효과가 있습니다.',
   },
+  {
+    id: 9,
+    exName: '테스트',
+    exEng: 'test',
+    exImg: '@/assets/exercise/test.png',
+    exNum: '2회',
+    isDouble: false,
+    description: '테스트 동작입니다.',
+  },
+  {
+    id: 10,
+    exName: '테스트(좌우)',
+    exEng: 'test2',
+    exImg: '@/assets/exercise/test2.png',
+    exNum: '2회',
+    isDouble: true,
+    description: '테스트 동작입니다.',
+  },
 ];
 
 export default ex;
