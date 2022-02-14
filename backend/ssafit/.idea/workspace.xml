@@ -79,7 +79,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -89,7 +89,7 @@
       <recent name="D:\SSAFY\2학기\공통프로젝트\S06P12B110\backend\ssafit\src\main\java\com\ssafy\ssafit\db\entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SsafitApplication (1)">
+  <component name="RunManager" selected="Spring Boot.SsafitApplication">
     <configuration name="SsafitApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplication" />
       <module name="com.ssafy.ssafit.main" />
