@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { apiInstance } from '@/api/index';
 
 export default {
   name: 'FormJoinClub',
@@ -93,16 +93,12 @@ export default {
   },
   methods: {
     joinClub() {
+      const api = apiInstance();
       const newClubMate = {
         userId: 'ssafy2',
         clubId: this.ClubInfo.clubInfo.id,
       };
-      axios.post('http://localhost:8081/club/join', newClubMate, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-type': 'application/json',
-        },
-      })
+      api.post('/club/join', newClubMate)
         .then((response) => {
           console.log(response);
         })
