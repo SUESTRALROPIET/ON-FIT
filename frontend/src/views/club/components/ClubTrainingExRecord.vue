@@ -22,16 +22,19 @@
         <p>{{formattedElapsedTime}}</p>
       </div>
       <div
-        class="d-flex justify-center"
+        class="d-flex justify-center justify-space-between"
       >
         <v-btn
-          width="40%"
-          rounded
-          outlined
-          elevation="0"
+          width="45%" rounded outlined elevation="0"
           @click="exerciseStart"
         >
           시작
+        </v-btn>
+        <v-btn
+          width="45%" rounded outlined elevation="0"
+          @click="leaveSession"
+        >
+          종료
         </v-btn>
       </div>
     </v-col>
@@ -77,6 +80,9 @@ export default {
     },
   },
   methods: {
+    leaveSession() {
+      this.$emit('leave-session');
+    },
     /* eslint-disable no-await-in-loop */
     async exerciseStart() {
       const todayExList = this.ClubInfo.clubLog;

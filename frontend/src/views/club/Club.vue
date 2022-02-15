@@ -5,6 +5,7 @@
     >
       <div
         id="club-main-btn"
+        class="pb-5"
       >
         <v-btn
           small
@@ -18,12 +19,6 @@
         </v-btn>
         <ButtonCreateClub />
       </div>
-      <v-checkbox
-        v-model="clubFinish"
-        label="모집중인 클럽만 보기"
-        color="success"
-        @click="clickFinish"
-      ></v-checkbox>
     </div>
     <ClubList
       :ClubList="ClubList"
@@ -48,8 +43,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 import ClubList from '@/views/club/components/ClubList.vue';
 import SearchBar from '@/views/club/components/SearchBar.vue';
 import ButtonCreateClub from '@/views/club/components/ButtonCreateClub.vue';
@@ -65,26 +58,17 @@ export default {
     return {
       OpenSearchClubDrawer: false,
       clubFinish: false,
-      ClubList: [],
     };
   },
   methods: {
-    getClubList() {
-      axios.get('http://localhost:8081/club/')
-        .then((response) => {
-          this.ClubList = response.data.ClubList;
-        });
-    },
-    clickFinish() {
-      if (this.clubFinish) {
-        this.ClubList = this.ClubList.filter((club) => club.clubMate.length < 6);
-      } else {
-        this.getClubList();
-      }
-    },
   },
   created() {
-    this.getClubList();
+    this.$store.dispatch('getClubList');
+  },
+  computed: {
+    ClubList() {
+      return this.$store.state.clubStore.storeClubList;
+    },
   },
 };
 </script>

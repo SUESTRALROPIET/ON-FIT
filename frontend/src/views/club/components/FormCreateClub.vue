@@ -212,8 +212,8 @@
   </v-card>
 </template>
 <script>
-import axios from 'axios';
 import FormExTodoItem from '@/views/club/components/FormExTodoItem.vue';
+import { apiInstance } from '@/api/index';
 import ex from '../../../../public/ex';
 
 export default {
@@ -314,7 +314,8 @@ export default {
       this.exTodosforPost.splice(this.exTodosforPost.indexOf(exTodo), 1);
     },
     createClub() {
-      const userId = 'ssafy2';
+      const userId = 'ssafy';
+      const api = apiInstance();
       const newClubInfo = {
         clubId: {
           clubImg: this.imagePreviewURL,
@@ -346,14 +347,10 @@ export default {
       } else if (this.exTodosforPost.length < 1) {
         alert('클럽운동에서 진행할 운동을 선택해주세요');
       } else {
-        axios.post(`http://localhost:8081/club/${userId}`, newClubInfo, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Content-type': 'application/json',
-          },
-        })
+        api.post(`/club/${userId}`, newClubInfo)
           .then((response) => {
             console.log(response);
+            this.$store.dispatch('getClubList');
           })
           .catch((err) => {
             console.log(err);
