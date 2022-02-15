@@ -15,7 +15,7 @@ import java.util.Map;
 @Api(value = "User API",tags = {"User"})
 @CrossOrigin(origins = {"*"})
 @RestController
-@RequestMapping("/mypage")
+@RequestMapping("/api/mypage")
 public class UserController {
 
     @Autowired

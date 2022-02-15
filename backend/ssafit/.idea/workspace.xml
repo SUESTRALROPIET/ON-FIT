@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/personal/components/ExTodoItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/ExTodoItem.vue" afterDir="false" />
-    </list>
+    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,6 +27,17 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ssafit" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ssafit" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ssafit" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -79,7 +88,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -103,23 +112,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SsafitApplicationTests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="ssafit [bootJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;com.ssafy.ssafit.SsafitApplicationTests&quot;" />
+        <option name="scriptParameters" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
+            <option value="bootJar" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="ssafit [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
@@ -135,22 +165,6 @@
       <option name="PACKAGE_NAME" value="com.ssafy.ssafit" />
       <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplicationTests" />
       <option name="METHOD_NAME" value="club_Select" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SsafitApplicationTests.queryDsl_Select" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ssafit.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ssafy.ssafit.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.ssafy.ssafit" />
-      <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplicationTests" />
-      <option name="METHOD_NAME" value="queryDsl_Select" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -181,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.ssafit [bootJar]" />
+        <item itemvalue="Gradle.ssafit [build]" />
         <item itemvalue="Application.SsafitApplication (1)" />
         <item itemvalue="JUnit.SsafitApplicationTests.test_club" />
         <item itemvalue="JUnit.SsafitApplicationTests.club_Select" />
-        <item itemvalue="JUnit.SsafitApplicationTests.queryDsl_Select" />
-        <item itemvalue="Gradle.SsafitApplicationTests" />
       </list>
     </recent_temporary>
   </component>
@@ -206,6 +220,7 @@
       <workItem from="1644496774332" duration="9396000" />
       <workItem from="1644558525957" duration="51000" />
       <workItem from="1644849859535" duration="877000" />
+      <workItem from="1644903069004" duration="2632000" />
     </task>
     <servers />
   </component>

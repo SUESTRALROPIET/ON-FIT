@@ -24,7 +24,7 @@ import java.util.Date;
 @Api(value = "Personal API",tags = {"Personal"})
 @CrossOrigin(origins = {"*"})
 @RestController
-@RequestMapping("/personal")
+@RequestMapping("/api/personal")
 public class PersonalController {
 
     @Autowired
