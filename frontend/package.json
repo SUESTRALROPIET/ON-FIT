@@ -13,6 +13,7 @@
     "axios": "^0.25.0",
     "core-js": "^3.6.5",
     "epic-spinners": "^1.1.0",
+    "openvidu-browser": "2.20.0",
     "three": "^0.136.0",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.2",
