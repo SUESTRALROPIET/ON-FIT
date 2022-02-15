@@ -15,7 +15,7 @@
               ></v-file-input>
               <v-text-field
                 v-model="clubName"
-                label="클럽명*"
+                label="클럽명"
                 required
               ></v-text-field>
             </v-col>
@@ -333,19 +333,33 @@ export default {
         },
         clubLogs: this.exTodosforPost,
       };
-      axios.post(`http://localhost:8081/club/${userId}`, newClubInfo, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-type': 'application/json',
-        },
-      })
-        .then((response) => {
-          console.log(response);
+      const validateDate = this.checkboxMon || this.checkboxTues || this.checkboxWedn
+        || this.checkboxThur || this.checkboxFri || this.checkboxSat || this.checkboxSun;
+      if (this.clubName === '') {
+        alert('클럽명을 입력해주세요');
+      } else if (validateDate === false) {
+        alert('클럽운동을 진행할 요일을 선택해주세요');
+      } else if (this.time === null) {
+        alert('클럽운동을 진행할 시간을 선택해주세요');
+      } else if (this.dates.length < 2) {
+        alert('클럽운동을 진행할 운동기간을 선택해주세요');
+      } else if (this.exTodosforPost.length < 1) {
+        alert('클럽운동에서 진행할 운동을 선택해주세요');
+      } else {
+        axios.post(`http://localhost:8081/club/${userId}`, newClubInfo, {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-type': 'application/json',
+          },
         })
-        .catch((err) => {
-          console.log(err);
-        });
-      this.clearAll();
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        this.clearAll();
+      }
     },
     clearAll() {
       this.imagePreviewURL = require('@/assets/club/club_default.png');
