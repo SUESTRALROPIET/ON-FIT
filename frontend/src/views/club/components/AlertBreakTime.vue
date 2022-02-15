@@ -33,7 +33,7 @@ export default {
     return {
       interval: {},
       value: 100,
-      timer: 60,
+      timer: 30,
     };
   },
   beforeDestroy() {
@@ -42,11 +42,11 @@ export default {
   mounted() {
     this.interval = setInterval(() => {
       if (this.showDialog) {
-        if (this.value < 0) {
+        if (this.timer <= 0) {
           this.value = 100;
-          this.timer = 60;
+          this.timer = 30;
         }
-        this.value -= 1.6666666666666667;
+        this.value -= 3.33333333333333;
         this.timer -= 1;
       }
     }, 1000);
