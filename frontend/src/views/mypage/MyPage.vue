@@ -67,17 +67,14 @@
 </template>
 
 <script>
-// import axios from 'axios';
+import axios from 'axios';
 import _ from 'lodash';
 // import ButtonClubs from '@/views/mypage/components/ButtonClubs.vue';
 // import ButtonNickname from '@/views/mypage/components/ButtonNickname.vue';
 // import ButtonDeleteUser from '@/views/mypage/components/ButtonDeleteUser.vue';
 // import ExRecord from '@/views/mypage/components/ExRecord.vue';
 import CalendarDetail from '@/views/mypage/components/CalendarDetail.vue';
-import { apiInstance } from '@/api/index';
 import { FunctionalCalendar } from 'vue-functional-calendar';
-
-const api = apiInstance();
 
 export default {
   name: 'MyPage',
@@ -156,8 +153,6 @@ export default {
     };
   },
   created() {
-    // this.getExLog();
-    this.read();
     // this.$store.dispatch('getExDays');
     this.calendar.currentDate = new Date();
     this.getMonthlyLog();
@@ -190,11 +185,6 @@ export default {
     },
   },
   methods: {
-    read() {
-      api.get('/hello').then((res) => {
-        alert(res.data);
-      });
-    },
     yyyymmdd(dateTime) {
       // const ddmmyyyy = this.selectedDate;
       const result = dateTime.split('/');
@@ -213,7 +203,7 @@ export default {
       this.showRecord = false;
       // TODO: change userId
       const userId = 1;
-      api.get(`/mypage/${userId}`)
+      axios.get(`http://localhost:8081/mypage/${userId}`)
         .then((res) => {
           // 데이터 중 선택된 날짜만 필터링
           const result = res.data.MyExerciseLog;
@@ -226,7 +216,7 @@ export default {
       // TODO: change userId
       // TODO: 운동시간 분으로 바꾸기
       const userId = 1;
-      api.get(`/mypage/${userId}`)
+      axios.get(`http://localhost:8081/mypage/${userId}`)
         .then((res) => {
           // eslint-disable-next-line max-len
           const monthlyLog = res.data.MyExerciseLog.filter((v) => v.exTime.includes(this.yyyymmCur));

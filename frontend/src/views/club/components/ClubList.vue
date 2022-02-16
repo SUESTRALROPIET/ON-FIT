@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="mb-15">
-      <h2 class="my-5">지금 진행중인 클럽</h2>
+      <h2 class="my-5">오늘의 클럽</h2>
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
@@ -52,6 +52,10 @@ export default {
   },
   props: {
     ClubList: Array,
+  },
+  data() {
+    return {
+    };
   },
   methods: {
     ...mapGetters(userStore, [

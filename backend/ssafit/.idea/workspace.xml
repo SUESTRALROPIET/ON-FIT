@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="" />
+    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/Club.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/Club.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubListElement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubListElement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/mypage/MyPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/mypage/MyPage.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -210,7 +216,6 @@
       <workItem from="1644558525957" duration="51000" />
       <workItem from="1644849859535" duration="877000" />
       <workItem from="1644903069004" duration="6330000" />
-      <workItem from="1644991064209" duration="5946000" />
     </task>
     <servers />
   </component>

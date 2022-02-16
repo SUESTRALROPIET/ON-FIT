@@ -20,7 +20,9 @@
         <ButtonCreateClub />
       </div>
     </div>
-    <ClubList :ClubList="ClubList"/>
+    <ClubList
+      :ClubList="ClubList"
+    />
     <v-navigation-drawer
       id="search-drawer"
       v-model="OpenSearchClubDrawer"
@@ -32,7 +34,9 @@
       height="100%"
     >
       <div>
-        <SearchBar/>
+        <SearchBar
+          :ClubList="ClubList"
+        />
       </div>
     </v-navigation-drawer>
   </div>
