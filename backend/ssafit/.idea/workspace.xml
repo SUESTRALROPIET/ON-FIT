@@ -4,7 +4,112 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="" />
+    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/api/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/ex.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/10.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/4.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/5.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/6.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/7.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/8.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/9.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/fail_1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/fail_2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/fail_3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Naomi/fail_4.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/10.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/4.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/5.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/6.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/7.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/8.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/9.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/fail_1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/fail_2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Ryan/fail_3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/10.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/4.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/5.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/6.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/7.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/8.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/9.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/fail_1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/fail_2.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/assets/trainervoice/Summer/fail_3.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/config/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/store/modules/clubStore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/FormJoinClub.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/openvidu/Openvidu.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/openvidu/components/OvVideo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/openvidu/components/UserVideo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/boat/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/boat/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/boat/weights.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/bow/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/bow/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/bow/weights.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/bridge/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/bridge/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/bridge/weights.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/flank/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/flank/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/flank/weights.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/leg/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/leg/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/leg/weights.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/lunge/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/lunge/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/lunge/weights.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/squat/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/squat/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/squat/weights.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/superman/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/superman/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/superman/weights.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/tree/metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/tree/model.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/teachable_machine/tree/weights.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/store/modules/accountsStore.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/store/modules/accountsStore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/Club.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/Club.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/ClubTraining.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/ClubTraining.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/AlertBreakTime.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/AlertBreakTime.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/AlertFailJoinClub.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/AlertFailJoinClub.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/AlertNotOnTime.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ButtonCreateClub.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/ButtonCreateClub.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubListElement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubListElement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubTrainingExRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubTrainingExRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubTrainingUser.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubTrainingUserList.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/FormClubMember.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/FormCreateClub.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/FormCreateClub.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/FormManageClub.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ManageClubButton.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/main/Main.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/main/Main.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/mypage/MyPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/mypage/MyPage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/mypage/components/Calendar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/mypage/components/Calendar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/mypage/components/CalendarDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/mypage/components/CalendarDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/mypage/components/ExRecord.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/mypage/components/ExRecord.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/mypage/test.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/personal/PersonalTraining.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/PersonalTraining.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/personal/TodayEx.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/TodayEx.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/personal/components/exTodoItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/personal/components/ExTodoItem.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,17 +132,6 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ssafit" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ssafit" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ssafit" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -98,7 +192,7 @@
       <recent name="D:\SSAFY\2학기\공통프로젝트\S06P12B110\backend\ssafit\src\main\java\com\ssafy\ssafit\db\entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SsafitApplication">
+  <component name="RunManager" selected="Application.SsafitApplication (1)">
     <configuration name="SsafitApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplication" />
       <module name="com.ssafy.ssafit.main" />

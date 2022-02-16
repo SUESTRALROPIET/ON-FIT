@@ -15,7 +15,7 @@
         <router-link to="/mypage" id="router-link-list">My Page</router-link>
       </div>
       <div id="logout-link">
-        <p class="my-auto">Logout</p>
+        <p class="my-auto" @click="signOut" v-if="this.getLoginStatus()">Logout</p>
       </div>
     </div>
     <v-main>
@@ -27,13 +27,43 @@
 </template>
 
 <script>
+
+import Vue from 'vue';
+import Vuex, { mapGetters, mapMutations } from 'vuex';
+
+const userStore = 'userStore';
+Vue.use(Vuex);
+
 export default {
   name: 'App',
-
+  namespaced: true,
   data: () => ({
-    //
   }),
+  methods: {
+    ...mapMutations(userStore, [
+      'setLoginStatus',
+      'setUserId',
+    ]),
+    ...mapGetters(userStore, [
+      'getLoginStatus',
+      'getUserId',
+    ]),
+    signOut() {
+      console.log('로그아웃');
+      const authInst = window.gapi.auth2.getAuthInstance();
+      authInst.signOut().then(() => {
+        // eslint-disable-next-line
+        console.log('User Signed Out!!!');
+      });
+      this.setLoginStatus(false);
+      this.setUserId('');
+
+      console.log(this.getLoginStatus());
+      console.log(this.getUserId());
+    },
+  },
 };
+
 </script>
 
 <style scoped>

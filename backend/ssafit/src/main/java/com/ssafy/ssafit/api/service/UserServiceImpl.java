@@ -1,8 +1,10 @@
 package com.ssafy.ssafit.api.service;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.ssafy.ssafit.api.request.GoogleLoginReq;
 import com.ssafy.ssafit.db.entity.ExerciseLog;
 import com.ssafy.ssafit.db.entity.QExerciseLog;
+import com.ssafy.ssafit.db.entity.Trainer;
 import com.ssafy.ssafit.db.entity.User;
 import com.ssafy.ssafit.db.repository.PersonalRepository;
 import com.ssafy.ssafit.db.repository.UserRepository;
@@ -52,5 +54,26 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findById(String user_id) {
         return userRepository.findById(user_id).orElse(null);
+    }
+
+    @Override
+    public Optional<User> login(GoogleLoginReq googleLoginReq) {
+        User user  = new User();
+        user.setUserId(googleLoginReq.getUserId());
+
+        Optional<User> update = userRepositorySupport.findUserByUserId(user.getUserId());
+
+        if(!update.isPresent()){
+            user.setFullName(googleLoginReq.getUserName());
+            String userEmail = googleLoginReq.getUserId()+"@gmail.com";
+            user.setEmail(userEmail);
+
+            Trainer trainer = new Trainer();
+            trainer.setId(1);
+            user.setTrainerId(trainer);
+            userRepository.save(user);
+        }
+
+        return Optional.of(user);
     }
 }
