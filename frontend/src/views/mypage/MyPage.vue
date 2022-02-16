@@ -1,11 +1,15 @@
 <template>
-  <div
-  >
-    <div v-if="!loading" class="d-flex justify-center align-center">
-      <self-building-square-spinner
+  <div>
+    <div v-if="!loading" class="d-flex justify-center" id="loader">
+      <!-- <self-building-square-spinner
         :animation-duration="6000"
         :size="40"
         color="#ff1d5e"
+      /> -->
+      <half-circle-spinner
+        :animation-duration="1000"
+        :size="60"
+        color="#FFC46B"
       />
     </div>
     <div
@@ -85,7 +89,8 @@ import _ from 'lodash';
 // import ExRecord from '@/views/mypage/components/ExRecord.vue';
 import CalendarDetail from '@/views/mypage/components/CalendarDetail.vue';
 import { FunctionalCalendar } from 'vue-functional-calendar';
-import { SelfBuildingSquareSpinner } from 'epic-spinners';
+// import { SelfBuildingSquareSpinner } from 'epic-spinners';
+import { HalfCircleSpinner } from 'epic-spinners';
 
 export default {
   name: 'MyPage',
@@ -96,7 +101,8 @@ export default {
     // ExRecord,
     CalendarDetail,
     FunctionalCalendar,
-    SelfBuildingSquareSpinner,
+    HalfCircleSpinner,
+    // SelfBuildingSquareSpinner,
   },
   data() {
     return {
@@ -174,7 +180,7 @@ export default {
     setTimeout(() => {
       this.loading = true;
       this.showCal = true;
-    }, 3000);
+    }, 2000);
   },
   mounted() {
   },
@@ -259,6 +265,10 @@ export default {
   background: rgb(255, 255, 255, 0.5);
   height: 350px;
   overflow: auto;
+}
+
+#loader {
+  margin-top: 30vh;
 }
 
 #chart >>> .apexcharts-toolbar {

@@ -258,7 +258,7 @@ export default {
 
       // 좌, 우 구분 X
       if (!this.curEx.isDouble && this.isPlay === true) {
-        if (prediction[0].probability.toFixed(2) >= 0.6) {
+        if (prediction[0].probability.toFixed(2) >= 0.7) {
           // 운동 카운트
           if (this.isProgress) {
             this.exTimerEnd();
@@ -302,14 +302,14 @@ export default {
             this.status = 'fail';
             this.exTimerEnd();
             this.progress = 0;
-            this.fail += 1;
             const ran1to4 = Math.floor(Math.random() * 4) + 1;
             this.sound(`fail_${ran1to4}`);
+            this.fail += 1;
           }
         }
         // 좌, 우 구분
       } else if (this.curEx.isDouble && this.isPlay === true) {
-        if (prediction[0].probability.toFixed(2) >= 0.6) {
+        if (prediction[0].probability.toFixed(2) >= 0.7) {
           // 운동 카운트
           if (this.status === this.curEx.eng && this.progress >= 99) {
             this.count += 1;
@@ -355,9 +355,9 @@ export default {
             this.status = 'fail';
             this.exTimerEnd();
             this.progress = 0;
-            this.fail += 1;
             const ran1to4 = Math.floor(Math.random() * 4) + 1;
             this.sound(`fail_${ran1to4}`);
+            this.fail += 1;
           }
         }
       }
