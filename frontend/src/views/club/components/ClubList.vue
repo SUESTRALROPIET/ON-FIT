@@ -5,7 +5,7 @@
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="UserClub in UserClubs"
+          v-for="UserClub in getUserClubList()"
           :key="UserClub.club_name"
           :ClubInfo="UserClub"
         />
@@ -16,7 +16,7 @@
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="ReadyClub in ReadyClubs"
+          v-for="ReadyClub in getReadyClubList()"
           :key="ReadyClub.club_name"
           :ClubInfo="ReadyClub"
         />
@@ -27,7 +27,7 @@
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="NewClub in NewClubs"
+          v-for="NewClub in getNewClubList()"
           :key="NewClub.club_name"
           :ClubInfo="NewClub"
         />
@@ -50,9 +50,8 @@ export default {
   components: {
     ClubListElement,
   },
-  data() {
-    return {
-    };
+  props: {
+    ClubList: Array,
   },
   methods: {
     ...mapGetters(userStore, [

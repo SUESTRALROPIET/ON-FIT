@@ -20,7 +20,7 @@
         <ButtonCreateClub />
       </div>
     </div>
-    <ClubList/>
+    <ClubList :ClubList="ClubList"/>
     <v-navigation-drawer
       id="search-drawer"
       v-model="OpenSearchClubDrawer"

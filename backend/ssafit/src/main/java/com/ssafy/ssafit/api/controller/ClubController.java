@@ -32,18 +32,18 @@ public class ClubController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/{user_id}")
+    @PostMapping("/{userId}")
     @ApiOperation(value = "클럽 생성", notes = "<strong>클럽</strong>을 생성한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공")
     })
-    public ResponseEntity createClub(@RequestBody ClubInfoReq clubInfo, @PathVariable String user_id) {
+    public ResponseEntity createClub(@RequestBody ClubInfoReq clubInfo, @PathVariable String userId) {
         // club table insert
         clubService.createClub(clubInfo.getClubId());   // 여기부터 시작
         /* clubMate table insert */
         // 최근 생성한 클럽 id
         Club club = clubService.getLatestClub();
-        User user = userService.findById(user_id);
+        User user = userService.findById(userId);
 
         ClubMate clubMate = new ClubMate();
         clubMate.setClubId(club);
@@ -51,7 +51,7 @@ public class ClubController {
         clubService.createCLubMate(clubMate);
 
         for(ClubLogReq cl : clubInfo.getClubLogs()) {
-            Exercise ex = clubService.getExerciseById(cl.getExId());
+            Exercise ex = clubService.getExerciseById(cl.getExerciseId());
 
 //            ClubLog newClubLog = ClubLog.builder()
 //                    .clubId(club)

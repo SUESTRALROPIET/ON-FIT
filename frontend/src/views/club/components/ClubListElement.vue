@@ -51,9 +51,6 @@
 import Vue from 'vue';
 import Vuex, { mapGetters } from 'vuex';
 
-import FormJoinClub from '@/views/club/components/FormJoinClub.vue';
-import AlertFailJoinClub from '@/views/club/components/AlertFailJoinClub.vue';
-
 Vue.use(Vuex);
 const userStore = 'userStore';
 

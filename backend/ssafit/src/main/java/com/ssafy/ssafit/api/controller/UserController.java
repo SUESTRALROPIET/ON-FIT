@@ -25,14 +25,14 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping("/{user_id}")
+    @GetMapping("/{userId}")
     @ApiOperation(value = "운동기록 조회",notes = "사용자의 운동기록을 반환한다.")
     @ApiResponses({
             @ApiResponse(code = 200, message = "성공")
     })
-    public ResponseEntity<Map<String,Object>> getExerciseInfo(@PathVariable String user_id){
+    public ResponseEntity<Map<String,Object>> getExerciseInfo(@PathVariable String userId){
         Map<String,Object> result = new HashMap<>();
-        result.put("MyExerciseLog", userService.getExerciseInfo(user_id));
+        result.put("MyExerciseLog", userService.getExerciseInfo(userId));
         return ResponseEntity.ok().body(result);
     }
 
