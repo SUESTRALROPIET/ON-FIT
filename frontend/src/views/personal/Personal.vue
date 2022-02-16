@@ -133,7 +133,8 @@ export default {
       if (this.selectedItem.selectedEx !== '') {
         if (this.selectedItem.selectedSet > 0) {
           const selectedResult = ex.filter((v) => v.exName === this.selectedItem.selectedEx);
-          const todoNum = selectedResult[0].exName === '플랭크' ? 1 : 12;
+          // TODO: 3 -> 12 바꾸기
+          const todoNum = selectedResult[0].exName === '플랭크' ? 1 : 3;
           const todoTime = selectedResult[0].exName === '플랭크' ? 30 : 5;
           const exTodo = {
             id: new Date().getTime(),

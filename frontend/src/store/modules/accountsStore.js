@@ -1,5 +1,7 @@
-import axios from 'axios';
+// import axios from 'axios';
+import { apiInstance } from '@/api/index';
 
+const api = apiInstance();
 const accountsStore = {
   namespace: true,
   state: {
@@ -23,16 +25,15 @@ const accountsStore = {
   },
   actions: {
     // TODO: 로그인 시점에 실행시키기
-    getExDays({ commit }) {
-      // TODO: change userId
-      const userId = 1;
+    getExDays({ commit }, userId) {
       function ddmmyyyy(dateTime) {
         const result1 = dateTime.split('-');
         const result2 = result1[2].split('T');
         const date = `${Number(result2[0])}/${Number(result1[1])}/${result1[0]}`;
         return date;
       }
-      axios.get(`http://localhost:8081/mypage/${userId}`)
+      // axios.get(`http://localhost:8081/mypage/${userId}`)
+      api.get(`/mypage/${userId}`)
         .then((res) => {
           // 데이터 중 날짜만 필터링
           const result = res.data.MyExerciseLog;
@@ -40,10 +41,9 @@ const accountsStore = {
           commit('GET_EX_DAYS', Array.from(new Set(exDate)));
         });
     },
-    getTime({ commit }) {
-      // TODO: change userId
-      const userId = 1;
-      axios.get(`http://localhost:8081/mypage/${userId}`)
+    getTime({ commit }, userId) {
+      // axios.get(`http://localhost:8081/mypage/${userId}`)
+      api.get(`/mypage/${userId}`)
         .then((res) => {
           const result = res.data.MyExerciseLog;
           const sec = result.map((v) => v.exDuration).reduce((sum, val) => sum + val, 0);
@@ -53,10 +53,9 @@ const accountsStore = {
           commit('GET_EX_TIMES', exTime);
         });
     },
-    getCal({ commit }) {
-      // TODO: change userId
-      const userId = 1;
-      axios.get(`http://localhost:8081/mypage/${userId}`)
+    getCal({ commit }, userId) {
+      // axios.get(`http://localhost:8081/mypage/${userId}`)
+      api.get(`/mypage/${userId}`)
         .then((res) => {
           const result = res.data.MyExerciseLog;
           const exCal = result.map((v) => v.exCal).reduce((sum, val) => sum + val, 0);
