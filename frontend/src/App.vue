@@ -92,6 +92,7 @@ export default {
 }
 #logout-link {
   color: white;
+  cursor: pointer;
 }
 #view-page {
   margin: 40px 80px 80px 80px;

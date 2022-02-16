@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="" />
+    <list default="true" id="dd43ebdb-b8e2-4b67-80f0-c28ca73b63bf" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/Club.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/Club.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubListElement.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/club/components/ClubListElement.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/views/mypage/MyPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/views/mypage/MyPage.vue" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +93,7 @@
       <recent name="D:\SSAFY\2학기\공통프로젝트\S06P12B110\backend\ssafit\src\main\java\com\ssafy\ssafit\db\entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SsafitApplication (1)">
+  <component name="RunManager" selected="Spring Boot.SsafitApplication">
     <configuration name="SsafitApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplication" />
       <module name="com.ssafy.ssafit.main" />

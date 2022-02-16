@@ -212,9 +212,15 @@
   </v-card>
 </template>
 <script>
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+
 import FormExTodoItem from '@/views/club/components/FormExTodoItem.vue';
 import { apiInstance } from '@/api/index';
 import ex from '../../../../public/ex';
+
+Vue.use(Vuex);
+const userStore = 'userStore';
 
 export default {
   name: 'FormCreateClub',
@@ -279,6 +285,9 @@ export default {
     },
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     onImageFileChange(payload) {
       const defaultImage = require('@/assets/club/club_default.png');
       const file = payload;
@@ -314,7 +323,7 @@ export default {
       this.exTodosforPost.splice(this.exTodosforPost.indexOf(exTodo), 1);
     },
     createClub() {
-      const userId = '2';
+      const userId = this.getUserId();
       const api = apiInstance();
       const newClubInfo = {
         clubId: {

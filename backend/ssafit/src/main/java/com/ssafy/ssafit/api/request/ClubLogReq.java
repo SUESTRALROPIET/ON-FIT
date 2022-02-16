@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class ClubLogReq {
     private int exCount;
-    private int exId;
+    private int exerciseId;
     private double exTime;
 }

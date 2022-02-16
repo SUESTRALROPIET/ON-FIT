@@ -10,7 +10,9 @@
         <span>on:FIT하러 가기</span>
       </div>
     </div> -->
-    <ButtonLogin />
+    <div id="loginBox">
+      <ButtonLogin />
+    </div>
   </div>
 </template>
 
@@ -70,6 +72,20 @@ export default {
     1px 25px 35px rgba(16, 16, 16, 0.2),
     1px 30px 60px rgba(16, 16, 16, 0.4);
 }
+
+#loginBox > html {
+  overflow-y: hidden !important;
+}
+
+#loginBox {
+  margin-top: 15vh;
+}
+
+#loginBox >>> .abcRioButtonBlue {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  color:black !important;
+}
+
 /* .btn-enter-service {
   border: solid;
   margin: 1em;

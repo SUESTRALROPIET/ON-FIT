@@ -1,90 +1,111 @@
 <template>
-  <div
-    v-if="loading"
-    class="d-flex flex-column mx-auto"
-  >
-    <v-row height="390px">
-      <v-col cols="5" class="mr-5">
-        <div class="d-flex align-center">
-          <v-avatar
-            class="mr-5 align-self-center"
-            color="orange"
-            size="60"
+  <div>
+    <div v-if="!loading" class="d-flex justify-center" id="loader">
+      <!-- <self-building-square-spinner
+        :animation-duration="6000"
+        :size="40"
+        color="#ff1d5e"
+      /> -->
+      <half-circle-spinner
+        :animation-duration="1000"
+        :size="60"
+        color="#FFC46B"
+      />
+    </div>
+    <div
+      v-else
+      class="d-flex flex-column mx-auto"
+    >
+      <v-row height="390px">
+        <v-col cols="5" class="mr-5">
+          <div class="d-flex align-center">
+            <v-avatar
+              class="mr-5 align-self-center"
+              color="orange"
+              size="60"
+            >
+              <span class="white--text text-h5">{{ userId[0] }}</span>
+            </v-avatar>
+            <div class="d-flex flex-column">
+                <h1>{{ userId }} 님</h1>
+            </div>
+          </div>
+          <div id="mypage-record"
+            class="d-flex flex-column my-5"
           >
-            <span class="white--text text-h5">{{user_info.full_name[0]}}</span>
-          </v-avatar>
-          <div class="d-flex flex-column">
-              <h1>{{user_info.full_name}} 님</h1>
+            <div class="d-flex justify-space-between">
+              <h4>운동시간</h4>
+              <h2>{{ this.exTimes }}</h2>
+            </div>
+            <div class="d-flex justify-space-between">
+              <h4>칼로리</h4>
+              <h2>{{ this.exCals }} kcal</h2>
+            </div>
           </div>
-        </div>
-        <div id="mypage-record"
-          class="d-flex flex-column my-5"
-        >
-          <div class="d-flex justify-space-between">
-            <h4>운동시간</h4>
-            <h2>{{ this.exTimes }}</h2>
-          </div>
-          <div class="d-flex justify-space-between">
-            <h4>칼로리</h4>
-            <h2>{{ this.exCals }} kcal</h2>
-          </div>
-        </div>
-      </v-col>
-      <v-col class="ms-10" id="chart" cols="6">
-        <apexchart
-          type="line"
-          height="350"
-          v-if="showChart"
-          :options="chartOptions"
-          :series="series">
-        </apexchart>
-        <div v-else height="350"></div>
-      </v-col>
-    </v-row>
-    <v-row id="mypage-bottom">
-      <v-col cols="5">
-        <!-- <Calendar @selected="selected" @current="current"/> -->
-        <FunctionalCalendar
-          class="calendar"
-          v-model="calendar"
-          v-if="showCal"
-          :marked-dates='markedDates'
-          :is-date-picker="true"
-        />
-      </v-col>
-      <v-col v-if="showRecord" class="ms-10" cols="6" id="recordBox">
-        <CalendarDetail
-          v-for="record in records"
-          :key="record.exTime"
-          :record="record"
-        />
-      </v-col>
-      <v-col v-else class="ms-10" cols="6" id="recordBox">
-        <h3 class="text-center mt-5">운동 기록이 없습니다.</h3>
-      </v-col>
-    </v-row>
+        </v-col>
+        <v-col class="ms-10" id="chart" cols="6">
+          <apexchart
+            type="line"
+            height="350"
+            v-if="showChart"
+            :options="chartOptions"
+            :series="series">
+          </apexchart>
+          <div v-else height="350"></div>
+        </v-col>
+      </v-row>
+      <v-row id="mypage-bottom">
+        <v-col cols="5">
+          <!-- <Calendar @selected="selected" @current="current"/> -->
+          <FunctionalCalendar
+            class="calendar"
+            v-model="calendar"
+            v-if="showCal"
+            :marked-dates='markedDates'
+            :is-date-picker="true"
+          />
+        </v-col>
+        <v-col v-if="showRecord" class="ms-10" cols="6" id="recordBox">
+          <CalendarDetail
+            v-for="record in records"
+            :key="record.exTime"
+            :record="record"
+          />
+        </v-col>
+        <v-col v-else class="ms-10" cols="6" id="recordBox">
+          <h3 class="text-center mt-5">운동 기록이 없습니다.</h3>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+// import axios from 'axios';
 import _ from 'lodash';
+import { apiInstance } from '@/api/index';
 // import ButtonClubs from '@/views/mypage/components/ButtonClubs.vue';
 // import ButtonNickname from '@/views/mypage/components/ButtonNickname.vue';
 // import ButtonDeleteUser from '@/views/mypage/components/ButtonDeleteUser.vue';
 // import ExRecord from '@/views/mypage/components/ExRecord.vue';
 import CalendarDetail from '@/views/mypage/components/CalendarDetail.vue';
 import { FunctionalCalendar } from 'vue-functional-calendar';
+// import { SelfBuildingSquareSpinner } from 'epic-spinners';
+import { HalfCircleSpinner } from 'epic-spinners';
+
+const userStore = 'userStore';
+const api = apiInstance();
+
+Vue.use(Vuex);
 
 export default {
   name: 'MyPage',
   components: {
-    // ButtonClubs,
-    // ButtonNickname,
-    // ButtonDeleteUser,
-    // ExRecord,
     CalendarDetail,
     FunctionalCalendar,
+    HalfCircleSpinner,
   },
   data() {
     return {
@@ -94,14 +115,6 @@ export default {
       showRecord: false,
       exTimes: 0,
       exCals: 0,
-      user_info: {
-        user_email: 'abc@ssafy.com',
-        full_name: '김아무개',
-        created_at: '1010-10-10',
-        trainer_code: 1,
-        monthlyCal: 100,
-        monthlyTime: 100,
-      },
       month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       len: [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       // cal
@@ -162,11 +175,14 @@ export default {
     setTimeout(() => {
       this.loading = true;
       this.showCal = true;
-    }, 100);
+    }, 2000);
   },
   mounted() {
   },
   computed: {
+    userId() {
+      return this.$store.state.userStore.userId;
+    },
     yyyymmddSelected() {
       const result = String(this.calendar.selectedDate).split('/');
       const mm = result[1].length === 2 ? result[1] : `0${result[1]}`;
@@ -185,6 +201,9 @@ export default {
     },
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     yyyymmdd(dateTime) {
       // const ddmmyyyy = this.selectedDate;
       const result = dateTime.split('/');
@@ -201,9 +220,8 @@ export default {
     },
     getRecords() {
       this.showRecord = false;
-      // TODO: change userId
-      const userId = 1;
-      axios.get(`http://localhost:8081/mypage/${userId}`)
+      // axios.get(`http://localhost:8081/mypage/${userId}`)
+      api.get(`/mypage/${this.getUserId()}`)
         .then((res) => {
           // 데이터 중 선택된 날짜만 필터링
           const result = res.data.MyExerciseLog;
@@ -213,10 +231,9 @@ export default {
     },
     getMonthlyLog() {
       this.showChart = false;
-      // TODO: change userId
-      // TODO: 운동시간 분으로 바꾸기
-      const userId = 1;
-      axios.get(`http://localhost:8081/mypage/${userId}`)
+      // const userId = this.getUserId();
+      // axios.get(`http://localhost:8081/mypage/${userId}`)
+      api.get(`/mypage/${this.getUserId()}`)
         .then((res) => {
           // eslint-disable-next-line max-len
           const monthlyLog = res.data.MyExerciseLog.filter((v) => v.exTime.includes(this.yyyymmCur));
@@ -247,6 +264,10 @@ export default {
   background: rgb(255, 255, 255, 0.5);
   height: 350px;
   overflow: auto;
+}
+
+#loader {
+  margin-top: 30vh;
 }
 
 #chart >>> .apexcharts-toolbar {
