@@ -3,7 +3,7 @@
   <v-dialog
     v-model="showDialog"
     width="30rem"
-    persistent
+
   >
     <v-card id="alert-dialog">
       <!-- <v-progress-linear

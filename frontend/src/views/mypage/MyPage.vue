@@ -24,10 +24,10 @@
               color="orange"
               size="60"
             >
-              <span class="white--text text-h5">{{user_info.full_name[0]}}</span>
+              <span class="white--text text-h5">{{ userId[0] }}</span>
             </v-avatar>
             <div class="d-flex flex-column">
-                <h1>{{user_info.full_name}} 님</h1>
+                <h1>{{ userId }} 님</h1>
             </div>
           </div>
           <div id="mypage-record"
@@ -81,8 +81,11 @@
 </template>
 
 <script>
-import axios from 'axios';
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+// import axios from 'axios';
 import _ from 'lodash';
+import { apiInstance } from '@/api/index';
 // import ButtonClubs from '@/views/mypage/components/ButtonClubs.vue';
 // import ButtonNickname from '@/views/mypage/components/ButtonNickname.vue';
 // import ButtonDeleteUser from '@/views/mypage/components/ButtonDeleteUser.vue';
@@ -92,17 +95,17 @@ import { FunctionalCalendar } from 'vue-functional-calendar';
 // import { SelfBuildingSquareSpinner } from 'epic-spinners';
 import { HalfCircleSpinner } from 'epic-spinners';
 
+const userStore = 'userStore';
+const api = apiInstance();
+
+Vue.use(Vuex);
+
 export default {
   name: 'MyPage',
   components: {
-    // ButtonClubs,
-    // ButtonNickname,
-    // ButtonDeleteUser,
-    // ExRecord,
     CalendarDetail,
     FunctionalCalendar,
     HalfCircleSpinner,
-    // SelfBuildingSquareSpinner,
   },
   data() {
     return {
@@ -112,14 +115,6 @@ export default {
       showRecord: false,
       exTimes: 0,
       exCals: 0,
-      user_info: {
-        user_email: 'abc@ssafy.com',
-        full_name: '김아무개',
-        created_at: '1010-10-10',
-        trainer_code: 1,
-        monthlyCal: 100,
-        monthlyTime: 100,
-      },
       month: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       len: [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       // cal
@@ -185,6 +180,9 @@ export default {
   mounted() {
   },
   computed: {
+    userId() {
+      return this.$store.state.userStore.userId;
+    },
     yyyymmddSelected() {
       const result = String(this.calendar.selectedDate).split('/');
       const mm = result[1].length === 2 ? result[1] : `0${result[1]}`;
@@ -203,6 +201,9 @@ export default {
     },
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     yyyymmdd(dateTime) {
       // const ddmmyyyy = this.selectedDate;
       const result = dateTime.split('/');
@@ -219,9 +220,8 @@ export default {
     },
     getRecords() {
       this.showRecord = false;
-      // TODO: change userId
-      const userId = 1;
-      axios.get(`http://localhost:8081/mypage/${userId}`)
+      // axios.get(`http://localhost:8081/mypage/${userId}`)
+      api.get(`/mypage/${this.getUserId()}`)
         .then((res) => {
           // 데이터 중 선택된 날짜만 필터링
           const result = res.data.MyExerciseLog;
@@ -231,10 +231,9 @@ export default {
     },
     getMonthlyLog() {
       this.showChart = false;
-      // TODO: change userId
-      // TODO: 운동시간 분으로 바꾸기
-      const userId = 1;
-      axios.get(`http://localhost:8081/mypage/${userId}`)
+      // const userId = this.getUserId();
+      // axios.get(`http://localhost:8081/mypage/${userId}`)
+      api.get(`/mypage/${this.getUserId()}`)
         .then((res) => {
           // eslint-disable-next-line max-len
           const monthlyLog = res.data.MyExerciseLog.filter((v) => v.exTime.includes(this.yyyymmCur));

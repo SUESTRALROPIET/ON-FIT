@@ -26,8 +26,8 @@ export default ({
   mounted() {
     window.gapi.signin2.render('my-signin2', {
       scope: 'profile email',
-      width: 240,
-      height: 50,
+      width: 300,
+      height: 65,
       longtitle: true,
       theme: 'dark',
       onsuccess: this.onSuccess,
@@ -60,7 +60,7 @@ export default ({
         userId,
         userName,
       };
-      axios.post('http://localhost:8081/mypage', googleLoginReq, {
+      axios.post('http://localhost:8081/api/mypage', googleLoginReq, {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-type': 'application/json',

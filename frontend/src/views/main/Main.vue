@@ -47,7 +47,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
 import axios from 'axios';
+
+Vue.use(Vuex);
+
+const userStore = 'userStore';
 
 export default {
   name: 'Main',
@@ -58,11 +64,15 @@ export default {
   },
   created() {
     this.getTrainer();
-    this.$store.dispatch('getExDays');
-    this.$store.dispatch('getTime');
-    this.$store.dispatch('getCal');
+    const userId = this.getUserId();
+    this.$store.dispatch('getExDays', userId);
+    this.$store.dispatch('getTime', userId);
+    this.$store.dispatch('getCal', userId);
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     selectTrainer(num) {
       // TODO: PATCH Test 필요
       const userId = 1;
