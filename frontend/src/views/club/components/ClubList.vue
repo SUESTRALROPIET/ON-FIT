@@ -37,7 +37,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+
 import ClubListElement from '@/views/club/components/ClubListElement.vue';
+
+Vue.use(Vuex);
+const userStore = 'userStore';
 
 export default {
   name: 'ClubList',
@@ -49,12 +55,14 @@ export default {
   },
   data() {
     return {
-      LogginedUser: 'ssafy2',
     };
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     getUserClubList() {
-      return this.ClubList.filter((club) => club.clubMate.includes(this.LogginedUser));
+      return this.ClubList.filter((club) => club.clubMate.includes(this.getUserId()));
     },
     /* eslint-disable */
     getReadyClubList() {

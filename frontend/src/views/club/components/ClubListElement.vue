@@ -20,7 +20,7 @@
     </div>
     <div
       id="mouserover-club"
-      @click="enterClub(LogginedUser)"
+      @click="enterClub(getUserId())"
       class="d-flex flex-column"
     >
       <div>
@@ -64,8 +64,14 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+
 import FormJoinClub from '@/views/club/components/FormJoinClub.vue';
 import AlertFailJoinClub from '@/views/club/components/AlertFailJoinClub.vue';
+
+Vue.use(Vuex);
+const userStore = 'userStore';
 
 export default {
   name: 'ClubListElement',
@@ -78,12 +84,14 @@ export default {
   },
   data() {
     return {
-      LogginedUser: 'ssafy2',
       showFormJoinClub: false,
       showFailJoinClub: false,
     };
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     enterClub(userId) {
       if (this.ClubInfo.clubMate.includes(userId)) {
         this.$router.push({
