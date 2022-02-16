@@ -60,7 +60,7 @@ export default ({
         userId,
         userName,
       };
-      axios.post('http://localhost:8081/mypage', googleLoginReq, {
+      axios.post('http://localhost:8081/api/mypage', googleLoginReq, {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Content-type': 'application/json',
