@@ -1,4 +1,3 @@
-// TODO: 'must be changed' 변경하기
 // TODO: 카메라 꺼지는지 테스트...!
 <template>
   <div>
@@ -39,6 +38,7 @@
           <v-btn fab dark small @click="clickExit">
             <v-icon>mdi-logout</v-icon>
           </v-btn>
+          <v-btn @click="save">저장 test</v-btn>
         </v-col>
         <AlertBreakTime :showDialog="showBreakTimeDialog"/>
         <AlertFinishDialog @exit2="exit2" @exit3="exit3" :showDialog="showFinsishDialog"/>
@@ -53,7 +53,10 @@
 <script>
 import '@tensorflow/tfjs';
 import * as tmPose from '@teachablemachine/pose';
-import axios from 'axios';
+// import axios from 'axios';
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+import { apiInstance } from '@/api/index';
 
 import AlertBreakTime from '@/views/personal/components/AlertBreakTime.vue';
 import AlertFinishDialog from '@/views/personal/components/AlertFinishDialog.vue';
@@ -61,7 +64,11 @@ import AlertStopDialog from '@/views/personal/components/AlertStopDialog.vue';
 import AlertExitDialog from '@/views/personal/components/AlertExitDialog.vue';
 import AlertLoadingDialog from '@/views/personal/components/AlertLoadingDialog.vue';
 
+const userStore = 'userStore';
+const api = apiInstance();
 let model; let webcam; let ctx;
+
+Vue.use(Vuex);
 
 export default {
   name: 'PersonalTraining',
@@ -74,7 +81,6 @@ export default {
   },
   data() {
     return {
-      SERVER: 'must be changed',
       isPlay: false,
       dir: '오른쪽',
       status: 'stand', // 현재 운동 상태
@@ -127,6 +133,9 @@ export default {
     },
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     start() {
       this.isPlay = true;
       this.timeStart();
@@ -142,46 +151,48 @@ export default {
       this.showExitDialog = true;
     },
     exit() { // 운동 중 나가기
-      // TODO: 운동 저장하기
       this.save();
-      this.$store.dispatch('getExDays');
-      this.$store.dispatch('getTime');
-      this.$store.dispatch('getCal');
+      const userId = this.getUserId();
+      this.$store.dispatch('getExDays', userId);
+      this.$store.dispatch('getTime', userId);
+      this.$store.dispatch('getCal', userId);
       setTimeout(() => {
         this.$router.push({ name: 'Main' });
       }, 200);
     },
     exit2() { // 운동 후 나가기: MyPage로
-      this.$store.dispatch('getExDays');
-      this.$store.dispatch('getTime');
-      this.$store.dispatch('getCal');
+      const userId = this.getUserId();
+      this.$store.dispatch('getExDays', userId);
+      this.$store.dispatch('getTime', userId);
+      this.$store.dispatch('getCal', userId);
       setTimeout(() => {
         this.$router.push({ name: 'MyPage' });
       }, 200);
     },
     exit3() { // 운동 후 나가기: Home으로
-      this.$store.dispatch('getExDays');
-      this.$store.dispatch('getTime');
-      this.$store.dispatch('getCal');
+      const userId = this.getUserId();
+      this.$store.dispatch('getExDays', userId);
+      this.$store.dispatch('getTime', userId);
+      this.$store.dispatch('getCal', userId);
       setTimeout(() => {
         this.$router.push({ name: 'Main' });
       }, 200);
     },
     save() {
       const info = {
-        userId: 'must be changed',
+        userId: this.getUserId(),
         exId: this.curEx.ex_id,
         exSet: this.set,
         exDuration: this.set * this.curEx.time * this.curEx.totalNum, // 단위: sec
         exStatus: this.fail,
       };
-      axios.post('http://localhost:8081/personal', info, {
-        headers: {
-          // TODO: Authorization: 'must be changed',
-          'Access-Control-Allow-Origin': '*',
-          'Content-type': 'application/json',
-        },
-      });
+      api.post('/personal', info);
+      // axios.post('http://localhost:8081/api/personal', info, {
+      //   headers: {
+      //     'Access-Control-Allow-Origin': '*',
+      //     'Content-type': 'application/json',
+      //   },
+      // });
       this.fail = 0;
     },
     sound(v) {
@@ -258,7 +269,7 @@ export default {
 
       // 좌, 우 구분 X
       if (!this.curEx.isDouble && this.isPlay === true) {
-        if (prediction[0].probability.toFixed(2) >= 0.6) {
+        if (prediction[0].probability.toFixed(2) >= 0.7) {
           // 운동 카운트
           if (this.isProgress) {
             this.exTimerEnd();
@@ -279,7 +290,6 @@ export default {
                   this.showBreakTimeDialog = true;
                   await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
                   this.showBreakTimeDialog = false;
-                  // TODO: 운동 저장하기
                   this.save();
                   this.cur += 1;
                   this.sound(this.curEx.eng);
@@ -302,14 +312,14 @@ export default {
             this.status = 'fail';
             this.exTimerEnd();
             this.progress = 0;
-            this.fail += 1;
             const ran1to4 = Math.floor(Math.random() * 4) + 1;
             this.sound(`fail_${ran1to4}`);
+            this.fail += 1;
           }
         }
         // 좌, 우 구분
       } else if (this.curEx.isDouble && this.isPlay === true) {
-        if (prediction[0].probability.toFixed(2) >= 0.6) {
+        if (prediction[0].probability.toFixed(2) >= 0.7) {
           // 운동 카운트
           if (this.status === this.curEx.eng && this.progress >= 99) {
             this.count += 1;
@@ -331,7 +341,6 @@ export default {
                   this.showBreakTimeDialog = true;
                   await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
                   this.showBreakTimeDialog = false;
-                  // TODO: 운동 저장하기
                   this.save();
                   this.cur += 1;
                   this.sound(this.curEx.eng);
@@ -355,9 +364,9 @@ export default {
             this.status = 'fail';
             this.exTimerEnd();
             this.progress = 0;
-            this.fail += 1;
             const ran1to4 = Math.floor(Math.random() * 4) + 1;
             this.sound(`fail_${ran1to4}`);
+            this.fail += 1;
           }
         }
       }

@@ -57,6 +57,7 @@ public class PersonalController {
             @ApiResponse(code = 200, message = "성공")
     })
     public ResponseEntity<? extends BaseResponseBody> updateTrainer(@PathVariable String userId, @RequestBody int trainerId) {
+        System.out.println(trainerId);
         User user = new User();
         user.setUserId(userId);
 

@@ -10,7 +10,9 @@
         <span>on:FIT하러 가기</span>
       </div>
     </div> -->
-    <ButtonLogin />
+    <div id="loginBox">
+      <ButtonLogin />
+    </div>
   </div>
 </template>
 
@@ -34,9 +36,10 @@ export default {
 }
 .text {
   font-family: verdana;
-  font-size: 12em;
+  font-size: 30vh;
   font-weight: 700;
   color: rgb(251,247,231);
+  margin: 5rem 0rem 0rem 0rem;
   text-shadow:
     1px 1px 13px rgb(251,195,107),
     1px 2px 3px rgb(251,195,107),
@@ -52,24 +55,22 @@ export default {
     1px 22px 10px rgba(16, 16, 16, 0.2),
     1px 25px 35px rgba(16, 16, 16, 0.2);
 }
-.text:hover {
-  cursor: pointer;
-  text-shadow:
-    1px 1px 13px rgb(251,195,107),
-    1px 2px 1px rgb(251,195,107),
-    1px 3px 1px rgb(251,195,107),
-    1px 4px 1px rgb(251,195,107),
-    1px 5px 1px rgb(251,195,107),
-    1px 5px 1px rgb(251,195,107),
-    1px 7px 1px rgb(251,195,107),
-    1px 8px 1px rgb(251,195,107),
-    1px 9px 1px rgb(251,195,107),
-    1px 10px 1px rgb(251,195,107),
-    1px 18px 6px rgba(16, 16, 16, 0.4),
-    1px 22px 10px rgba(16, 16, 16, 0.2),
-    1px 25px 35px rgba(16, 16, 16, 0.2),
-    1px 30px 60px rgba(16, 16, 16, 0.4);
+
+#loginBox > html {
+  overflow-y: hidden !important;
 }
+
+#loginBox {
+  margin-top: 5vh;
+}
+
+#loginBox >>> .abcRioButtonBlue {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  color:black !important;
+  border: solid #C4C4C4;
+  border-radius: 1rem;
+}
+
 /* .btn-enter-service {
   border: solid;
   margin: 1em;

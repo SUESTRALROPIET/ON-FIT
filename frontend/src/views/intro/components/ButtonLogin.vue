@@ -9,11 +9,11 @@
 <script>
 import Vue from 'vue';
 import Vuex, { mapGetters, mapMutations } from 'vuex';
-import axios from 'axios';
 
-const userStore = 'userStore';
+import { apiInstance } from '@/api/index';
 
 Vue.use(Vuex);
+const userStore = 'userStore';
 
 export default ({
   namespaced: true,
@@ -26,8 +26,8 @@ export default ({
   mounted() {
     window.gapi.signin2.render('my-signin2', {
       scope: 'profile email',
-      width: 240,
-      height: 50,
+      width: 500,
+      height: 80,
       longtitle: true,
       theme: 'dark',
       onsuccess: this.onSuccess,
@@ -44,6 +44,7 @@ export default ({
       'getUserId',
     ]),
     onSuccess(googleUser) {
+      const api = apiInstance();
       this.googleUser = googleUser.getBasicProfile();
       const userEmail = googleUser.getBasicProfile().getEmail();
       const userId = userEmail.substring(0, userEmail.indexOf('@'));
@@ -60,14 +61,10 @@ export default ({
         userId,
         userName,
       };
-      axios.post('http://localhost:8081/api/mypage', googleLoginReq, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-type': 'application/json',
-        },
-      })
+      api.post('/mypage', googleLoginReq)
         .then((response) => {
           console.log(response);
+          this.$router.push({ name: 'Main' });
         })
         .catch((err) => {
           console.log(err);

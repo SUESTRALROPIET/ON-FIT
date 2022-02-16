@@ -1,12 +1,11 @@
-// TODO: userID 변경
 <template>
   <div id="main-box" class="d-flex flex-column align-center">
-    <div id="trainer-lst" class="mb-5">
+    <div id="trainer-lst" class="mb-10">
       <v-row>
         <v-col
           v-for="n in 3"
           :key="n"
-          class="d-flex child-flex"
+          class="d-flex flex-column child-flex"
           cols="4"
           @click="selectTrainer(n)"
         >
@@ -18,6 +17,11 @@
             alt="trainer-image"
           >
           </v-img>
+          <div class="align-self-center pt-5">
+            <h4 v-if="n === 1">#Naomi #스파르타</h4>
+            <h4 v-if="n === 2">#Ryan #친절한 라이언씨</h4>
+            <h4 v-if="n === 3">#Summer #목표만 집중!</h4>
+          </div>
         </v-col>
       </v-row>
     </div>
@@ -47,7 +51,13 @@
 </template>
 
 <script>
-import axios from 'axios';
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+
+import { apiInstance } from '@/api/index';
+
+Vue.use(Vuex);
+const userStore = 'userStore';
 
 export default {
   name: 'Main',
@@ -58,21 +68,20 @@ export default {
   },
   created() {
     this.getTrainer();
-    this.$store.dispatch('getExDays');
-    this.$store.dispatch('getTime');
-    this.$store.dispatch('getCal');
+    const userId = this.getUserId();
+    this.$store.dispatch('getExDays', userId);
+    this.$store.dispatch('getTime', userId);
+    this.$store.dispatch('getCal', userId);
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     selectTrainer(num) {
-      // TODO: PATCH Test 필요
-      const userId = 1;
+      const api = apiInstance();
+      const userId = this.getUserId();
       this.trainerNum = num;
-      axios.patch(`http://localhost:8081/personal/${userId}`, { trainer_id: this.trainerNum }, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-type': 'application/json',
-        },
-      })
+      api.patch(`/personal/${userId}`, this.trainerNum)
         .then((res) => console.log(res))
         .catch((err) => console.err(err));
     },
@@ -87,8 +96,9 @@ export default {
       });
     },
     getTrainer() {
-      const userId = 1;
-      axios.get(`http://localhost:8081/personal/${userId}`)
+      const api = apiInstance();
+      const userId = this.getUserId();
+      api.get(`/personal/${userId}`)
         .then((res) => {
           this.trainerNum = res.data.id;
         });

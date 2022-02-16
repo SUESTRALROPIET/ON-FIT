@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <div
+      v-if="this.getLoginStatus()"
       id="navbar"
       class="d-flex flex-row justify-space-between align-center"
     >
@@ -54,6 +55,7 @@ export default {
       authInst.signOut().then(() => {
         // eslint-disable-next-line
         console.log('User Signed Out!!!');
+        this.$router.push({ name: 'Intro' });
       });
       this.setLoginStatus(false);
       this.setUserId('');
@@ -92,6 +94,7 @@ export default {
 }
 #logout-link {
   color: white;
+  cursor: pointer;
 }
 #view-page {
   margin: 40px 80px 80px 80px;
