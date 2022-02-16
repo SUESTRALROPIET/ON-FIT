@@ -88,12 +88,12 @@ export default {
       const todayExList = this.ClubInfo.clubLog;
       for (let i = 0; i < todayExList.length;) {
         this.timeStart(); // 타이머 시작
-        const nowExId = todayExList[i].exId;
+        const nowExId = todayExList[i].exId - 1;
         const nowEx = ex.filter((v) => v.id === nowExId); // 현재 운동 id로 ex.js 파일에서 정보 가져오기
         this.nowExEngName = nowEx[0].exEng;
         this.nowExname = nowEx[0].exName; // 현재 운동명
 
-        this.sound(`${this.nowExEngName}`);
+        // this.sound(this.nowExEngName);
 
         const nowCount = todayExList[i].exCount; // 지정한 세트만큼 반복
         for (let j = 0; j < nowCount;) {
@@ -117,14 +117,13 @@ export default {
         this.elapsedTime += 1000;
       }, 1000);
     },
-    sound(exEngName) {
-      const audio = new Audio(`../../../../public/trainervoice/Naomi/${exEngName}.mp3`);
+    timeStop() {
+      clearInterval(this.timer);
+    },
+    sound(v) {
+      const audio = new Audio(`../../../public/trainervoice/Naomi/${v}.mp3`);
       audio.play();
     },
-  },
-  created() {
-    const audio = new Audio('../../../../public/trainervoice/Naomi/boat.mp3');
-    audio.play();
   },
 };
 </script>

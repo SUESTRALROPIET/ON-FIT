@@ -301,7 +301,7 @@ export default {
             todoSet: this.selectedItem.selectedSet,
           };
           const exTodo2 = {
-            exerciseId: selectedResult[0].id,
+            exerciseId: selectedResult[0].id + 1,
             exCount: this.selectedItem.selectedSet,
           };
           this.exTodos.push(exTodo1);
@@ -314,7 +314,7 @@ export default {
       this.exTodosforPost.splice(this.exTodosforPost.indexOf(exTodo), 1);
     },
     createClub() {
-      const userId = 'ssafy';
+      const userId = '2';
       const api = apiInstance();
       const newClubInfo = {
         clubId: {
@@ -336,6 +336,7 @@ export default {
       };
       const validateDate = this.checkboxMon || this.checkboxTues || this.checkboxWedn
         || this.checkboxThur || this.checkboxFri || this.checkboxSat || this.checkboxSun;
+      // console.log(this.exTodosforPost);
       if (this.clubName === '') {
         alert('클럽명을 입력해주세요');
       } else if (validateDate === false) {
@@ -350,6 +351,7 @@ export default {
         api.post(`/club/${userId}`, newClubInfo)
           .then((response) => {
             console.log(response);
+            console.log(newClubInfo.clubLogs);
             this.$store.dispatch('getClubList');
           })
           .catch((err) => {
