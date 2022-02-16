@@ -181,7 +181,7 @@ export default {
 
 .listBox {
   height: 500px;
-  border: 1px solid;
+  border: 3px solid #FFD2B6;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 30px;
   margin-bottom: 40px;
@@ -190,7 +190,7 @@ export default {
 
 .addBox {
   height: 150px;
-  border: 1px solid;
+  border: 3px solid #FFD2B6;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 30px;
 }

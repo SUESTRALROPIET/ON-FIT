@@ -9,14 +9,14 @@
         <h4>{{ record.exCal }} kcal</h4>
       </v-col>
       <v-col class="exBox d-flex align-center justify-space-around" cols="8">
-          <h2>{{ex[record.exId.id].exName}} {{ record.exCount }}회</h2>
-          <v-progress-circular
-          :rotate="-90"
-          :value="calSuccess(record.exCount, record.exStatus)"
-          :size="60"
-          :width="10"
-          color="teal"
-          > {{ calSuccess(record.exCount, record.exStatus) }}%</v-progress-circular>
+        <h2>{{ex[record.exId.id].exName}} {{ record.exCount }}회</h2>
+        <v-progress-circular
+        :rotate="-90"
+        :value="calSuccess(record.exCount, record.exStatus)"
+        :size="60"
+        :width="10"
+        color="teal"
+        > {{ calSuccess(record.exCount, record.exStatus) }}%</v-progress-circular>
       </v-col>
     </v-col>
   </div>

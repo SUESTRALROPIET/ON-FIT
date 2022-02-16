@@ -38,7 +38,6 @@
           <v-btn fab dark small @click="clickExit">
             <v-icon>mdi-logout</v-icon>
           </v-btn>
-          <v-btn @click="save">저장 test</v-btn>
         </v-col>
         <AlertBreakTime :showDialog="showBreakTimeDialog"/>
         <AlertFinishDialog @exit2="exit2" @exit3="exit3" :showDialog="showFinsishDialog"/>
@@ -398,14 +397,14 @@ export default {
   width: 50%;
   height: 80px;
   border: 1px solid;
-  background-color: rgba(255, 210, 182, 1);
+  background-color: rgba(255, 210, 182, 0.8);
   border: 3px solid #FFD2B6;
   border-radius: 70px;
 }
 
 .screen {
   height: 500px;
-  border: 1px solid;
+  border: 3px solid #FFD2B6;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 30px;
   margin-bottom: 30px;
@@ -413,7 +412,7 @@ export default {
 
 .statusBox {
   height: 500px;
-  border: 1px solid;
+  border: 3px solid #FFD2B6;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 30px;
   margin-bottom: 30px;

@@ -1,4 +1,3 @@
-// TODO: progress bar or spinner 선택
 <template>
   <v-dialog
     v-model="showDialog"
