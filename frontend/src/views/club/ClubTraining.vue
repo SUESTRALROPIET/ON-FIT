@@ -194,12 +194,6 @@ export default {
               customSessionId: sessionId,
             }),
             {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-type': 'application/json',
-              },
-            },
-            {
               auth: {
                 username: 'OPENVIDUAPP',
                 password: OPENVIDU_SERVER_SECRET,
@@ -220,7 +214,6 @@ export default {
                   `No connection to OpenVidu Server. This may be a certificate error at ${OPENVIDU_SERVER_URL}\n\nClick OK to navigate and accept it. If no certificate warning is shown, then check that your OpenVidu Server is up and running at "${OPENVIDU_SERVER_URL}"`,
                 )
               ) {
-                // location.assign(`${OPENVIDU_SERVER_URL}/accept-certificate`);
                 window.location.assign(`${OPENVIDU_SERVER_URL}/accept-certificate`);
               }
               reject(error.response);
@@ -235,12 +228,7 @@ export default {
         axios
           .post(
             `${OPENVIDU_SERVER_URL}/openvidu/api/sessions/${sessionId}/connection`,
-            {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-type': 'application/json',
-              },
-            },
+            {},
             {
               auth: {
                 username: 'OPENVIDUAPP',
