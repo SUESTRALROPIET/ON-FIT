@@ -30,8 +30,6 @@ public class QUser extends EntityPathBase<User> {
 
     public final StringPath fullName = createString("fullName");
 
-    public final QHealthLog healthLogId;
-
     public final QTrainer trainerId;
 
     public final StringPath userId = createString("userId");
@@ -54,7 +52,6 @@ public class QUser extends EntityPathBase<User> {
 
     public QUser(Class<? extends User> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.healthLogId = inits.isInitialized("healthLogId") ? new QHealthLog(forProperty("healthLogId")) : null;
         this.trainerId = inits.isInitialized("trainerId") ? new QTrainer(forProperty("trainerId")) : null;
     }
 
