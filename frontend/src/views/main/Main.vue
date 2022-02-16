@@ -1,11 +1,11 @@
 <template>
   <div id="main-box" class="d-flex flex-column align-center">
-    <div id="trainer-lst" class="mb-13">
+    <div id="trainer-lst" class="mb-10">
       <v-row>
         <v-col
           v-for="n in 3"
           :key="n"
-          class="d-flex child-flex"
+          class="d-flex flex-column child-flex"
           cols="4"
           @click="selectTrainer(n)"
         >
@@ -17,6 +17,11 @@
             alt="trainer-image"
           >
           </v-img>
+          <div class="align-self-center pt-5">
+            <h4 v-if="n === 1">#Naomi #스파르타</h4>
+            <h4 v-if="n === 2">#Ryan #친절한 라이언씨</h4>
+            <h4 v-if="n === 3">#Summer #목표만 집중!</h4>
+          </div>
         </v-col>
       </v-row>
     </div>
