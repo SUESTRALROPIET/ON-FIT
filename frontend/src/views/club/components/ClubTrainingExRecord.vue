@@ -109,7 +109,7 @@ export default {
         i += 1;
       }
       this.showFinishDialog = true;
-      await new Promise((resolve) => setTimeout(resolve, 5 * 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1 * 1000));
       this.showFinishDialog = false;
     },
     timeStart() {

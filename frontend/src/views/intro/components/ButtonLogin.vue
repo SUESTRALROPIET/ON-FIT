@@ -26,8 +26,8 @@ export default ({
   mounted() {
     window.gapi.signin2.render('my-signin2', {
       scope: 'profile email',
-      width: 300,
-      height: 65,
+      width: 500,
+      height: 80,
       longtitle: true,
       theme: 'dark',
       onsuccess: this.onSuccess,
@@ -68,6 +68,7 @@ export default ({
       })
         .then((response) => {
           console.log(response);
+          this.$router.push({ name: 'Main' });
         })
         .catch((err) => {
           console.log(err);

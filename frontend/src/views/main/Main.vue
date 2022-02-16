@@ -1,7 +1,6 @@
-// TODO: userID 변경
 <template>
   <div id="main-box" class="d-flex flex-column align-center">
-    <div id="trainer-lst" class="mb-5">
+    <div id="trainer-lst" class="mb-13">
       <v-row>
         <v-col
           v-for="n in 3"
@@ -49,10 +48,10 @@
 <script>
 import Vue from 'vue';
 import Vuex, { mapGetters } from 'vuex';
-import axios from 'axios';
+
+import { apiInstance } from '@/api/index';
 
 Vue.use(Vuex);
-
 const userStore = 'userStore';
 
 export default {
@@ -74,15 +73,10 @@ export default {
       'getUserId',
     ]),
     selectTrainer(num) {
-      // TODO: PATCH Test 필요
-      const userId = 1;
+      const api = apiInstance();
+      const userId = this.getUserId();
       this.trainerNum = num;
-      axios.patch(`http://localhost:8081/personal/${userId}`, { trainer_id: this.trainerNum }, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-type': 'application/json',
-        },
-      })
+      api.patch(`/personal/${userId}`, this.trainerNum)
         .then((res) => console.log(res))
         .catch((err) => console.err(err));
     },
@@ -97,8 +91,9 @@ export default {
       });
     },
     getTrainer() {
-      const userId = 1;
-      axios.get(`http://localhost:8081/personal/${userId}`)
+      const api = apiInstance();
+      const userId = this.getUserId();
+      api.get(`/personal/${userId}`)
         .then((res) => {
           this.trainerNum = res.data.id;
         });
