@@ -314,7 +314,7 @@ export default {
       this.exTodosforPost.splice(this.exTodosforPost.indexOf(exTodo), 1);
     },
     createClub() {
-      const userId = 'ssafy2';
+      const userId = 'ssafy';
       const newClubInfo = {
         clubId: {
           clubImg: this.imagePreviewURL,

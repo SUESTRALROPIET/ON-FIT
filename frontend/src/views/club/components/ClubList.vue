@@ -5,18 +5,18 @@
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="UserClub in getUserClubList()"
+          v-for="UserClub in UserClubs"
           :key="UserClub.club_name"
           :ClubInfo="UserClub"
         />
       </div>
     </div>
     <div class="mb-15">
-      <h2 class="my-5">오늘의 클럽</h2>
+      <h2 class="my-5">지금 진행중인 클럽</h2>
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="ReadyClub in getReadyClubList()"
+          v-for="ReadyClub in ReadyClubs"
           :key="ReadyClub.club_name"
           :ClubInfo="ReadyClub"
         />
@@ -27,7 +27,7 @@
       <div class="gallery-container">
         <ClubListElement
           class="gallery-item"
-          v-for="NewClub in getNewClubList()"
+          v-for="NewClub in NewClubs"
           :key="NewClub.club_name"
           :ClubInfo="NewClub"
         />
@@ -44,51 +44,84 @@ export default {
   components: {
     ClubListElement,
   },
-  props: {
-    ClubList: Array,
-  },
   data() {
     return {
-      LogginedUser: 'ssafy2',
+      UserClubs: [{
+        club_id: 1,
+        club_name: '클럽21',
+        club_img: require('@/assets/club/club_default.png'),
+        Participation_day: {
+          mon: false,
+          tues: false,
+          wedn: false,
+          thur: false,
+          fri: false,
+          sau: false,
+          sun: true,
+        },
+        manager: '클럽장이름',
+        start_date: '2019-09-10',
+        end_date: '2019-09-20',
+        fix_time: '15:00',
+        count: 6,
+        finish: false,
+        club_mate: {
+          user_id: '클럽원1',
+        },
+        club_log: [
+          {
+            id: 1,
+            exercise_id: 1,
+            exercise_count: 1,
+            exercise_time: '운동시간',
+          },
+          {
+            id: 2,
+            exercise_id: 1,
+            exercise_count: 2,
+            exercise_time: '운동시간',
+          },
+        ],
+      }],
+      ReadyClubs: [{
+        club_name: '클럽2',
+        club_img: require('@/assets/club/club_default.png'),
+        Participation_day: {
+          mon: true,
+          tues: false,
+          wedn: false,
+          thur: false,
+          fri: false,
+          sau: false,
+          sun: false,
+        },
+        manager: '클럽장이름',
+        start_date: '2019-09-10',
+        end_date: '2019-09-20',
+        fix_time: '15:00',
+        count: 6,
+        finish: false,
+      }],
+      NewClubs: [{
+        club_name: '클럽3',
+        club_img: require('@/assets/club/club_default.png'),
+        Participation_day: {
+          mon: false,
+          tues: false,
+          wedn: true,
+          thur: false,
+          fri: false,
+          sau: false,
+          sun: false,
+        },
+        manager: '클럽장이름',
+        start_date: '2019-09-10',
+        end_date: '2019-09-20',
+        fix_time: '15:00',
+        count: 6,
+        finish: false,
+      }],
     };
-  },
-  methods: {
-    getUserClubList() {
-      return this.ClubList.filter((club) => club.clubMate.includes(this.LogginedUser));
-    },
-    /* eslint-disable */
-    getReadyClubList() {
-      // const dateList = ['sun', 'mon', 'tues', 'wedn', 'thur', 'fri', 'sat'];
-      const now = new Date();
-      const nowDate = now.getDay();
-      let readyClubs = [];
-      if (nowDate === 0) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.sun === true);
-      } else if (nowDate === 1) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.mon === true);
-      } else if (nowDate === 2) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.tues === true);
-      } else if (nowDate === 3) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.wedn === true);
-      } else if (nowDate === 4) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.thur === true);
-      } else if (nowDate === 5) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.fri === true);
-      } else {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.sat === true);
-      }
-      return readyClubs;
-    },
-    getNewClubList() {
-      const now = new Date();
-      const newClubs = this.ClubList.filter((club) => {
-        const clubDate = new Date(club.clubInfo.createdAt);
-        const diffTime = Math.floor((now.getTime() - clubDate.getTime()) / 1000 / 60);
-        const diffDate = Math.floor(diffTime / 60 / 24);
-        return diffDate <= 7; // 현재기준, 1주 내에 생성된 클럽만!
-      });
-      return newClubs;
-    },
   },
 };
 </script>

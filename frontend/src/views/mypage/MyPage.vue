@@ -67,6 +67,9 @@ import ButtonDeleteUser from '@/views/mypage/components/ButtonDeleteUser.vue';
 import ExRecord from '@/views/mypage/components/ExRecord.vue';
 import Calendar from '@/views/mypage/components/Calendar.vue';
 import CalendarDetail from '@/views/mypage/components/CalendarDetail.vue';
+import { apiInstance } from '@/api/index';
+
+const api = apiInstance();
 
 export default {
   name: 'MyPage',
@@ -125,6 +128,7 @@ export default {
   },
   created() {
     this.getExLog();
+    this.read();
   },
   computed: {
     test() {
@@ -133,6 +137,11 @@ export default {
     },
   },
   methods: {
+    read() {
+      api.get('/hello').then((res) => {
+        alert(res.data);
+      });
+    },
     getExLog() {
       const userId = 'ssafy';
       axios.get(`${this.SERVER}/mypage/${userId}`, userId)

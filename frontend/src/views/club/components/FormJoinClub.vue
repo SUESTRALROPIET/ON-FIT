@@ -94,7 +94,7 @@ export default {
   methods: {
     joinClub() {
       const newClubMate = {
-        userId: 'ssafy2',
+        userId: 'ssafy',
         clubId: this.ClubInfo.clubInfo.id,
       };
       axios.post('http://localhost:8081/club/join', newClubMate, {
