@@ -20,17 +20,14 @@ public class TrainerRepositorySupport {
     QUser qUser = QUser.user;
 
     public Optional<Trainer> getTrainer(String userId) {
-        System.out.println(userId);
-        List<Trainer> trainers = jpaQueryFactory
+        List<Trainer> trainer = jpaQueryFactory
                 .selectFrom(qTrainer)
-                .where(qTrainer.id.eq(
-                        jpaQueryFactory.select(qTrainer.id)
-                                .from(qUser)
-                                .where(qUser.userId.eq(userId))
-                ))
-                .fetch();
-        //select trainer_name from trainer where id = (select trainer_id from user where id = user_id);
-        return Optional.ofNullable(trainers.get(0));
+                        .join(qUser)
+                                .on(qTrainer.id.eq(qUser.trainerId.id))
+                                        .where(qUser.userId.eq(userId))
+                                                .fetch();
+        System.out.println(trainer.size());
+        return Optional.ofNullable(trainer.get(0));
     }
 
 }
