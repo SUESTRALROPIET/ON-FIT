@@ -12,6 +12,7 @@
         >
           <v-img
             :class="(n === trainerNum)? 'show-selected-trainer' : ''"
+            class="hover-trainer"
             id="trainer-img"
             :src="require(`@/assets/trainer/trainer_${n}.png`)"
             alt="trainer-image"
@@ -104,6 +105,9 @@ export default {
 #trainer-img {
   box-shadow: rgba(0, 0, 0, 0.25) 0px 3px 8px;
   cursor: pointer;
+}
+.hover-trainer:hover {
+  filter: grayscale(80%);
 }
 #trainer-lst {
   width: 50%;

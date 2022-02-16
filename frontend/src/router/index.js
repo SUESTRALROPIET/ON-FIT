@@ -12,16 +12,16 @@ import Club from '@/views/club/Club.vue';
 import ClubTraining from '@/views/club/ClubTraining.vue';
 
 import MyPage from '@/views/mypage/MyPage.vue';
-import test from '@/views/mypage/test.vue';
+// import test from '@/views/mypage/test.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/test',
-    name: 'test',
-    component: test,
-  },
+  // {
+  //   path: '/test',
+  //   name: 'test',
+  //   component: test,
+  // },
   {
     path: '/',
     name: 'Intro',
