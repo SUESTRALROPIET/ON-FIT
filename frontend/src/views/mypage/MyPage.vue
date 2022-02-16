@@ -1,68 +1,78 @@
 <template>
   <div
-    v-if="loading"
-    class="d-flex flex-column mx-auto"
   >
-    <v-row height="390px">
-      <v-col cols="5" class="mr-5">
-        <div class="d-flex align-center">
-          <v-avatar
-            class="mr-5 align-self-center"
-            color="orange"
-            size="60"
+    <div v-if="!loading" class="d-flex justify-center align-center">
+      <self-building-square-spinner
+        :animation-duration="6000"
+        :size="40"
+        color="#ff1d5e"
+      />
+    </div>
+    <div
+      v-else
+      class="d-flex flex-column mx-auto"
+    >
+      <v-row height="390px">
+        <v-col cols="5" class="mr-5">
+          <div class="d-flex align-center">
+            <v-avatar
+              class="mr-5 align-self-center"
+              color="orange"
+              size="60"
+            >
+              <span class="white--text text-h5">{{user_info.full_name[0]}}</span>
+            </v-avatar>
+            <div class="d-flex flex-column">
+                <h1>{{user_info.full_name}} 님</h1>
+            </div>
+          </div>
+          <div id="mypage-record"
+            class="d-flex flex-column my-5"
           >
-            <span class="white--text text-h5">{{user_info.full_name[0]}}</span>
-          </v-avatar>
-          <div class="d-flex flex-column">
-              <h1>{{user_info.full_name}} 님</h1>
+            <div class="d-flex justify-space-between">
+              <h4>운동시간</h4>
+              <h2>{{ this.exTimes }}</h2>
+            </div>
+            <div class="d-flex justify-space-between">
+              <h4>칼로리</h4>
+              <h2>{{ this.exCals }} kcal</h2>
+            </div>
           </div>
-        </div>
-        <div id="mypage-record"
-          class="d-flex flex-column my-5"
-        >
-          <div class="d-flex justify-space-between">
-            <h4>운동시간</h4>
-            <h2>{{ this.exTimes }}</h2>
-          </div>
-          <div class="d-flex justify-space-between">
-            <h4>칼로리</h4>
-            <h2>{{ this.exCals }} kcal</h2>
-          </div>
-        </div>
-      </v-col>
-      <v-col class="ms-10" id="chart" cols="6">
-        <apexchart
-          type="line"
-          height="350"
-          v-if="showChart"
-          :options="chartOptions"
-          :series="series">
-        </apexchart>
-        <div v-else height="350"></div>
-      </v-col>
-    </v-row>
-    <v-row id="mypage-bottom">
-      <v-col cols="5">
-        <!-- <Calendar @selected="selected" @current="current"/> -->
-        <FunctionalCalendar
-          class="calendar"
-          v-model="calendar"
-          v-if="showCal"
-          :marked-dates='markedDates'
-          :is-date-picker="true"
-        />
-      </v-col>
-      <v-col v-if="showRecord" class="ms-10" cols="6" id="recordBox">
-        <CalendarDetail
-          v-for="record in records"
-          :key="record.exTime"
-          :record="record"
-        />
-      </v-col>
-      <v-col v-else class="ms-10" cols="6" id="recordBox">
-        <h3 class="text-center mt-5">운동 기록이 없습니다.</h3>
-      </v-col>
-    </v-row>
+        </v-col>
+        <v-col class="ms-10" id="chart" cols="6">
+          <apexchart
+            type="line"
+            height="350"
+            v-if="showChart"
+            :options="chartOptions"
+            :series="series">
+          </apexchart>
+          <div v-else height="350"></div>
+        </v-col>
+      </v-row>
+      <v-row id="mypage-bottom">
+        <v-col cols="5">
+          <!-- <Calendar @selected="selected" @current="current"/> -->
+          <FunctionalCalendar
+            class="calendar"
+            v-model="calendar"
+            v-if="showCal"
+            :marked-dates='markedDates'
+            :is-date-picker="true"
+          />
+        </v-col>
+        <v-col v-if="showRecord" class="ms-10" cols="6" id="recordBox">
+          <CalendarDetail
+            v-for="record in records"
+            :key="record.exTime"
+            :record="record"
+          />
+        </v-col>
+        <v-col v-else class="ms-10" cols="6" id="recordBox">
+          <h3 class="text-center mt-5">운동 기록이 없습니다.</h3>
+        </v-col>
+      </v-row>
+    </div>
   </div>
 </template>
 
@@ -75,6 +85,7 @@ import _ from 'lodash';
 // import ExRecord from '@/views/mypage/components/ExRecord.vue';
 import CalendarDetail from '@/views/mypage/components/CalendarDetail.vue';
 import { FunctionalCalendar } from 'vue-functional-calendar';
+import { SelfBuildingSquareSpinner } from 'epic-spinners';
 
 export default {
   name: 'MyPage',
@@ -85,6 +96,7 @@ export default {
     // ExRecord,
     CalendarDetail,
     FunctionalCalendar,
+    SelfBuildingSquareSpinner,
   },
   data() {
     return {
@@ -162,7 +174,7 @@ export default {
     setTimeout(() => {
       this.loading = true;
       this.showCal = true;
-    }, 100);
+    }, 3000);
   },
   mounted() {
   },
