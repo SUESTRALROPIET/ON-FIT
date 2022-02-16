@@ -1,52 +1,50 @@
 <template>
-<!--
-  입장하면 mounted로 joinSession 실행 -> session 생성 -> webRTC가능
-  leaveSession 버튼 클릭시 Club.vue로 이동
--->
-<div id="main-container" class="container">
-    <div v-if="session">
-      <div>
-        <ClubTrainingExRecord
-          :ClubInfo="ClubInfo"
-        />
-      </div>
-      <button></button>
-      <div id="session">
-        <div id="session-header">
-          <h1 id="session-title">{{ mySessionId }}</h1>
-          <input
-            class="btn btn-large btn-danger"
-            type="button"
-            id="buttonLeaveSession"
-            @click="leaveSession"
-            value="Leave session"
-          />
+  <!--
+    입장하면 mounted로 joinSession 실행 -> session 생성 -> webRTC가능
+    leaveSession 버튼 클릭시 Club.vue로 이동
+  -->
+  <div id="main-container" class="container">
+      <div v-if="session">
+        <div class="d-flex flex-column">
+          <div>
+            <ClubTrainingExRecord
+              :ClubInfo="ClubInfo"
+              @leave-session="leaveSession"
+            />
+          </div>
+          <div id="session" class="mt-13">
+            <!-- <div id="main-video" class="col-md-6">
+              여기가 큰거 stream-manager 기준으로 화면 바뀜
+              <user-video :stream-manager="mainStreamManager" />
+            </div> -->
+            <!-- 작은 화면 -->
+            <v-row id="video-container" class="d-flex flex-wrap"
+            style="min-height: 55vh;">
+              <!-- 내꺼 작은 화면 -->
+              <v-col
+                style="min-width: 320px; min-height: 240px;">
+                <user-video
+                  cols="4"
+                  :stream-manager="publisher"
+                  @click.native="updateMainVideoStreamManager(publisher)"
+                />
+              </v-col>
+              <!-- 여기가 나 제외 다른사람들 작은 화면 -->
+              <v-col
+                v-for="sub in subscribers"
+                :key="sub.stream.connection.connectionId"
+                 style="min-width: 320px; min-height: 240px; border:solid;"
+              >
+                <user-video
+                  :stream-manager="sub"
+                  @click.native="updateMainVideoStreamManager(sub)"
+                />
+              </v-col>
+            </v-row>
+          </div>
         </div>
-        <div id="main-video" class="col-md-6">
-          <!-- 여기가 큰거 stream-manager 기준으로 화면 바뀜 -->
-          <user-video :stream-manager="mainStreamManager" />
-        </div>
-        <!-- 작은 화면 -->
-        <div id="video-container" class="col-md-6">
-          <!-- 내꺼 작은 화면 -->
-          <user-video
-            :stream-manager="publisher"
-            @click.native="updateMainVideoStreamManager(publisher)"
-          />
-          <!-- 여기가 나 제외 다른사람들 작은 화면 -->
-          <user-video
-            v-for="sub in subscribers"
-            :key="sub.stream.connection.connectionId"
-            :stream-manager="sub"
-            @click.native="updateMainVideoStreamManager(sub)"
-          />
-        </div>
-      </div>
-      <div>
-        <ClubTrainingUserList/>
-      </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -56,7 +54,6 @@ import { OpenVidu } from 'openvidu-browser';
 import UserVideo from '@/views/openvidu/components/UserVideo.vue';
 
 import ClubTrainingExRecord from '@/views/club/components/ClubTrainingExRecord.vue';
-import ClubTrainingUserList from '@/views/club/components/ClubTrainingUserList.vue';
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://i6b110.p.ssafy.io';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -69,7 +66,6 @@ export default {
   name: 'ClubTraining',
   components: {
     ClubTrainingExRecord,
-    ClubTrainingUserList,
     UserVideo,
   },
   data() {
@@ -140,7 +136,7 @@ export default {
               // Whether you want to start publishing with your audio unmuted or not
               publishVideo: true,
               // Whether you want to start publishing with your video enabled or not
-              resolution: '640x480', // The resolution of your video
+              resolution: '320x240', // The resolution of your video
               frameRate: 30, // The frame rate of your video
               insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
               mirror: false, // Whether to mirror your local video or not
@@ -198,12 +194,6 @@ export default {
               customSessionId: sessionId,
             }),
             {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-type': 'application/json',
-              },
-            },
-            {
               auth: {
                 username: 'OPENVIDUAPP',
                 password: OPENVIDU_SERVER_SECRET,
@@ -224,7 +214,6 @@ export default {
                   `No connection to OpenVidu Server. This may be a certificate error at ${OPENVIDU_SERVER_URL}\n\nClick OK to navigate and accept it. If no certificate warning is shown, then check that your OpenVidu Server is up and running at "${OPENVIDU_SERVER_URL}"`,
                 )
               ) {
-                // location.assign(`${OPENVIDU_SERVER_URL}/accept-certificate`);
                 window.location.assign(`${OPENVIDU_SERVER_URL}/accept-certificate`);
               }
               reject(error.response);
@@ -239,12 +228,7 @@ export default {
         axios
           .post(
             `${OPENVIDU_SERVER_URL}/openvidu/api/sessions/${sessionId}/connection`,
-            {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-type': 'application/json',
-              },
-            },
+            {},
             {
               auth: {
                 username: 'OPENVIDUAPP',

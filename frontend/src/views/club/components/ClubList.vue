@@ -37,7 +37,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+
 import ClubListElement from '@/views/club/components/ClubListElement.vue';
+
+Vue.use(Vuex);
+const userStore = 'userStore';
 
 export default {
   name: 'ClubList',
@@ -46,82 +52,48 @@ export default {
   },
   data() {
     return {
-      UserClubs: [{
-        club_id: 1,
-        club_name: '클럽21',
-        club_img: require('@/assets/club/club_default.png'),
-        Participation_day: {
-          mon: false,
-          tues: false,
-          wedn: false,
-          thur: false,
-          fri: false,
-          sau: false,
-          sun: true,
-        },
-        manager: '클럽장이름',
-        start_date: '2019-09-10',
-        end_date: '2019-09-20',
-        fix_time: '15:00',
-        count: 6,
-        finish: false,
-        club_mate: {
-          user_id: '클럽원1',
-        },
-        club_log: [
-          {
-            id: 1,
-            exercise_id: 1,
-            exercise_count: 1,
-            exercise_time: '운동시간',
-          },
-          {
-            id: 2,
-            exercise_id: 1,
-            exercise_count: 2,
-            exercise_time: '운동시간',
-          },
-        ],
-      }],
-      ReadyClubs: [{
-        club_name: '클럽2',
-        club_img: require('@/assets/club/club_default.png'),
-        Participation_day: {
-          mon: true,
-          tues: false,
-          wedn: false,
-          thur: false,
-          fri: false,
-          sau: false,
-          sun: false,
-        },
-        manager: '클럽장이름',
-        start_date: '2019-09-10',
-        end_date: '2019-09-20',
-        fix_time: '15:00',
-        count: 6,
-        finish: false,
-      }],
-      NewClubs: [{
-        club_name: '클럽3',
-        club_img: require('@/assets/club/club_default.png'),
-        Participation_day: {
-          mon: false,
-          tues: false,
-          wedn: true,
-          thur: false,
-          fri: false,
-          sau: false,
-          sun: false,
-        },
-        manager: '클럽장이름',
-        start_date: '2019-09-10',
-        end_date: '2019-09-20',
-        fix_time: '15:00',
-        count: 6,
-        finish: false,
-      }],
     };
+  },
+  methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
+    getUserClubList() {
+      return this.ClubList.filter((club) => club.clubMate.includes(this.getUserId()));
+    },
+    /* eslint-disable */
+    getReadyClubList() {
+      // const dateList = ['sun', 'mon', 'tues', 'wedn', 'thur', 'fri', 'sat'];
+      const now = new Date();
+      const nowDate = now.getDay();
+      let readyClubs = [];
+      if (nowDate === 0) {
+        readyClubs = this.ClubList.filter((club) => club.clubInfo.sun === true);
+      } else if (nowDate === 1) {
+        readyClubs = this.ClubList.filter((club) => club.clubInfo.mon === true);
+      } else if (nowDate === 2) {
+        readyClubs = this.ClubList.filter((club) => club.clubInfo.tues === true);
+      } else if (nowDate === 3) {
+        readyClubs = this.ClubList.filter((club) => club.clubInfo.wedn === true);
+      } else if (nowDate === 4) {
+        readyClubs = this.ClubList.filter((club) => club.clubInfo.thur === true);
+      } else if (nowDate === 5) {
+        readyClubs = this.ClubList.filter((club) => club.clubInfo.fri === true);
+      } else {
+        readyClubs = this.ClubList.filter((club) => club.clubInfo.sat === true);
+      }
+      return readyClubs;
+    },
+    getNewClubList() {
+      const now = new Date();
+      const newClubs = this.ClubList.filter((club) => {
+        const clubDate = new Date(club.clubInfo.createdAt);
+        const diffTime = Math.floor((now.getTime() - clubDate.getTime()) / 1000 / 60);
+        const diffDate = Math.floor(diffTime / 60 / 24);
+        return diffDate <= 7; // 현재기준, 1주 내에 생성된 클럽만!
+      });
+      return newClubs;
+    },
   },
 };
 </script>

@@ -55,8 +55,6 @@ export default {
   data() {
     return {
       headers: [
-        // TODO: value에 img 넣기
-        // { text: 'Image', sortable: false, value: require(`@/assets/exercise/${todoImg}.png`), },
         {
           text: '', sortable: false, value: 'todoEng', align: 'end', width: '70px',
         },

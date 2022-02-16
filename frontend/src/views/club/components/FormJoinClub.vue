@@ -77,7 +77,13 @@
 </template>
 
 <script>
-import axios from 'axios';
+import Vue from 'vue';
+import Vuex, { mapGetters } from 'vuex';
+
+import { apiInstance } from '@/api/index';
+
+Vue.use(Vuex);
+const userStore = 'userStore';
 
 export default {
   name: 'FormJoinClub',
@@ -92,19 +98,19 @@ export default {
     };
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     joinClub() {
+      const api = apiInstance();
       const newClubMate = {
-        userId: 'ssafy',
+        userId: this.getUserId(),
         clubId: this.ClubInfo.clubInfo.id,
       };
-      axios.post('http://localhost:8081/club/join', newClubMate, {
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-type': 'application/json',
-        },
-      })
+      api.post('/club/join', newClubMate)
         .then((response) => {
           console.log(response);
+          this.$store.dispatch('getClubList');
         })
         .catch((err) => {
           console.log(err);

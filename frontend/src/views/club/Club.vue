@@ -5,6 +5,7 @@
     >
       <div
         id="club-main-btn"
+        class="pb-5"
       >
         <v-btn
           small
@@ -18,10 +19,6 @@
         </v-btn>
         <ButtonCreateClub />
       </div>
-      <v-checkbox
-        label="모집중인 클럽만 보기"
-        color="success"
-      ></v-checkbox>
     </div>
     <ClubList/>
     <v-navigation-drawer
@@ -53,9 +50,22 @@ export default {
     SearchBar,
     ButtonCreateClub,
   },
-  data: () => ({
-    OpenSearchClubDrawer: false,
-  }),
+  data() {
+    return {
+      OpenSearchClubDrawer: false,
+      clubFinish: false,
+    };
+  },
+  methods: {
+  },
+  created() {
+    this.$store.dispatch('getClubList');
+  },
+  computed: {
+    ClubList() {
+      return this.$store.state.clubStore.storeClubList;
+    },
+  },
 };
 </script>
 

@@ -2,6 +2,7 @@ package com.ssafy.ssafit.db.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -16,7 +17,7 @@ import java.util.List;
 @Entity(name="user")
 public class User{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "USER_GENERATOR", strategy = "uuid")
     private String userId;
 
     private String email;
@@ -30,10 +31,6 @@ public class User{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Trainer_id")
     private Trainer trainerId;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "HealthLog_id")
-    private HealthLog healthLogId;
 
     @OneToMany(mappedBy = "userId")
     private List<ExerciseLog> exLogList = new ArrayList<>();

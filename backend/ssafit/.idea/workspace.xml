@@ -28,17 +28,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ssafit" type="f1a62948:ProjectNode" />
               </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ssafit" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="ssafit" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
             </expand>
             <select />
           </tree_state>
@@ -98,7 +87,7 @@
       <recent name="D:\SSAFY\2학기\공통프로젝트\S06P12B110\backend\ssafit\src\main\java\com\ssafy\ssafit\db\entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SsafitApplication">
+  <component name="RunManager" selected="Application.SsafitApplication (1)">
     <configuration name="SsafitApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ssafy.ssafit.SsafitApplication" />
       <module name="com.ssafy.ssafit.main" />
@@ -195,9 +184,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SsafitApplication (1)" />
         <item itemvalue="Gradle.ssafit [bootJar]" />
         <item itemvalue="Gradle.ssafit [build]" />
-        <item itemvalue="Application.SsafitApplication (1)" />
         <item itemvalue="JUnit.SsafitApplicationTests.test_club" />
         <item itemvalue="JUnit.SsafitApplicationTests.club_Select" />
       </list>
@@ -220,7 +209,7 @@
       <workItem from="1644496774332" duration="9396000" />
       <workItem from="1644558525957" duration="51000" />
       <workItem from="1644849859535" duration="877000" />
-      <workItem from="1644903069004" duration="5637000" />
+      <workItem from="1644903069004" duration="6330000" />
     </task>
     <servers />
   </component>
