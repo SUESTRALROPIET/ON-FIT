@@ -143,20 +143,29 @@ export default {
     },
     exit() { // 운동 중 나가기
       // TODO: 운동 저장하기
-      // this.save();
-      this.$router.push({
-        name: 'Main',
-      });
+      this.save();
+      this.$store.dispatch('getExDays');
+      this.$store.dispatch('getTime');
+      this.$store.dispatch('getCal');
+      setTimeout(() => {
+        this.$router.push({ name: 'Main' });
+      }, 200);
     },
     exit2() { // 운동 후 나가기: MyPage로
-      this.$router.push({
-        name: 'MyPage',
-      });
+      this.$store.dispatch('getExDays');
+      this.$store.dispatch('getTime');
+      this.$store.dispatch('getCal');
+      setTimeout(() => {
+        this.$router.push({ name: 'MyPage' });
+      }, 200);
     },
     exit3() { // 운동 후 나가기: Home으로
-      this.$router.push({
-        name: 'Main',
-      });
+      this.$store.dispatch('getExDays');
+      this.$store.dispatch('getTime');
+      this.$store.dispatch('getCal');
+      setTimeout(() => {
+        this.$router.push({ name: 'Main' });
+      }, 200);
     },
     save() {
       const info = {
@@ -166,9 +175,11 @@ export default {
         exDuration: this.set * this.curEx.time * this.curEx.totalNum, // 단위: sec
         exStatus: this.fail,
       };
-      axios.post(`${this.SERVER}/personal`, info, {
+      axios.post('http://localhost:8081/personal', info, {
         headers: {
-          Authorization: 'must be changed',
+          // TODO: Authorization: 'must be changed',
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
         },
       });
       this.fail = 0;
@@ -269,7 +280,7 @@ export default {
                   await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
                   this.showBreakTimeDialog = false;
                   // TODO: 운동 저장하기
-                  // this.save();
+                  this.save();
                   this.cur += 1;
                   this.sound(this.curEx.eng);
                   this.set = 0;
@@ -321,7 +332,7 @@ export default {
                   await new Promise((resolve) => setTimeout(resolve, 60 * 1000));
                   this.showBreakTimeDialog = false;
                   // TODO: 운동 저장하기
-                  // this.save();
+                  this.save();
                   this.cur += 1;
                   this.sound(this.curEx.eng);
                   this.set = 0;

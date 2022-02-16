@@ -1,3 +1,4 @@
+// TODO: userID 변경
 <template>
   <div id="main-box" class="d-flex flex-column align-center">
     <div id="trainer-lst" class="mb-5">
@@ -45,16 +46,34 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'Main',
   data() {
     return {
-      trainerNum: 1,
+      trainerNum: '',
     };
+  },
+  created() {
+    this.getTrainer();
+    this.$store.dispatch('getExDays');
+    this.$store.dispatch('getTime');
+    this.$store.dispatch('getCal');
   },
   methods: {
     selectTrainer(num) {
+      // TODO: PATCH Test 필요
+      const userId = 1;
       this.trainerNum = num;
+      axios.patch(`http://localhost:8081/personal/${userId}`, { trainer_id: this.trainerNum }, {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-type': 'application/json',
+        },
+      })
+        .then((res) => console.log(res))
+        .catch((err) => console.err(err));
     },
     enterPersonalTraining() {
       this.$router.push({
@@ -65,6 +84,13 @@ export default {
       this.$router.push({
         name: 'Club',
       });
+    },
+    getTrainer() {
+      const userId = 1;
+      axios.get(`http://localhost:8081/personal/${userId}`)
+        .then((res) => {
+          this.trainerNum = res.data.id;
+        });
     },
   },
 };
