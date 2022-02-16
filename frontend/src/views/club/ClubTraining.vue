@@ -18,22 +18,20 @@
               <user-video :stream-manager="mainStreamManager" />
             </div> -->
             <!-- 작은 화면 -->
-            <v-row id="video-container" class="d-flex flex-wrap"
-            style="min-height: 55vh;">
+            <v-row id="video-container" class="d-flex flex-wrap">
               <!-- 내꺼 작은 화면 -->
-              <v-col
-                style="min-width: 320px; min-height: 240px;">
+              <v-col cols="4" class="d-flex justify-center align-center">
                 <user-video
-                  cols="4"
                   :stream-manager="publisher"
                   @click.native="updateMainVideoStreamManager(publisher)"
                 />
               </v-col>
               <!-- 여기가 나 제외 다른사람들 작은 화면 -->
               <v-col
+                cols="4"
                 v-for="sub in subscribers"
                 :key="sub.stream.connection.connectionId"
-                 style="min-width: 320px; min-height: 240px; border:solid;"
+                class="d-flex justify-center align-center"
               >
                 <user-video
                   :stream-manager="sub"
@@ -136,7 +134,7 @@ export default {
               // Whether you want to start publishing with your audio unmuted or not
               publishVideo: true,
               // Whether you want to start publishing with your video enabled or not
-              resolution: '320x240', // The resolution of your video
+              resolution: '640x480', // The resolution of your video
               frameRate: 30, // The frame rate of your video
               insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
               mirror: false, // Whether to mirror your local video or not
