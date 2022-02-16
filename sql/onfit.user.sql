@@ -1,3 +1,4 @@
+insert into onfit.user (user_id, created_at, email, full_name, trainer_id) values ('ssafyb110test', '2021-05-21 04:10:37', 'ssafyb110test@gmail.com', 'SSAFY', 1);
 insert into onfit.user (user_id, created_at, email, full_name, trainer_id) values ('sloosley0', '2021-05-21 04:10:37', 'sloosley0@list-manage.com', 'Sharline Loosley', 1);
 insert into onfit.user (user_id, created_at, email, full_name, trainer_id) values ('mbottom1', '2021-11-01 13:39:15', 'mbottom1@symantec.com', 'Meggie Bottom', 1);
 insert into onfit.user (user_id, created_at, email, full_name, trainer_id) values ('amenat2', '2021-12-25 21:07:19', 'amenat2@woothemes.com', 'Ailey Menat', 1);
