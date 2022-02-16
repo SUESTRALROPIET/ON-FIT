@@ -5,6 +5,7 @@
     >
       <div
         id="club-main-btn"
+        class="pb-5"
       >
         <v-btn
           small
@@ -18,12 +19,6 @@
         </v-btn>
         <ButtonCreateClub />
       </div>
-      <v-checkbox
-        v-model="clubFinish"
-        label="모집중인 클럽만 보기"
-        color="success"
-        @click="clickFinish"
-      ></v-checkbox>
     </div>
     <ClubList
       :ClubList="ClubList"
@@ -48,8 +43,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 import ClubList from '@/views/club/components/ClubList.vue';
 import SearchBar from '@/views/club/components/SearchBar.vue';
 import ButtonCreateClub from '@/views/club/components/ButtonCreateClub.vue';
@@ -65,74 +58,17 @@ export default {
     return {
       OpenSearchClubDrawer: false,
       clubFinish: false,
-      ClubList: [
-        {
-          clubInfo: {
-            id: 5,
-            clubName: '클럽1',
-            clubImg: 'string',
-            mon: true,
-            tues: false,
-            wedn: false,
-            thur: true,
-            fri: true,
-            sat: false,
-            sun: false,
-            manager: '클럽장1',
-            createdAt: '2022-02-12T16:35:17.819',
-            startDate: '2022-02-12T16:35:17.819',
-            endDate: '2022-02-12T16:35:17.819',
-            fixTime: '2022-02-12T16:35:17.819',
-            count: 0,
-            finish: false,
-          },
-          clubMate: ['현재로그인한사용자'],
-          clubLog: [],
-        },
-        {
-          clubInfo: {
-            id: 6,
-            clubName: '클럽2',
-            clubImg: 'string',
-            mon: false,
-            tues: false,
-            wedn: false,
-            thur: false,
-            fri: true,
-            sat: true,
-            sun: true,
-            manager: '클럽장2',
-            createdAt: '2022-02-02T16:35:17.819',
-            startDate: '2022-02-12T16:35:17.819',
-            endDate: '2022-02-12T16:35:17.819',
-            fixTime: '2022-02-12T16:35:17.819',
-            count: 0,
-            finish: true,
-          },
-          clubMate: ['현재로그인한사용자'],
-          clubLog: [],
-        },
-      ],
     };
   },
   methods: {
-    getClubList() {
-      axios.get('http://localhost:8081/club/')
-        .then((response) => {
-          this.ClubList = response.data;
-        });
-    },
-    clickFinish() {
-      // this.getClubList();
-      if (this.clubFinish) {
-        this.ClubList = this.ClubList.filter((club) => club.clubInfo.finish !== this.clubFinish);
-      } else {
-        // this.getClubList();
-      }
-    },
   },
-  mounted() {
-    // this.getClubList();
+  created() {
+    this.$store.dispatch('getClubList');
+  },
+  computed: {
+    ClubList() {
+      return this.$store.state.clubStore.storeClubList;
+    },
   },
 };
 </script>

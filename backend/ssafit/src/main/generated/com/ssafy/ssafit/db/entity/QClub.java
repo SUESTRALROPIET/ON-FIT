@@ -33,7 +33,7 @@ public class QClub extends EntityPathBase<Club> {
 
     public final BooleanPath finish = createBoolean("finish");
 
-    public final DateTimePath<java.time.LocalDateTime> fixTime = createDateTime("fixTime", java.time.LocalDateTime.class);
+    public final StringPath fixTime = createString("fixTime");
 
     public final BooleanPath fri = createBoolean("fri");
 

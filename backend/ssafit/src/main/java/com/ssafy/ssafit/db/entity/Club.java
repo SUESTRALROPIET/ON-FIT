@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.sql.Time;
 import java.time.LocalDateTime;
 
 @Getter
@@ -36,7 +37,7 @@ public class Club extends BaseEntity{
 
     private LocalDateTime endDate;
 
-    private LocalDateTime fixTime; // mysql에서 time 형으로 써야되는데 어캐하지
+    private String fixTime; // mysql에서 time 형으로 써야되는데 어캐하지
     /* 여기까지 고민*/
 
     @Column(columnDefinition = "integer default 1")

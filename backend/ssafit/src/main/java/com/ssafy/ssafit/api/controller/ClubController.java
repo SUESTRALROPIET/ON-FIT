@@ -21,8 +21,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @Api(value = "Club API",tags = {"Club"})
+@CrossOrigin(origins = {"*"})
 @RestController
-@RequestMapping("/club")
+@RequestMapping("/api/club")
 public class ClubController {
 
     @Autowired

@@ -41,5 +41,5 @@ public class SwaggerConfig {
                 .build();
     }
 
-    // 완료가 되었으면 오른쪽 URL 로 접속 => http://localhost:8081/swagger-ui.html
+    // 완료가 되었으면 오른쪽 URL 로 접속 => https://localhost:8081/swagger-ui.html
 }

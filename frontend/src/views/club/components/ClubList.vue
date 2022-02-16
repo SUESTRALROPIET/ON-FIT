@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      LogginedUser: '현재로그인한사용자',
+      LogginedUser: 'ssafy2',
     };
   },
   methods: {
