@@ -81,6 +81,7 @@ export default {
   data() {
     return {
       isPlay: false,
+      isFirst: true,
       dir: '오른쪽',
       status: 'stand', // 현재 운동 상태
       cur: 0, // 현재 운동 순서
@@ -137,6 +138,10 @@ export default {
     ]),
     start() {
       this.isPlay = true;
+      if (this.isFirst) {
+        this.isFirst = false;
+        this.sound(this.curEx.eng)
+      }
       this.timeStart();
       this.showStopDialog = false;
       this.showExitDialog = false;
@@ -251,7 +256,6 @@ export default {
       if (this.showLoadingDialog) {
         this.showLoadingDialog = false;
         await this.sound('start');
-        setTimeout(() => { this.sound(this.curEx.eng); }, 13500);
       }
       webcam.update(); // update the webcam frame
       await this.predict();
