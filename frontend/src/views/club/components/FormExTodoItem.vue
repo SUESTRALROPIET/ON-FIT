@@ -2,7 +2,7 @@
   <div class="d-flex">
     <v-col class="exBox d-flex align-center" cols="7">
       <img :src="require(`@/assets/exercise/${exTodo.todoEng}.png`)" height="55px">
-      <h4 class="pl-4">{{ exTodo.todoName }} ({{ exTodo.todoNum }})</h4>
+      <h4 class="pl-4">{{ exTodo.todoName }}</h4>
     </v-col>
     <v-col class="setBox d-flex align-center" cols="3">
       <h4>{{ exTodo.todoSet }} set</h4>
