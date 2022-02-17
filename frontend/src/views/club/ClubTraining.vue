@@ -40,14 +40,22 @@
               </v-col>
             </v-row>
           </div>
+          <!-- 음소거, 화면 공유 버튼 -->
+          <div>
+            <button type="button" @click="videoOnAndOff()">VIDEO BUTTON</button> <br>
+            <button type="button" @click="audioOnAndOff()">AUDIO BUTTON</button> <br>
+            <button type="button" @click="changName()">CHANGE NAME</button>
+          </div>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from 'vue';
 import axios from 'axios';
 import { OpenVidu } from 'openvidu-browser';
+import Vuex, { mapGetters } from 'vuex';
 // import UserVideo from './components/UserVideo.vue';
 import UserVideo from '@/views/openvidu/components/UserVideo.vue';
 
@@ -55,6 +63,9 @@ import ClubTrainingExRecord from '@/views/club/components/ClubTrainingExRecord.v
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://i6b110.p.ssafy.io';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+Vue.use(Vuex);
+const userStore = 'userStore';
 
 const OPENVIDU_SERVER_URL = 'https://i6b110.p.ssafy.io:4443'; // location.hostname -> aws 도메인 주소로 변경하기.
 // const OPENVIDU_SERVER_URL = `https://${window.location.hostname}:4443`; // location.hostname -> aws 도메인 주소로 변경하기.
@@ -75,17 +86,27 @@ export default {
       publisher: undefined,
       subscribers: [],
 
-      mySessionId: 'SessionA',
-      myUserName: `Participant${Math.floor(Math.random() * 100)}`,
+      videoEnabled: true,
+      audioEnabled: true,
+
+      mySessionId: 'Session',
+      myUserName: '',
     };/* mySessionId은 부모 컴포넌트한테 받은거 사용하기, myUserName은 user 정보 사용하기. */
   },
   created() {
     this.ClubInfo = this.$route.query.ClubInfo;
+    this.mySessionId += this.ClubInfo.clubInfo.id;
+    this.myUserName = this.getUserId();
   },
   mounted() {
     this.joinSession();
+    // this.mySessionId += this.ClubInfo.clubInfo.id;
+    // this.myUserName = this.getUserId();
   },
   methods: {
+    ...mapGetters(userStore, [
+      'getUserId',
+    ]),
     /* join 버튼 클릭 이벤트 */
     joinSession() {
       // --- Get an OpenVidu object ---
@@ -238,6 +259,19 @@ export default {
           .then((data) => resolve(data.token))
           .catch((error) => reject(error.response));
       });
+    },
+
+    videoOnAndOff() {
+      // eslint-disable-next-line no-undef
+      this.videoEnabled = !this.videoEnabled;
+      this.publisher.publishVideo(this.videoEnabled);
+    },
+    audioOnAndOff() {
+      this.audioEnabled = !this.audioEnabled;
+      this.publisher.publishAudio(this.audioEnabled);
+    },
+    changName() {
+      this.myUserName = 'joongjae';
     },
   },
 };
