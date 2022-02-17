@@ -11,6 +11,8 @@
               :ClubInfo="ClubInfo"
               :videoEnabled="videoEnabled"
               :audioEnabled="audioEnabled"
+              :isStart="isStart"
+              @click-start-btn="clickStartBtn"
               @leave-session="leaveSession"
               @video-on-and-off="videoOnAndOff()"
               @audio-on-and-off="audioOnAndOff()"
@@ -97,6 +99,8 @@ export default {
 
       mySessionId: 'Session',
       myUserName: '',
+
+      isStart: false,
     };/* mySessionId은 부모 컴포넌트한테 받은거 사용하기, myUserName은 user 정보 사용하기. */
   },
   created() {
@@ -142,6 +146,15 @@ export default {
       // On every asynchronous exception...
       this.session.on('exception', ({ exception }) => {
         console.warn(exception);
+      });
+
+      // Receiver of the message (usually before calling 'session.connect')
+
+      this.session.on('signal:my-chat', (event) => {
+        this.isStart = true;
+        console.log(event.data); // Message
+        console.log(event.from); // Connection object of the sender
+        console.log(event.type); // The type of message ("my-chat")
       });
 
       // --- Connect to the session with a valid user token --- 여기 주의깊게 보기
@@ -276,8 +289,18 @@ export default {
       this.audioEnabled = !this.audioEnabled;
       this.publisher.publishAudio(this.audioEnabled);
     },
-    changName() {
-      this.myUserName = 'joongjae';
+    clickStartBtn() {
+      this.session.signal({
+        data: 'click start Btn', // Any string (optional)
+        to: [], // Array of Connection objects (optional. Broadcast to everyone if empty)
+        type: 'my-chat', // The type of message (optional)
+      })
+        .then(() => {
+          console.log('Message successfully sent');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     },
   },
 };

@@ -27,7 +27,7 @@
       <div class="d-flex justify-center">
         <v-btn
           width="30%" rounded outlined elevation="0"
-          @click="exerciseStart"
+          @click="clickStartBtn"
         >
           시작
         </v-btn>
@@ -72,6 +72,7 @@ export default {
     ClubInfo: Object,
     videoEnabled: Boolean,
     audioEnabled: Boolean,
+    isStart: Boolean,
   },
   data() {
     return {
@@ -95,7 +96,15 @@ export default {
       return utc.substr(utc.indexOf(':') - 2, 8);
     },
   },
+  watch: {
+    isStart() {
+      this.exerciseStart();
+    },
+  },
   methods: {
+    clickStartBtn() {
+      this.$emit('click-start-btn');
+    },
     leaveSession() {
       this.$emit('leave-session');
     },
