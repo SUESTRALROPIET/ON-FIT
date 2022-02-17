@@ -85,6 +85,7 @@
         </v-col> -->
       </v-row>
     </div>
+    <ButtonLogintoMyPage style="visibility: hidden;"/>
   </div>
 </template>
 
@@ -101,6 +102,7 @@ import { apiInstance } from '@/api/index';
 import CalendarDetail from '@/views/mypage/components/CalendarDetail.vue';
 import { FunctionalCalendar } from 'vue-functional-calendar';
 // import { SelfBuildingSquareSpinner } from 'epic-spinners';
+import ButtonLogintoMyPage from '@/views/intro/components/ButtonLogintoMyPage.vue';
 import { HalfCircleSpinner } from 'epic-spinners';
 
 const userStore = 'userStore';
@@ -114,6 +116,7 @@ export default {
     CalendarDetail,
     FunctionalCalendar,
     HalfCircleSpinner,
+    ButtonLogintoMyPage,
   },
   data() {
     return {
@@ -190,7 +193,9 @@ export default {
     calendar: {
       deep: true,
       handler() {
+        // eslint-disable-next-line no-unused-expressions
         this.yyyymmddSelected;
+        // eslint-disable-next-line no-unused-expressions
         this.yyyymmCur;
         console.log('감지 되나?');
       },

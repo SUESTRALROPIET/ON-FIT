@@ -27,7 +27,7 @@
       <div>
         <div class="text d-flex align-center justify-center">
           <img
-            :src='`${ ClubInfo.clubInfo.clubImg }`' alt="club-image"
+            src='@/assets/club/club_default.png' alt="club-image"
             class="align-self-center"
             :class="(ClubInfo.clubMate.length >= 6)? 'finish-club' : ''"
           >

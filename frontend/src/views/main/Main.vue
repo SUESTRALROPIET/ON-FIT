@@ -47,12 +47,14 @@
         </v-col>
       </v-row>
     </div>
+    <ButtonLogin style="visibility: hidden;"/>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
 import Vuex, { mapGetters } from 'vuex';
+import ButtonLogin from '@/views/intro/components/ButtonLogin.vue';
 
 import { apiInstance } from '@/api/index';
 
@@ -61,6 +63,9 @@ const userStore = 'userStore';
 
 export default {
   name: 'Main',
+  components: {
+    ButtonLogin,
+  },
   data() {
     return {
       trainerNum: '',
