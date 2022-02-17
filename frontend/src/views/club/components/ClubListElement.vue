@@ -27,11 +27,10 @@
       <div>
         <div class="text d-flex align-center justify-center">
           <img
-            src='@/assets/club/club_default.png' alt="club-image"
+            :src='`${ ClubInfo.clubInfo.clubImg }`' alt="club-image"
             class="align-self-center"
             :class="(ClubInfo.clubMate.length >= 6)? 'finish-club' : ''"
           >
-          <!-- <img :src='`${ ClubInfo.clubInfo.clubImg }`' alt="club-image"-->
           <h2
             v-if="ClubInfo.clubMate.length >= 6"
             class="flex-child"
