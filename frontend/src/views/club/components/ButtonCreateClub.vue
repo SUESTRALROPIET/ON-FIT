@@ -1,21 +1,23 @@
 <template>
   <v-dialog
     width="70rem"
+    v-model="createFormStatus"
   >
-    <template v-slot:activator="{ on, attrs }">
+    <template v-slot:activator="{ attrs }">
       <v-btn
         small
         rounded
         color="amber lighten-5"
         elevation="1"
         v-bind="attrs"
-        v-on="on"
-        @click="dialog = false"
+        @click="openCreateForm"
       >
         <span>클럽 만들기</span>
       </v-btn>
     </template>
-    <FormCreateClub/>
+    <FormCreateClub
+      @close-create-form="closeCreateForm"
+    />
   </v-dialog>
 </template>
 <script>
@@ -28,7 +30,16 @@ export default {
   },
   data() {
     return {
+      createFormStatus: false,
     };
+  },
+  methods: {
+    openCreateForm() {
+      this.createFormStatus = true;
+    },
+    closeCreateForm() {
+      this.createFormStatus = false;
+    },
   },
 };
 </script>

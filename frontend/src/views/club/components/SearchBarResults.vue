@@ -1,5 +1,6 @@
 <template>
   <div
+    id="span-tags"
     style="width: 40%"
     @click="enterClub"
   >
@@ -9,7 +10,7 @@
     >
     <!-- <img :src='`${ SearchResult.clubInfo.clubImg }`'> -->
     <h3 class="my-3">{{ SearchResult.clubInfo.clubName }}</h3>
-    <div class="d-flex justify-space-between">
+    <div class="d-flex flex-column">
       <div class="d-flex">
         <span><v-icon>mdi-alarm</v-icon></span>
         <p>
@@ -20,9 +21,7 @@
           <span v-if="SearchResult.clubInfo.fri">금</span>
           <span v-if="SearchResult.clubInfo.sat">토</span>
           <span v-if="SearchResult.clubInfo.sun">일</span>
-          <span>{{new Date(SearchResult.clubInfo.fixTime).getHours()}}</span>
-          <span>:</span>
-          <span>{{new Date(SearchResult.clubInfo.fixTime).getMinutes()}}</span>
+          <span>{{SearchResult.clubInfo.fixTime}}</span>
         </p>
       </div>
       <div class="d-flex">
@@ -54,6 +53,8 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
+#span-tags span {
+  margin: 0px 5px 0px 0px;
+}
 </style>

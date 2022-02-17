@@ -1,17 +1,20 @@
 <template>
   <v-row>
     <v-col cols="7" id="nowExbox">
-      <v-row class="align-center mx-3">
-        <v-col cols="3"><h2>현재 운동</h2></v-col>
-        <v-col cols="2">
-          <img
-            :src="require(`@/assets/exercise/${nowExEngName}.png`)" alt="now-ex-image"
-            width="100%"
-          >
-        </v-col>
-        <v-col cols="4" style="text-align:left;"><h2>{{nowExname}}</h2></v-col>
-        <v-col cols="3"><h2>{{nowSetNum}} 세트</h2></v-col>
-      </v-row>
+      <div class="d-flex flex-column align-center">
+        <v-row class="mx-3 align-center">
+          <v-col cols="3"><h2>현재 운동</h2></v-col>
+          <v-col cols="2">
+            <img
+              :src="require(`@/assets/exercise/${nowExEngName}.png`)" alt="now-ex-image"
+              width="100%"
+            >
+          </v-col>
+          <v-col cols="4" style="text-align:left;"><h2>{{nowExname}}</h2></v-col>
+          <v-col cols="3"><h2>{{nowSetNum}} 세트</h2></v-col>
+        </v-row>
+        <div class="bar align-self-start mx-8" :style="{ width: progressValue + '%' }"></div>
+      </div>
     </v-col>
     <v-col cols="4" id="record-body"
       class="d-flex flex-column justify-center pa-3 px-8"
@@ -81,6 +84,7 @@ export default {
       nowExEngName: 'boat',
       nowExname: '',
       nowSetNum: 0,
+      progressValue: 0,
     };
   },
   computed: {
@@ -133,6 +137,10 @@ export default {
     timeStart() {
       this.timer = setInterval(() => {
         this.elapsedTime += 1000;
+        if (this.elapsedTime % (30 * 1000) === 0) {
+          this.progressValue = 0;
+        }
+        this.progressValue += 3.33333333333333;
       }, 1000);
     },
     timeStop() {
@@ -165,5 +173,11 @@ export default {
   color: black;
   background-color: white;
   margin: 0rem 0.5rem 0rem 0.5rem;
+}
+.bar {
+  background: linear-gradient(to right, #B993D6, #8CA6DB);
+  height: 10px;
+  max-width: 90%;
+  border-radius: 9px;
 }
 </style>

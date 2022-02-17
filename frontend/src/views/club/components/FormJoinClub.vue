@@ -111,10 +111,14 @@ export default {
         .then((response) => {
           console.log(response);
           this.$store.dispatch('getClubList');
+          this.closeDialog();
         })
         .catch((err) => {
           console.log(err);
         });
+    },
+    closeDialog() {
+      this.$emit('close-form-join-club');
     },
   },
   filters: {

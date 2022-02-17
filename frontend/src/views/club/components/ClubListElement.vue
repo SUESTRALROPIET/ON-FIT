@@ -7,6 +7,7 @@
       >
         <FormJoinClub
         :ClubInfo="ClubInfo"
+        @close-form-join-club="closeFormJoinCLub"
         />
       </v-dialog>
     </div>
@@ -98,11 +99,14 @@ export default {
           name: 'ClubTraining',
           query: { ClubInfo: this.ClubInfo },
         });
-      } else if (this.ClubInfo.clubMate.length === 6) {
+      } else if (this.ClubInfo.clubMate.length >= 6) {
         this.showFailJoinClub = true;
       } else {
         this.showFormJoinClub = true;
       }
+    },
+    closeFormJoinCLub() {
+      this.showFormJoinClub = false;
     },
   },
 };
