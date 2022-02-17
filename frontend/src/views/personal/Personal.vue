@@ -96,8 +96,7 @@ export default {
       items: {
         exercises: [
           { header: '테스트' },
-          { name: '테스트', nums: '2회', exImg: require('@/assets/exercise/test.png') },
-          { name: '테스트(좌우)', nums: '2회', exImg: require('@/assets/exercise/test2.png') },
+          { name: '테스트', nums: '12회', exImg: require('@/assets/exercise/test.png') },
           { header: '전신' },
           { name: '트리 자세', nums: '12회', exImg: require('@/assets/exercise/tree.png') },
           { name: '슈퍼맨 자세', nums: '12회', exImg: require('@/assets/exercise/superman.png') },
@@ -134,7 +133,7 @@ export default {
         if (this.selectedItem.selectedSet > 0) {
           const selectedResult = ex.filter((v) => v.exName === this.selectedItem.selectedEx);
           // TODO: 3 -> 12 바꾸기
-          const todoNum = selectedResult[0].exName === '플랭크' ? 1 : 3;
+          const todoNum = selectedResult[0].exName === '플랭크' ? 1 : 12;
           const todoTime = selectedResult[0].exName === '플랭크' ? 30 : 5;
           const exTodo = {
             id: new Date().getTime(),

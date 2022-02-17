@@ -85,17 +85,8 @@ const ex = [
     exName: '테스트',
     exEng: 'test',
     exImg: '@/assets/exercise/test.png',
-    exNum: '2회',
+    exNum: '12회',
     isDouble: false,
-    description: '테스트 동작입니다.',
-  },
-  {
-    id: 10,
-    exName: '테스트(좌우)',
-    exEng: 'test2',
-    exImg: '@/assets/exercise/test2.png',
-    exNum: '2회',
-    isDouble: true,
     description: '테스트 동작입니다.',
   },
 ];
