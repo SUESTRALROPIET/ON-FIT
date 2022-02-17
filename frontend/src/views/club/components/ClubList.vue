@@ -39,7 +39,7 @@
 <script>
 import Vue from 'vue';
 import Vuex, { mapGetters } from 'vuex';
-
+import _ from 'lodash';
 import ClubListElement from '@/views/club/components/ClubListElement.vue';
 
 Vue.use(Vuex);
@@ -62,40 +62,42 @@ export default {
       'getUserId',
     ]),
     getUserClubList() {
-      return this.ClubList.filter((club) => club.clubMate.includes(this.getUserId()));
+      return _.orderBy(this.ClubList.filter((club) => club.clubMate.includes(this.getUserId())), ['clubInfo.createdAt'], ['desc']);
     },
     /* eslint-disable */
     getReadyClubList() {
+      const NotJoined = this.ClubList.filter(x => !this.getUserClubList().includes(x));
       // const dateList = ['sun', 'mon', 'tues', 'wedn', 'thur', 'fri', 'sat'];
       const now = new Date();
       const nowDate = now.getDay();
       let readyClubs = [];
       if (nowDate === 0) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.sun === true);
+        readyClubs = NotJoined.filter((club) => club.clubInfo.sun === true);
       } else if (nowDate === 1) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.mon === true);
+        readyClubs = NotJoined.filter((club) => club.clubInfo.mon === true);
       } else if (nowDate === 2) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.tues === true);
+        readyClubs = NotJoined.filter((club) => club.clubInfo.tues === true);
       } else if (nowDate === 3) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.wedn === true);
+        readyClubs = NotJoined.filter((club) => club.clubInfo.wedn === true);
       } else if (nowDate === 4) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.thur === true);
+        readyClubs = NotJoined.filter((club) => club.clubInfo.thur === true);
       } else if (nowDate === 5) {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.fri === true);
+        readyClubs = NotJoined.filter((club) => club.clubInfo.fri === true);
       } else {
-        readyClubs = this.ClubList.filter((club) => club.clubInfo.sat === true);
+        readyClubs = NotJoined.filter((club) => club.clubInfo.sat === true);
       }
-      return readyClubs;
+      return  _.orderBy(readyClubs, ['clubInfo.createdAt'], ['desc']);
     },
     getNewClubList() {
+      const NotJoined = this.ClubList.filter(x => !this.getUserClubList().includes(x));
       const now = new Date();
-      const newClubs = this.ClubList.filter((club) => {
+      const newClubs = NotJoined.filter((club) => {
         const clubDate = new Date(club.clubInfo.createdAt);
         const diffTime = Math.floor((now.getTime() - clubDate.getTime()) / 1000 / 60);
         const diffDate = Math.floor(diffTime / 60 / 24);
         return diffDate <= 7; // 현재기준, 1주 내에 생성된 클럽만!
       });
-      return newClubs;
+      return _.orderBy(newClubs, ['clubInfo.createdAt'], ['desc']);
     },
   },
 };

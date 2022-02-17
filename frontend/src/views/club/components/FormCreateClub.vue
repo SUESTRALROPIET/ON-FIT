@@ -367,6 +367,7 @@ export default {
             console.log(err);
           });
         this.clearAll();
+        this.closeForm();
       }
     },
     clearAll() {
@@ -385,6 +386,9 @@ export default {
       this.selectedItem.selectedSet = 0;
       this.exTodos = [];
       this.exTodosforPost = [];
+    },
+    closeForm() {
+      this.$emit('close-create-form');
     },
   },
 };
