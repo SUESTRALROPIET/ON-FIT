@@ -9,7 +9,11 @@
           <div>
             <ClubTrainingExRecord
               :ClubInfo="ClubInfo"
+              :videoEnabled="videoEnabled"
+              :audioEnabled="audioEnabled"
               @leave-session="leaveSession"
+              @video-on-and-off="videoOnAndOff()"
+              @audio-on-and-off="audioOnAndOff()"
             />
           </div>
           <div id="session" class="mt-13">
@@ -22,6 +26,7 @@
               <!-- 내꺼 작은 화면 -->
               <v-col cols="4" class="d-flex justify-center align-center">
                 <user-video
+                  style="max-width: 100%"
                   :stream-manager="publisher"
                   @click.native="updateMainVideoStreamManager(publisher)"
                 />
@@ -34,6 +39,7 @@
                 class="d-flex justify-center align-center"
               >
                 <user-video
+                  style="max-width: 100%"
                   :stream-manager="sub"
                   @click.native="updateMainVideoStreamManager(sub)"
                 />
@@ -41,11 +47,11 @@
             </v-row>
           </div>
           <!-- 음소거, 화면 공유 버튼 -->
-          <div>
+          <!-- <div>
             <button type="button" @click="videoOnAndOff()">VIDEO BUTTON</button> <br>
             <button type="button" @click="audioOnAndOff()">AUDIO BUTTON</button> <br>
             <button type="button" @click="changName()">CHANGE NAME</button>
-          </div>
+          </div> -->
         </div>
     </div>
   </div>
@@ -277,6 +283,5 @@ export default {
 };
 </script>
 
-<style>
-
+<style scoped>
 </style>

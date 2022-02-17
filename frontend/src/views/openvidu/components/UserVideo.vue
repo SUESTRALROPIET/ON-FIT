@@ -1,8 +1,20 @@
 <template>
-  <div v-if="streamManager">
-    <ov-video :stream-manager="streamManager"/>
-    <div>
-      <p>{{ clientData }}</p>
+  <div v-if="streamManager" class="d-flex flex-column align-center">
+    <ov-video :stream-manager="streamManager"
+      style="border: solid 1px rgba(0, 0, 0, 0.5);
+      border-top-right-radius: 1rem;
+      border-top-left-radius:  1rem;
+      max-width: 100%"
+    />
+    <div
+      class="py-1"
+      style="width: 100%; text-align: center;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: solid 1px rgba(0, 0, 0, 0.5);
+      border-bottom-right-radius: 1rem;
+      border-bottom-left-radius:  1rem;"
+    >
+      <h3>{{ clientData }} 님</h3>
     </div>
   </div>
 </template>
@@ -37,3 +49,5 @@ export default {
   },
 };
 </script>
+<style scoped>
+</style>
