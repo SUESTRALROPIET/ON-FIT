@@ -140,7 +140,7 @@ export default {
       this.isPlay = true;
       if (this.isFirst) {
         this.isFirst = false;
-        this.sound(this.curEx.eng)
+        this.sound(this.curEx.eng);
       }
       this.timeStart();
       this.showStopDialog = false;
