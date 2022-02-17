@@ -58,7 +58,7 @@
         <v-col cols="5">
           <!-- <Calendar @selected="selected" @current="current"/> -->
           <FunctionalCalendar
-            class="calendar"
+            ref="Calendar"
             v-model="calendar"
             v-if="showCal"
             :marked-dates='markedDates'
@@ -127,7 +127,6 @@ export default {
       len: [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
       // cal
       calendar: {
-        currentDate: '',
       },
       markedDates: [],
       // chart
@@ -183,13 +182,19 @@ export default {
     setTimeout(() => {
       this.loading = true;
       this.showCal = true;
-    }, 1000);
+    }, 500);
   },
   mounted() {
-    // setTimeout(() => {
-    //   this.loading = true;
-    //   this.showCal = true;
-    // }, 1000);
+  },
+  watch: {
+    calendar: {
+      deep: true,
+      handler() {
+        this.yyyymmddSelected;
+        this.yyyymmCur;
+        console.log('감지 되나?');
+      },
+    },
   },
   computed: {
     userId() {
