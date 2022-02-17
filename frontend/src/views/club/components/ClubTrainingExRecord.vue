@@ -21,20 +21,30 @@
         <h4>운동 시간</h4>
         <p>{{formattedElapsedTime}}</p>
       </div>
-      <div
-        class="d-flex justify-center justify-space-between"
-      >
+      <div class="d-flex justify-center">
         <v-btn
-          width="45%" rounded outlined elevation="0"
+          width="30%" rounded outlined elevation="0"
           @click="exerciseStart"
         >
           시작
         </v-btn>
         <v-btn
-          width="45%" rounded outlined elevation="0"
+          width="30%" rounded outlined elevation="0"
           @click="leaveSession"
         >
           종료
+        </v-btn>
+        <v-btn icon
+          @click="videoOnAndOff"
+        >
+          <v-icon v-show="videoEnabled" color="green darken-2">mdi-video</v-icon>
+          <v-icon v-show="!videoEnabled">mdi-video-off</v-icon>
+        </v-btn>
+        <v-btn icon
+          @click="audioOnAndOff"
+        >
+          <v-icon v-show="audioEnabled" color="red darken-2">mdi-microphone</v-icon>
+          <v-icon v-show="!audioEnabled">mdi-microphone-off</v-icon>
         </v-btn>
       </div>
     </v-col>
@@ -57,6 +67,8 @@ export default {
   },
   props: {
     ClubInfo: Object,
+    videoEnabled: Boolean,
+    audioEnabled: Boolean,
   },
   data() {
     return {
@@ -82,6 +94,12 @@ export default {
   methods: {
     leaveSession() {
       this.$emit('leave-session');
+    },
+    videoOnAndOff() {
+      this.$emit('video-on-and-off');
+    },
+    audioOnAndOff() {
+      this.$emit('audio-on-and-off');
     },
     /* eslint-disable no-await-in-loop */
     async exerciseStart() {
@@ -146,5 +164,6 @@ export default {
 #record-body .v-btn {
   color: black;
   background-color: white;
+  margin: 0rem 0.5rem 0rem 0.5rem;
 }
 </style>
