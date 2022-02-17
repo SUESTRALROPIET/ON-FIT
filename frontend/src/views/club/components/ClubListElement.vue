@@ -40,7 +40,7 @@
         </div>
       </div>
       <h3 class="my-3">{{ ClubInfo.clubInfo.clubName }}</h3>
-      <div class="d-flex justify-space-between">
+      <div class="d-flex flex-column">
         <div class="d-flex">
           <span><v-icon>mdi-alarm</v-icon></span>
           <p>

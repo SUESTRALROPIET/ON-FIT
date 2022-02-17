@@ -97,7 +97,7 @@ export default {
 
 .subTitleBox {
   text-align: center;
-  border: 1px solid;
+  border: 2px solid #FFD2B6;
   border-radius: 30px 30px 0 0;
   background: rgba(255, 255, 255, 0.5);
 }
@@ -105,7 +105,7 @@ export default {
 .exListBox {
   height: 438px;
   text-align: center;
-  border: 1px solid;
+  border: 2px solid #FFD2B6;
   border-radius: 0 0 30px 30px;
   background: rgba(255, 255, 255, 0.5);
   margin-bottom: 40px;

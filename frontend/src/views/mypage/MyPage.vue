@@ -65,16 +65,24 @@
             :is-date-picker="true"
           />
         </v-col>
-        <v-col v-if="showRecord" class="ms-10" cols="6" id="recordBox">
-          <CalendarDetail
-            v-for="record in records"
-            :key="record.exTime"
-            :record="record"
-          />
+        <v-col  class="ms-10" cols="6" id="recordBox">
+          <div v-if="this.calendar.selectedDate" class="text-center">
+            <h2>{{this.calendar.selectedDate}} 운동 기록</h2>
+          </div>
+          <div v-if="showRecord">
+            <CalendarDetail
+              v-for="record in records"
+              :key="record.exTime"
+              :record="record"
+            />
+          </div>
+          <div v-else>
+            <h3 class="text-center mt-5">운동 기록이 없습니다.</h3>
+          </div>
         </v-col>
-        <v-col v-else class="ms-10" cols="6" id="recordBox">
+        <!-- <v-col v-else class="ms-10" cols="6" id="recordBox">
           <h3 class="text-center mt-5">운동 기록이 없습니다.</h3>
-        </v-col>
+        </v-col> -->
       </v-row>
     </div>
   </div>
@@ -175,9 +183,13 @@ export default {
     setTimeout(() => {
       this.loading = true;
       this.showCal = true;
-    }, 2000);
+    }, 1000);
   },
   mounted() {
+    // setTimeout(() => {
+    //   this.loading = true;
+    //   this.showCal = true;
+    // }, 1000);
   },
   computed: {
     userId() {
