@@ -7,14 +7,14 @@ on:FIT은 언제 어디서나 운동을 시작할 수 있습니다. AI트레이�
 
 ​	  
 
-## 1. 팀 소개
+## :muscle:팀 소개
 
 - 프론트: 백민아, 최승연
 - 백엔드: 김중재, 김지수
 
 ​		 
 
-## 2. 프로젝트 소개
+## :muscle:프로젝트 소개
 
   <p align="center">
 <a href="README.assets/와이어프레임.pdf">와이어 프레임</a>	·	<a href="README.assets/ERD.pdf">ERD</a>	·	
@@ -39,21 +39,41 @@ on:FIT은 언제 어디서나 운동을 시작할 수 있습니다. AI트레이�
 1. 사용언어
    - JAVA
      - 버전: Open JDK 1.8.0_192
+     
    - JavaScript
+
+      
+
 2. 프레임워크
    - Spring Boot Framework
+
    - Vue 2
+
    - Swagger
+
+      
+
 3. Database / Server
    - MySQL 8.0.x
+
+      
+
 4. 라이브러리 및 API
    - 프론트
      - Teachable Machine - pose project
      - Kakao 음성 합성 API
      - Vuetify
      - epic-spinners, vue-apexcharts, vue-functional-calendar
+
    - 백엔드
      - webRTC기반 Openvidu
      - JPA
+
    - Google Login API
+
+      
+
+#### 프로젝트 구조
+
+![img](README.assets/q9gk1-BoyRrSB3OkEmGtaq4vwRzBgNV7_NMtW8lfQGIB-8doSjcjBvUKRTlVPInZ6zd8dLFTx89WxTne48RzP6o7l3QfPga8AowSMJgipq_XbediAyQpZGkkyFtFF70GW8qhFkFh8RJT.png)
 
