@@ -1,4 +1,5 @@
-![image-20220216213346733](README.assets/image-20220216213346733.png)
+  <p align="center">
+      <img src="README.assets/image-20220216213346733.png"/>
 
 비대면 헬스클럽 on:FIT
 
