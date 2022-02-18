@@ -36,39 +36,39 @@ on:FIT은 언제 어디서나 운동을 시작할 수 있습니다. AI트레이�
 
 #### 주요 기술 스택
 
-1. 사용언어
+**1. 사용언어**
    - JAVA (Open JDK 1.8.0_192)
      
    - JavaScript
 
       
 
-2. 프레임워크
+**2. 프레임워크**
    - Spring Boot Framework
 
    - Vue 2
 
       
 
-3. Database / Server
+**3. Database / Server**
    - MySQL (8.0.28)
 
-      
+         
 
-4. 라이브러리 및 API
+**4. 라이브러리 및 API**
    - 프론트
      - Teachable Machine - pose project
      - Kakao 음성 합성 API
      - Vuetify
      - epic-spinners, vue-apexcharts, vue-functional-calendar
-
+            
    - 백엔드
      - OpenVidu
      - JPA
      - Swagger
-
+         
    - Google Login API
-
+      
       
 
 #### 프로젝트 구조
