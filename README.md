@@ -7,14 +7,14 @@ on:FIT은 언제 어디서나 운동을 시작할 수 있습니다. AI트레이�
 
 ​	  
 
-## :muscle:팀 소개
+## :muscle: 팀 소개
 
 - 프론트: 백민아, 최승연
 - 백엔드: 김중재, 김지수
 
 ​		 
 
-## :muscle:프로젝트 소개
+## :muscle: 프로젝트 소개
 
   <p align="center">
 <a href="README.assets/와이어프레임.pdf">와이어 프레임</a>	·	<a href="README.assets/ERD.pdf">ERD</a>	·	
