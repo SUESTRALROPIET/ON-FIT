@@ -37,8 +37,7 @@ on:FIT은 언제 어디서나 운동을 시작할 수 있습니다. AI트레이�
 #### 주요 기술 스택
 
 1. 사용언어
-   - JAVA
-     - 버전: Open JDK 1.8.0_192
+   - JAVA (Open JDK 1.8.0_192)
      
    - JavaScript
 
@@ -49,12 +48,10 @@ on:FIT은 언제 어디서나 운동을 시작할 수 있습니다. AI트레이�
 
    - Vue 2
 
-   - Swagger
-
       
 
 3. Database / Server
-   - MySQL 8.0.x
+   - MySQL (8.0.28)
 
       
 
@@ -66,8 +63,9 @@ on:FIT은 언제 어디서나 운동을 시작할 수 있습니다. AI트레이�
      - epic-spinners, vue-apexcharts, vue-functional-calendar
 
    - 백엔드
-     - webRTC기반 Openvidu
+     - OpenVidu
      - JPA
+     - Swagger
 
    - Google Login API
 
